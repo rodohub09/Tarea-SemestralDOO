@@ -1,4 +1,4 @@
-public class Equipo {
+public class Participante {
     private String nombre;
     private int puntos = 0;
     private int partidosJugados = 0;
@@ -7,7 +7,7 @@ public class Equipo {
     private int losses = 0;
     private int posicion;
 
-    public Equipo(String nombre, int posicion) {
+    public Participante(String nombre, int posicion) {
         this.nombre = nombre;
         this.posicion = posicion;
     }

@@ -5,11 +5,11 @@ public class Jornada {
     private ArrayList<Enfrentamiento> partidos;
     private Participantes participantes;
 
-    public Jornada(){
+    public Jornada() {
 
     }
 
-    public void CrearRonda(){
+    public void CrearRonda() {
         
     }
 
