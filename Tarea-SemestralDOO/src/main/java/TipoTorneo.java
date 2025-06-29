@@ -1,4 +1,4 @@
-public enum TipoElim {
+public enum TipoTorneo {
     FaseGrupos,
     EliminacionDirecta,
     DobleEliminacion,

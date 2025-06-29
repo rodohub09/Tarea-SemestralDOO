@@ -1,10 +1,13 @@
-public class Partido {
+import java.util.Date;
+
+public class Enfrentamiento {
     private Equipo local;
     private Equipo visita;
     private Equipo ganador = null;
+    private Date fecha;
 
     //Quizás se puede añadir el equipo perdedor también para los torneos de doble eliminación y las ligas
-    public Partido(Equipo local, Equipo visita){
+    public Enfrentamiento(Equipo local, Equipo visita){
         this.local = local;
         this.visita = visita;
     }
