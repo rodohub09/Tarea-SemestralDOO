@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.Vector;
 
 public class Grupos implements AgrupacionParticipantes{
-    private Map<String,ArrayList<Map>> grupos;
+    private Map<String,Map> grupos;
 
     public Grupos(){
         this.grupos = new HashMap<>();
@@ -12,15 +12,18 @@ public class Grupos implements AgrupacionParticipantes{
 
     @Override
     public void organizarParticipantes(ArrayList<Participante> participantes) {
-        ArrayList<Map> grupo = new ArrayList<>();
-        Map<Participante,Vector> participante = new HashMap<>();
+        grupos.clear();
         for(int i = 0; i < participantes.size()/4; i++){
+            Map<Participante,Vector> grupo = new HashMap<>();
             for(int j = 0; j < 4; j++){
-                participante.put(participantes.get(i+j),new Vector<>(6));
-                grupo.add(participante);
+                grupo.put(participantes.get(i*4+j),new Vector<>(6));;
             }
             grupos.put("Grupo" + (i+1), grupo);
-            grupo.clear();
         }
+    }
+
+    @Override
+    public String toString() {
+        return grupos.toString();
     }
 }
