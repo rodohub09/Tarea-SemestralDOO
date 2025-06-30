@@ -20,6 +20,14 @@ public class Enfrentamiento {
         return ganador;
     }
 
+    public void setFecha(Date fecha){
+        this.fecha = fecha;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
     @Override
     public String toString() {
         return "Partido: " + local.getNombre() + " vs " + visita.getNombre();
