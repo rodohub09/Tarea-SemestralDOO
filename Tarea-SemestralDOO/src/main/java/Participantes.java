@@ -24,6 +24,10 @@ public class Participantes {
         participantes.add(participante);
     }
 
+    public Participante getParticipante(int i){
+        return participantes.get(i);
+    }
+
     @Override
     public String toString() {
         return agrupacionParticipantes.toString();
