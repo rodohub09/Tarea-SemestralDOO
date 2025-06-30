@@ -44,6 +44,7 @@ public class JornadaaXPuntos implements TipoDeCalendario{
             if (t[j][i] != q && t[i][j] != q) {
                 aux++;
             } else {
+                System.out.println();
                 continue;
             }
         }
