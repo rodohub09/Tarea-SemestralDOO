@@ -6,6 +6,10 @@ import java.util.Vector;
 public class Grupos implements AgrupacionParticipantes{
     private Map<String,ArrayList<Map>> grupos;
 
+    public Grupos(){
+        this.grupos = new HashMap<>();
+    }
+
     @Override
     public void organizarParticipantes(ArrayList<Participante> participantes) {
         ArrayList<Map> grupo = new ArrayList<>();

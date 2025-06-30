@@ -16,7 +16,16 @@ public class Participantes {
         }
     }
 
+    public void agrupar(){
+        agrupacionParticipantes.organizarParticipantes(participantes);
+    }
+
     public void addParticipante(Participante participante){
         participantes.add(participante);
+    }
+
+    @Override
+    public String toString() {
+        return agrupacionParticipantes.toString();
     }
 }

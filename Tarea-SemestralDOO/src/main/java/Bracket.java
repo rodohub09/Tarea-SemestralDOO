@@ -16,4 +16,9 @@ public class Bracket implements AgrupacionParticipantes{
             bracket2.add(participantes.get(participantes.size()-(i+1)));
         }
     }
+
+    @Override
+    public String toString() {
+        return bracket1.toString() + bracket2.toString();
+    }
 }
