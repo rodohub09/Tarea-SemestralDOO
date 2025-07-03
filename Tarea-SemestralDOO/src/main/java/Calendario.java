@@ -9,7 +9,13 @@ public class Calendario {
         this.jornadas = new ArrayList<>();
         if(tt==TipoTorneo.Liguilla){
             this.tipoDeCalendario = new CalendarioXPuntos();
-            tipoDeCalendario.crearCalendario(jornadas,cantEnfretamientosIgual, p, participantes);
+            tipoDeCalendario.creacionCalendario(jornadas,cantEnfretamientosIgual, p, participantes);
+        }else if(tt==TipoTorneo.EliminacionDirecta){
+            this.tipoDeCalendario = new CalendarioElimDirecta();
+            tipoDeCalendario.creacionCalendario(jornadas,cantEnfretamientosIgual, p, participantes);
+        }else if(tt==TipoTorneo.FaseGrupos){
+            this.tipoDeCalendario = new CalendarioXPuntos();
+            tipoDeCalendario.creacionCalendario(jornadas,cantEnfretamientosIgual, p, participantes);
         }
     }
 

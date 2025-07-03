@@ -11,6 +11,6 @@ public class Main {
         p.addParticipante(new Participante("f",4));
         CalendarioXPuntos jxp = new CalendarioXPuntos();
 
-        jxp.crearCalendario(j,2,CantidadParticipantes.Cuatro,p);
+        jxp.creacionCalendario(j,2,CantidadParticipantes.Cuatro,p);
     }
 }
