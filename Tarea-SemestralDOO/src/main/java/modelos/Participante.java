@@ -1,3 +1,5 @@
+package modelos;
+
 public class Participante implements Observer {
     protected String nombre;
     protected int partidosJugados;

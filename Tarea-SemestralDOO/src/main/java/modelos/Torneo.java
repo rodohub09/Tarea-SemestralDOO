@@ -1,3 +1,5 @@
+package modelos;
+
 public class Torneo {
     protected String nombre;
     protected TipoTorneo tipoTorneo;

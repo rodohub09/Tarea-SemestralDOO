@@ -1,3 +1,5 @@
+package modelos;
+
 public enum CantidadParticipantes {
     Cuatro(4,2),
     Ocho(8,4),

@@ -1,3 +1,4 @@
+package modelos;
 import java.util.ArrayList;
 
 public class Participantes {
@@ -10,7 +11,7 @@ public class Participantes {
 
     public void setAgrupacionParticipantes(TipoTorneo tipoTorneo){
         switch (tipoTorneo){
-            case Liguilla -> agrupacionParticipantes = new Clasificacion();
+            case Liga -> agrupacionParticipantes = new Clasificacion();
             case FaseGrupos -> agrupacionParticipantes = new Grupos();
             case EliminacionDirecta -> agrupacionParticipantes = new Bracket();
         }
