@@ -1,31 +1,38 @@
-public class Participante {
-    private String nombre;
-    private int puntos = 0;
-    private int partidosJugados = 0;
-    private int wins = 0;
-    private int draws = 0;
-    private int losses = 0;
-    private int posicion;
+public abstract class Participante implements Observer {
+    protected String nombre;
+    protected int partidosJugados;
+    protected int wins;
+    protected int losses;
+    protected int draws;
+    protected int puntos;
 
-    public Participante(String nombre, int posicion) {
+    public Participante(String nombre) {
         this.nombre = nombre;
-        this.posicion = posicion;
+        this.partidosJugados = 0;
+        this.wins = 0;
+        this.losses = 0;
+        this.draws = 0;
+        this.puntos = 0;
+    }
+
+    @Override
+    public void registrarResultado(Resultados resultado) {
+        partidosJugados++;
+        switch (resultado) {
+            case Victoria -> {
+                wins++;
+                puntos += 3;
+            }
+            case Derrota -> losses++;
+            case Empate -> {
+                draws++;
+                puntos += 1;
+            }
+        }
     }
 
     public String getNombre() {
         return nombre;
-    }
-
-    public int getPosicion() {
-        return posicion;
-    }
-
-    public void setPosicion(int posicion) {
-        this.posicion = posicion;
-    }
-
-    public int getPuntos() {
-        return puntos;
     }
 
     public int getPartidosJugados() {
@@ -42,5 +49,9 @@ public class Participante {
 
     public int getDraws() {
         return draws;
+    }
+
+    public int getPuntos() {
+        return puntos;
     }
 }
