@@ -17,24 +17,28 @@ public class Enfrentamiento {
         this.ganador = ganador;
         this.esEmpate = false;
 
-        local.registrarResultado(ganador, (local == ganador) ? Resultados.Victoria : Resultados.Derrota);
-        visita.registrarResultado(ganador, (visita == ganador) ? Resultados.Victoria : Resultados.Derrota);
+        local.registrarResultado((local == ganador) ? Resultados.Victoria : Resultados.Derrota);
+        visita.registrarResultado((visita == ganador) ? Resultados.Victoria : Resultados.Derrota);
     }
 
     public void setEmpate() {
         this.ganador = null;
         this.esEmpate = true;
 
-        local.registrarResultado(null, Resultados.Empate);
-        visita.registrarResultado(null, Resultados.Empate);
+        local.registrarResultado(Resultados.Empate);
+        visita.registrarResultado(Resultados.Empate);
+    }
+
+    public boolean isEmpate() {
+        return esEmpate;
     }
 
     public Participante getGanador() {
         return ganador;
     }
 
-    public boolean isEmpate() {
-        return esEmpate;
+    public Date getFecha() {
+        return fecha;
     }
 
     @Override

@@ -16,7 +16,7 @@ public abstract class Participante implements Observer {
     }
 
     @Override
-    public void registrarResultado(Participante participante, Resultados resultado) {
+    public void registrarResultado(Resultados resultado) {
         partidosJugados++;
         switch (resultado) {
             case Victoria -> {
