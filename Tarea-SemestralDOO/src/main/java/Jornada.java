@@ -5,8 +5,9 @@ public class Jornada {
     public ArrayList<Enfrentamiento> partidos;
     private Participantes participantes;
 
-    public Jornada(){
+    public Jornada(Participantes participantes, TipoTorneo tt){
         this.partidos = new ArrayList<>();
+        this.participantes = participantes;
     }
 
     public ArrayList<Enfrentamiento> getPartidos() {

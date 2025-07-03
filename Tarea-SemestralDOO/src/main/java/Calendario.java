@@ -2,16 +2,15 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Calendario {
-    ArrayList<Jornada> jornada;
+    private ArrayList<Jornada> jornadas;
+    private TipoDeCalendario tipoDeCalendario;
 
-    public Calendario(int cantEnfretamientosIgual,CantidadParticipantes p){
-        int[][] matrizEnf = new int[p.getNumParticipantes()][p.getNumParticipantes()];
-        for(int i=0;i<p.getNumParticipantes();i++){
-            for(int j=0;j<p.getNumParticipantes();j++){
-                matrizEnf[i][j] = 0;
-            }
+    public Calendario(TipoTorneo tt, int cantEnfretamientosIgual, CantidadParticipantes p,Participantes participantes){
+        this.jornadas = new ArrayList<>();
+        if(tt==TipoTorneo.Liguilla){
+            this.tipoDeCalendario = new CalendarioXPuntos();
+            tipoDeCalendario.crearCalendario(jornadas,cantEnfretamientosIgual, p, participantes);
         }
-
     }
 
 
