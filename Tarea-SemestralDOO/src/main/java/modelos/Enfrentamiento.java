@@ -2,16 +2,17 @@ package modelos;
 import java.util.Date;
 
 public class Enfrentamiento {
-    private Participante local;
-    private Participante visita;
+    public Participante local;
+    public Participante visita;
     private Participante ganador = null;
     private boolean esEmpate = false;
     private Date fecha;
 
     //Quizás se puede añadir el equipo perdedor también para los torneos de doble eliminación y las ligas
-    public Enfrentamiento(Participante local, Participante visita) {
+    public Enfrentamiento(Participante local, Participante visita, Date fecha) {
         this.local = local;
         this.visita = visita;
+        this.fecha = fecha;
     }
 
     public void setGanador(Participante ganador) {

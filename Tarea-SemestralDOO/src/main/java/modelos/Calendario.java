@@ -19,5 +19,14 @@ public class Calendario {
         }
     }
 
+    public void setTipoDeCalendario(TipoDeCalendario tipoDeCalendario) {
+        this.tipoDeCalendario = tipoDeCalendario;
+    }
 
+    public void crearCalendario(TipoTorneo tt,int cantEnfretamientosIgual, CantidadParticipantes p,Participantes participantes){
+        switch (tt){
+            case TipoTorneo.Liga -> tipoDeCalendario.creacionCalendario(jornadas,cantEnfretamientosIgual, p, participantes);
+            case TipoTorneo.EliminacionDirecta -> tipoDeCalendario.creacionCalendario(jornadas,cantEnfretamientosIgual, p, participantes);
+        }
+    }
 }

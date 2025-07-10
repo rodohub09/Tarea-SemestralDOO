@@ -37,7 +37,7 @@ public class CalendarioXPuntos implements TipoDeCalendario{
                                 return 0;
                             }
                         }
-                        alj.get(matrizEnfrentamientos[i][j]-1).partidos.add(new Enfrentamiento(participantes.getParticipante(i),participantes.getParticipante(j)));
+                        alj.get(matrizEnfrentamientos[i][j]-1).partidos.add(new Enfrentamiento(participantes.getParticipante(i),participantes.getParticipante(j),null));
                     }
                 } else if( (matrizEnfrentamientos[j][i]<=p.getNumParticipantes()-1) && (cantEnfretamientosIgual == 2) ){
                     matrizEnfrentamientos[i][j] = new Random().nextInt(p.getNumParticipantes()-1)+(p.getNumParticipantes());
@@ -48,7 +48,7 @@ public class CalendarioXPuntos implements TipoDeCalendario{
                             return 0;
                         }
                     }
-                    alj.get(matrizEnfrentamientos[i][j]-1).partidos.add(new Enfrentamiento(participantes.getParticipante(i),participantes.getParticipante(j)));
+                    alj.get(matrizEnfrentamientos[i][j]-1).partidos.add(new Enfrentamiento(participantes.getParticipante(i),participantes.getParticipante(j),null));
                 } else{
                     matrizEnfrentamientos[i][j] = new Random().nextInt(p.getNumParticipantes()-1) + 1;
                     while (seRepite(matrizEnfrentamientos, i, j, p,matrizEnfrentamientos[i][j])){
@@ -58,15 +58,9 @@ public class CalendarioXPuntos implements TipoDeCalendario{
                             return 0;
                         }
                     }
-                    alj.get(matrizEnfrentamientos[i][j]-1).partidos.add(new Enfrentamiento(participantes.getParticipante(i),participantes.getParticipante(j)));
+                    alj.get(matrizEnfrentamientos[i][j]-1).partidos.add(new Enfrentamiento(participantes.getParticipante(i),participantes.getParticipante(j),null));
                 }
             }
-        }
-        for(int i=0;i<p.getNumParticipantes();i++){
-            for(int j=0;j<p.getNumParticipantes();j++){
-                System.out.println(matrizEnfrentamientos[i][j]+", ");
-            }
-            System.out.println("\n");
         }
         return 1;
     }
@@ -78,17 +72,8 @@ public class CalendarioXPuntos implements TipoDeCalendario{
             else if( (matriz[k][i] != jornada) && (matriz[i][k] != jornada) && (matriz[k][j] != jornada) && (matriz[j][k] != jornada) )
                 continue;
             else
-                System.out.println(i + "-" + j + "-" + k);
-                System.out.println(matriz[i][j] + " " + jornada + " " + matriz[j][i]);
-                for(int w=0;w<p.getNumParticipantes();w++){
-                    for(int z=0;z<p.getNumParticipantes();z++){
-                        System.out.println(matriz[w][z]+", ");
-                    }
-                    System.out.println("\n");
-                }
                 return true;
         }
-        System.out.println("aaa");
         return false;
     }
 }
