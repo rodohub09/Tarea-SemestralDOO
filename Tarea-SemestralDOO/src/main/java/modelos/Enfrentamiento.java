@@ -43,6 +43,14 @@ public class Enfrentamiento {
         return fecha;
     }
 
+    public String getLocal() {
+        return local.getNombre();
+    }
+
+    public String getVisita() {
+        return visita.getNombre();
+    }
+
     @Override
     public String toString() {
         return "Partido: " + local.getNombre() + " vs " + visita.getNombre();

@@ -25,6 +25,10 @@ public class Participantes {
         participantes.add(participante);
     }
 
+    public ArrayList<Participante> getArrayParticipante() {
+        return participantes;
+    }
+
     public Participante getParticipante(int i){
         return participantes.get(i);
     }
