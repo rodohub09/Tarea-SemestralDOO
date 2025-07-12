@@ -14,4 +14,12 @@ public class Jornada {
     public ArrayList<Enfrentamiento> getPartidos() {
         return partidos;
     }
+
+    public String toString(){
+        String s = "";
+        for(int i=0;i<partidos.size();i++){
+            s += partidos.get(i) + "\n";
+        }
+        return s;
+    }
 }

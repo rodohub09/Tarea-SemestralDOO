@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Participantes {
     private AgrupacionParticipantes agrupacionParticipantes;
-    private ArrayList<Participante> participantes;
+    public ArrayList<Participante> participantes;
 
     public Participantes(){
         this.participantes = new ArrayList<>();
