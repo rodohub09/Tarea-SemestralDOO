@@ -37,7 +37,7 @@ public class CalendarioXPuntos implements TipoDeCalendario{
                                 return 0;
                             }
                         }
-                        alj.get(matrizEnfrentamientos[i][j]-1).partidos.add(new Enfrentamiento(participantes.getParticipante(i),participantes.getParticipante(j),null));
+                        alj.get(matrizEnfrentamientos[i][j]-1).enfrentamientos.add(new Enfrentamiento(participantes.getParticipante(i),participantes.getParticipante(j),null));
                     }
                 } else if( (matrizEnfrentamientos[j][i]<=p.getNumParticipantes()-1) && (cantEnfretamientosIgual == 2) ){
                     matrizEnfrentamientos[i][j] = new Random().nextInt(p.getNumParticipantes()-1)+(p.getNumParticipantes());
@@ -48,7 +48,7 @@ public class CalendarioXPuntos implements TipoDeCalendario{
                             return 0;
                         }
                     }
-                    alj.get(matrizEnfrentamientos[i][j]-1).partidos.add(new Enfrentamiento(participantes.getParticipante(i),participantes.getParticipante(j),null));
+                    alj.get(matrizEnfrentamientos[i][j]-1).enfrentamientos.add(new Enfrentamiento(participantes.getParticipante(i),participantes.getParticipante(j),null));
                 } else{
                     matrizEnfrentamientos[i][j] = new Random().nextInt(p.getNumParticipantes()-1) + 1;
                     while (seRepite(matrizEnfrentamientos, i, j, p,matrizEnfrentamientos[i][j])){
@@ -58,7 +58,7 @@ public class CalendarioXPuntos implements TipoDeCalendario{
                             return 0;
                         }
                     }
-                    alj.get(matrizEnfrentamientos[i][j]-1).partidos.add(new Enfrentamiento(participantes.getParticipante(i),participantes.getParticipante(j),null));
+                    alj.get(matrizEnfrentamientos[i][j]-1).enfrentamientos.add(new Enfrentamiento(participantes.getParticipante(i),participantes.getParticipante(j),null));
                 }
             }
         }

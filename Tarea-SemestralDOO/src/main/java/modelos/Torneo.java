@@ -7,7 +7,9 @@ public class Torneo {
     private Participantes participantes;
     private int jornada = 0;
 
-    public Torneo(String nombre, TipoTorneo tipoTorneo) {}
+    public Torneo(String nombre, TipoTorneo tipoTorneo) {
+        participantes = new Participantes();
+    }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;

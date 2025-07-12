@@ -23,7 +23,7 @@ class JornadaTest {
     }
 
     @Test
-    void getPartidos() {
+    void getEnfrentamientos() {
     }
 
     @Test

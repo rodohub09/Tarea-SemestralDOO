@@ -6,14 +6,12 @@ public class Main {
         ArrayList<Jornada> j = new ArrayList<>();
 
         Participantes p = new Participantes();
-        p.addParticipante(new Participante("w"));
-        p.addParticipante(new Participante("s"));
-        p.addParticipante(new Participante("a"));
-        p.addParticipante(new Participante("f"));
-        CalendarioElimDirecta jxp = new CalendarioElimDirecta();
+        p.addParticipante(new Participante("w","1"));
+        p.addParticipante(new Participante("s","2"));
+        p.addParticipante(new Participante("a","3"));
+        p.addParticipante(new Participante("f","4"));
+        CalendarioXPuntos jxp = new CalendarioXPuntos();
 
         jxp.creacionCalendario(j,2,CantidadParticipantes.Cuatro,p);
-        jxp.actualizarCalendario(j,2);
-        System.out.println(j.get(2).partidos.get(0));
     }
 }
