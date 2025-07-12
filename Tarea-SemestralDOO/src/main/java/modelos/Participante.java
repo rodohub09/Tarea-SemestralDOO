@@ -1,15 +1,17 @@
 package modelos;
 
 public class Participante implements Observer {
-    protected String nombre;
-    protected int partidosJugados;
-    protected int wins;
-    protected int losses;
-    protected int draws;
-    protected int puntos;
+    private String nombre;
+    private String contacto;
+    private int partidosJugados;
+    private int wins;
+    private int losses;
+    private int draws;
+    private int puntos;
 
-    public Participante(String nombre) {
+    public Participante(String nombre, String contacto) {
         this.nombre = nombre;
+        this.contacto = contacto;
         this.partidosJugados = 0;
         this.wins = 0;
         this.losses = 0;
@@ -35,6 +37,10 @@ public class Participante implements Observer {
 
     public String getNombre() {
         return nombre;
+    }
+
+    public String getContacto() {
+        return contacto;
     }
 
     public int getPartidosJugados() {

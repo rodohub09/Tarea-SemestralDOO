@@ -19,5 +19,7 @@ public class Calendario {
         }
     }
 
-
+    public Jornada getJornada(int numJornada) {
+        return jornadas.get(numJornada);
+    }
 }
