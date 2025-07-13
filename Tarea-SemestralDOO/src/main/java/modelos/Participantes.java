@@ -12,7 +12,7 @@ public class Participantes {
     public void setAgrupacionParticipantes(TipoTorneo tipoTorneo){
         switch (tipoTorneo){
             case Liga -> agrupacionParticipantes = new Clasificacion();
-            case EliminacionDirecta -> agrupacionParticipantes = new Bracket();
+            case Eliminacion_Directa -> agrupacionParticipantes = new Bracket();
         }
     }
 

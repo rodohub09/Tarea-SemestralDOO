@@ -14,11 +14,17 @@ public class AgregarParticipante extends JPanel {
         super();
         setOpaque(false);
         setLayout(null);
+        setBackground(Color.BLACK);
         nombre = new JTextField(20);
+        nombre.setFont(super.getFont().deriveFont(20f));
         correo = new JTextField(20);
+        correo.setFont(super.getFont().deriveFont(20f));
         JLabel etiqueta1 = new JLabel("Nombre:");
+        etiqueta1.setFont(super.getFont().deriveFont(20f));
         JLabel etiqueta2 = new JLabel("Contacto:");
+        etiqueta2.setFont(super.getFont().deriveFont(20f));
         agregar = new JButton("Agregar");
+        agregar.setFont(super.getFont().deriveFont(20f));
         agregar.addActionListener(e -> {
             String[] campos = getCampos();
             if (!campos[0].isBlank() && !campos[1].isBlank()) {
@@ -28,15 +34,15 @@ public class AgregarParticipante extends JPanel {
                 Ventana.actualizar();
             }
             });
-        nombre.setBounds(60,0,100,20);
+        nombre.setBounds(100,0,100,30);
         add(nombre);
-        correo.setBounds(60,20,100,20);
+        correo.setBounds(100,40,100,30);
         add(correo);
-        etiqueta1.setBounds(0,0,100,20);
+        etiqueta1.setBounds(0,0,100,30);
         add(etiqueta1);
-        etiqueta2.setBounds(0,20,100,20);
+        etiqueta2.setBounds(0,40,100,30);
         add(etiqueta2);
-        agregar.setBounds(32,70,100,20);
+        agregar.setBounds(32,80,200,30);
         add(agregar);
     }
 

@@ -7,6 +7,7 @@ public class MenuInicial extends JPanel {
     public MenuInicial(){
         super();
         setOpaque(false);
+        setVisible(false);
     }
 
     @Override

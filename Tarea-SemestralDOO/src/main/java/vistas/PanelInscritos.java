@@ -23,11 +23,13 @@ public class PanelInscritos extends JPanel {
         };
         tablaInscritos = new JTable(modelo);
         tablaInscritos.getTableHeader().setReorderingAllowed(false);
-
+        tablaInscritos.setFont(super.getFont().deriveFont(20f));
+        tablaInscritos.setRowHeight(30);
+        tablaInscritos.getTableHeader().setFont(super.getFont().deriveFont(20f));
         JScrollPane scrollPane = new JScrollPane(tablaInscritos);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 
-        scrollPane.setBounds(0,0,200,200);
+        scrollPane.setBounds(0,0,400,600);
         add(scrollPane);
     }
 

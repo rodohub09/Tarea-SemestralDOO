@@ -14,11 +14,10 @@ public class PanelPrincipal extends JPanel {
 
     public PanelPrincipal() {
         super();
-        torneo = new Torneo("Hola", TipoTorneo.EliminacionDirecta);
+        torneo = new Torneo("Hola", TipoTorneo.Eliminacion_Directa);
         setSize(Toolkit.getDefaultToolkit().getScreenSize());
         setOpaque(false);
         setLayout(null);
-        setBackground(Color.BLACK);
 
         menuInicial = new MenuInicial();
         crearTorneo = new MenuCrearTorneo();
