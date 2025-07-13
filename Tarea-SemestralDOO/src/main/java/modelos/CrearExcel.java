@@ -57,7 +57,7 @@ public class CrearExcel {
                 Row fila = hoja.getRow(i + 2);
                 if (fila == null)
                     hoja.createRow(i + 2);
-                String texto = enfrentamiento.getLocal() + " vs " + enfrentamiento.getVisita();
+                String texto = enfrentamiento.getSringLocal() + " vs " + enfrentamiento.getStringVisita();
                 if (enfrentamiento.getGanador() != null)
                     texto += " (Ganador: " + enfrentamiento.getGanador().getNombre() + ")";
                 fila.createCell(columnaJornadas).setCellValue(texto);

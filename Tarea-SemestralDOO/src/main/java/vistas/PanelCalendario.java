@@ -43,11 +43,11 @@ public class PanelCalendario extends JPanel {
 
     private LabelEnfrentamiento getLabelEnfrentamiento(Enfrentamiento e) {
         LabelEnfrentamiento label;
-        if (e.getLocal() != null && e.getVisita() != null) {
+        if (e.getSringLocal() != null && e.getStringVisita() != null) {
             if (e.getFecha() != null)
-                label = new LabelEnfrentamiento(e.getLocal(), e.getVisita(), e.getFecha());
+                label = new LabelEnfrentamiento(e.getSringLocal(), e.getStringVisita(), e.getFecha());
             else
-                label = new LabelEnfrentamiento(e.getLocal(), e.getVisita(), "--/--");
+                label = new LabelEnfrentamiento(e.getSringLocal(), e.getStringVisita(), "--/--");
         } else
             label = new LabelEnfrentamiento("TBD", "TBD", "--/--");
         label.setFont(super.getFont().deriveFont(20f));

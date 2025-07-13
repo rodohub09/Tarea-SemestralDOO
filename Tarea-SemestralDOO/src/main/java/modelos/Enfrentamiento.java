@@ -49,12 +49,19 @@ public class Enfrentamiento {
             return null;
     }
 
+    public Participante getLocal(){
+        return local;
+    }
 
-    public String getLocal() {
+    public Participante getVisita(){
+        return visita;
+    }
+
+    public String getSringLocal() {
         return local.getNombre();
     }
 
-    public String getVisita() {
+    public String getStringVisita() {
         return visita.getNombre();
     }
 
