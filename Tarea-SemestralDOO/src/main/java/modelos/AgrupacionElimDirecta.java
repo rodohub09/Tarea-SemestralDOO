@@ -38,6 +38,18 @@ public class AgrupacionElimDirecta implements AgrupacionParticipantes {
         return new ArrayList<>(participantesActivos);
     }
 
+    public ArrayList<Participante> getBracket1() {
+        return bracket1;
+    }
+
+    public ArrayList<Participante> getBracket2() {
+        return bracket2;
+    }
+
+    public ArrayList<Participante> getParticipantesActivos() {
+        return participantesActivos;
+    }
+
     @Override
     public String toString() {
         return bracket1.toString() + bracket2.toString() + participantesActivos.toString();

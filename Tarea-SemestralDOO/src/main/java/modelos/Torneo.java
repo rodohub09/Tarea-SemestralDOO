@@ -2,14 +2,15 @@ package modelos;
 
 public class Torneo {
     private String nombre;
+    private String descripcion;
+    private String disciplina;
     private TipoTorneo tipoTorneo;
     private Calendario calendario;
     private CantidadParticipantes cantidadParticipantes;
     private Participantes participantes;
     private Formato formato;
     private int jornada = 0;
-    private String descripcion;
-    private String disciplina;
+    private AgrupacionParticipantes agrupacionParticipantes;
 
     public Torneo(String nombre, TipoTorneo Torneo) {
         participantes = new Participantes();
@@ -83,5 +84,13 @@ public class Torneo {
 
     public void incJornada(){
         jornada++;
+    }
+
+    public AgrupacionParticipantes getAgrupacionParticipantes() {
+        return agrupacionParticipantes;
+    }
+
+    public void setAgrupacionParticipantes(AgrupacionParticipantes agrupacionParticipantes) {
+        this.agrupacionParticipantes = agrupacionParticipantes;
     }
 }

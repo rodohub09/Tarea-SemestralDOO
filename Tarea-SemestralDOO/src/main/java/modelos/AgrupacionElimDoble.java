@@ -48,4 +48,12 @@ public class AgrupacionElimDoble implements AgrupacionParticipantes {
         participantes.addAll(perdedores);
         return participantes;
     }
+
+    public ArrayList<Participante> getGanadores() {
+        return ganadores;
+    }
+
+    public ArrayList<Participante> getPerdedores() {
+        return perdedores;
+    }
 }

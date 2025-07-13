@@ -32,17 +32,16 @@ public class CrearExcel {
         fila1.createCell(7).setCellValue("PP");
 
         ArrayList<Participante> lista = torneo.getParticipantes().getArrayParticipante();
-
-        int filaActual = 1;
-        for (Participante participante : lista) {
+        int filaActual = 2;
+        for (Participante p : lista) {
             Row fila = hoja.createRow(filaActual++);
-            fila.createCell(1).setCellValue(participante.getNombre());
-            fila.createCell(2).setCellValue(participante.getContacto());
-            fila.createCell(3).setCellValue(participante.getPuntos());
-            fila.createCell(4).setCellValue(participante.getPartidosJugados());
-            fila.createCell(5).setCellValue(participante.getWins());
-            fila.createCell(6).setCellValue(participante.getDraws());
-            fila.createCell(7).setCellValue(participante.getLosses());
+            fila.createCell(1).setCellValue(p.getNombre());
+            fila.createCell(2).setCellValue(p.getContacto());
+            fila.createCell(3).setCellValue(p.getPuntos());
+            fila.createCell(4).setCellValue(p.getPartidosJugados());
+            fila.createCell(5).setCellValue(p.getWins());
+            fila.createCell(6).setCellValue(p.getDraws());
+            fila.createCell(7).setCellValue(p.getLosses());
         }
 
         int columnaJornadas = 9;
@@ -51,18 +50,53 @@ public class CrearExcel {
             Jornada jornada = torneo.getCalendario().getJornada(i);
             ArrayList<Enfrentamiento> enfrentamientos = jornada.getEnfrentamientos();
 
-            hoja.createRow(1).createCell(columnaJornadas).setCellValue("J" + (i + 1));
+            Row encabezadoJornada = hoja.getRow(1);
+            if (encabezadoJornada == null) encabezadoJornada = hoja.createRow(1);
+            encabezadoJornada.createCell(columnaJornadas).setCellValue("J" + (i + 1));
 
-            for (Enfrentamiento enfrentamiento : enfrentamientos) {
-                Row fila = hoja.getRow(i + 2);
-                if (fila == null)
-                    hoja.createRow(i + 2);
-                String texto = enfrentamiento.getSringLocal() + " vs " + enfrentamiento.getStringVisita();
-                if (enfrentamiento.getGanador() != null)
-                    texto += " (Ganador: " + enfrentamiento.getGanador().getNombre() + ")";
+            int filaJornada = 2;
+            for (Enfrentamiento enf : enfrentamientos) {
+                Row fila = hoja.getRow(filaJornada);
+                if (fila == null) fila = hoja.createRow(filaJornada);
+                String texto = enf.getSringLocal() + " vs " + enf.getStringVisita();
+                if (enf.getGanador() != null) texto += " (Ganador: " + enf.getGanador().getNombre() + ")";
                 fila.createCell(columnaJornadas).setCellValue(texto);
+                filaJornada++;
             }
             columnaJornadas++;
+        }
+
+        switch (torneo.getTipoTorneo()) {
+            case Liga:
+                break;
+
+            case Eliminacion_Directa:
+                if (torneo.getAgrupacionParticipantes() instanceof AgrupacionElimDirecta agrupacionParticipantes) {
+                    int filaBracket = filaActual + 2;
+
+                    hoja.createRow(filaBracket++).createCell(1).setCellValue("Bracket:");
+                    for (Participante p : agrupacionParticipantes.devolverAgrupacion()) {
+                        hoja.createRow(filaBracket++).createCell(1).setCellValue(p.getNombre());
+                    }
+                }
+                break;
+
+            case Doble_Eliminacion:
+                if (torneo.getAgrupacionParticipantes() instanceof AgrupacionElimDoble agrupacionParticipantes) {
+                    int filaBracket = filaActual + 2;
+
+                    hoja.createRow(filaBracket++).createCell(1).setCellValue("Bracket de Ganadores:");
+                    for (Participante p : agrupacionParticipantes.getGanadores()) {
+                        hoja.createRow(filaBracket++).createCell(1).setCellValue(p.getNombre());
+                    }
+
+                    filaBracket++;
+                    hoja.createRow(filaBracket++).createCell(1).setCellValue("Bracket de Perdedores:");
+                    for (Participante p : agrupacionParticipantes.getPerdedores()) {
+                        hoja.createRow(filaBracket++).createCell(1).setCellValue(p.getNombre());
+                    }
+                }
+                break;
         }
 
         try (FileOutputStream archivo = new FileOutputStream("Torneo.xlsx")) {
