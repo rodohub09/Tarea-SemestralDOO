@@ -5,6 +5,8 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class CrearExcel {
@@ -21,15 +23,43 @@ public class CrearExcel {
         fila1.createCell(6).setCellValue("PP");
 
         ArrayList<Participante> lista = torneo.getParticipantes().getArrayParticipante();
-        for (int i = 0; i < lista.size(); i++) {
-            Participante participante = lista.get(i);
-            Row fila = hoja.createRow(i + 2);
+
+        int filaActual = 1;
+        for (Participante participante : lista) {
+            Row fila = hoja.createRow(filaActual++);
             fila.createCell(1).setCellValue(participante.getNombre());
             fila.createCell(2).setCellValue(participante.getContacto());
             fila.createCell(3).setCellValue(participante.getPartidosJugados());
             fila.createCell(4).setCellValue(participante.getWins());
             fila.createCell(5).setCellValue(participante.getDraws());
             fila.createCell(6).setCellValue(participante.getLosses());
+        }
+
+        int columnaJornadas = 8;
+        int cantJornadas = torneo.getCalendario().getCantJornadas();
+        for (int i = 0; i < cantJornadas; i++) {
+            Jornada jornada = torneo.getCalendario().getJornada(i);
+            ArrayList<Enfrentamiento> enfrentamientos = jornada.getEnfrentamientos();
+
+            hoja.createRow(1).createCell(columnaJornadas).setCellValue("J" + (i + 1));
+
+            for (Enfrentamiento enfrentamiento : enfrentamientos) {
+                Row fila = hoja.getRow(i + 2);
+                if (fila == null)
+                    hoja.createRow(i + 2);
+                String texto = enfrentamiento.getLocal() + " vs " + enfrentamiento.getVisita();
+                if (enfrentamiento.getGanador() != null)
+                    texto += " (Ganador: " + enfrentamiento.getGanador().getNombre() + ")";
+                fila.createCell(columnaJornadas).setCellValue(texto);
+            }
+            columnaJornadas++;
+        }
+
+        try (FileOutputStream archivo = new FileOutputStream("Torneo.xlsx")) {
+            libro.write(archivo);
+            libro.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
