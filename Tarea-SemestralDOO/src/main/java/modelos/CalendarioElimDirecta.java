@@ -7,7 +7,7 @@ public class CalendarioElimDirecta implements TipoDeCalendario{
 
     public void creacionCalendario(ArrayList<Jornada> alj, int cantEnfretamientosIgual, CantidadParticipantes p, Participantes participante) {
         for(int i=0;i<p.getEnfrentamientosXJornadaElimDirecta()*cantEnfretamientosIgual;i++){
-            alj.add(new Jornada(participante,TipoTorneo.Liga));
+            alj.add(new Jornada(participante));
         }
         for(int i=0;i<p.getEnfrentamientosXJornadaElimDirecta()*cantEnfretamientosIgual;i += cantEnfretamientosIgual){
             if(i==0){
