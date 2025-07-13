@@ -1,5 +1,8 @@
 package vistas;
 
+import modelos.CamposObligatoriosException;
+import modelos.CantidadInscritosInvalidaException;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -23,10 +26,17 @@ public class MenuCrearTorneo extends JPanel {
         crearTorneo = new JButton("Crear Torneo");
         crearTorneo.setFont(super.getFont().deriveFont(20f));
         crearTorneo.addActionListener(e -> {
-            if(definirCaracteristicasTorneo.camposObligatorios()) {
-                crearTorneo();
-                Ventana.actualizar(Menu.VerTorneo);
-            }
+                try {
+                    crearTorneo();
+                    Ventana.actualizar(Menu.VerTorneo);
+                }
+                catch (CantidadInscritosInvalidaException cantidadInscritosInvalidaException){
+                    new Excepciones("La cantidad de inscritos es distinta de la seleccionada");
+                }
+                catch (CamposObligatoriosException camposObligatoriosException){
+                    new Excepciones("Debes rellenar los campos Nombre del |Torneo y Disciplina");
+                }
+
         });
         menuInicial = new JButton("<<<");
         menuInicial.setFont(super.getFont().deriveFont(20f));
@@ -54,13 +64,22 @@ public class MenuCrearTorneo extends JPanel {
         panelInscritos.actualizarInscritos();
     }
 
-    private void crearTorneo(){
-        definirCaracteristicasTorneo.actualizarTorneo();
-        PanelPrincipal.torneo.getParticipantes().setAgrupacionParticipantes(PanelPrincipal.torneo.getTipoTorneo());
-        PanelPrincipal.torneo.getCalendario().setTipoDeCalendario(PanelPrincipal.torneo.getTipoTorneo(),
-                PanelPrincipal.torneo.getFormato().getNumEnfrentamientos(),
-                PanelPrincipal.torneo.getCantidadParticipantes(),
-                PanelPrincipal.torneo.getParticipantes());
-        PanelPrincipal.creado = true;
+    private void crearTorneo() throws CantidadInscritosInvalidaException, CamposObligatoriosException{
+        try {
+            definirCaracteristicasTorneo.actualizarTorneo();
+        }
+        catch (CamposObligatoriosException camposObligatoriosException){
+            throw camposObligatoriosException;
+        }
+        if(PanelPrincipal.torneo.getParticipantes().getArrayParticipante().size() != PanelPrincipal.torneo.getCantidadParticipantes().getNumParticipantes())
+            throw new CantidadInscritosInvalidaException();
+        else {
+            PanelPrincipal.torneo.getParticipantes().setAgrupacionParticipantes(PanelPrincipal.torneo.getTipoTorneo());
+            PanelPrincipal.torneo.getCalendario().setTipoDeCalendario(PanelPrincipal.torneo.getTipoTorneo(),
+                    PanelPrincipal.torneo.getFormato().getNumEnfrentamientos(),
+                    PanelPrincipal.torneo.getCantidadParticipantes(),
+                    PanelPrincipal.torneo.getParticipantes());
+            PanelPrincipal.creado = true;
+        }
     }
 }

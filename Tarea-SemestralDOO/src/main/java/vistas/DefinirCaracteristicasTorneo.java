@@ -1,5 +1,6 @@
 package vistas;
 
+import modelos.CamposObligatoriosException;
 import modelos.CantidadParticipantes;
 import modelos.Formato;
 import modelos.TipoTorneo;
@@ -90,13 +91,18 @@ public class DefinirCaracteristicasTorneo extends JPanel {
         super.paintComponent(g);
     }
 
-    public void actualizarTorneo() {
-        PanelPrincipal.torneo.setNombre(nombreTorneo.getText());
-        PanelPrincipal.torneo.setTipoTorneo((TipoTorneo) tipoTorneo.getSelectedItem());
-        PanelPrincipal.torneo.setDisciplina(disciplinaTorneo.getText());
-        PanelPrincipal.torneo.setCantidadParticipantes((CantidadParticipantes) cantidadParticipantes.getSelectedItem());
-        PanelPrincipal.torneo.setDescripcion(descripcionTorneo.getText());
-        PanelPrincipal.torneo.setFormato((Formato) formatoTorneo.getSelectedItem());
+    public void actualizarTorneo() throws CamposObligatoriosException {
+        if(!camposObligatorios()){
+            throw new CamposObligatoriosException();
+        }
+        else {
+            PanelPrincipal.torneo.setNombre(nombreTorneo.getText());
+            PanelPrincipal.torneo.setTipoTorneo((TipoTorneo) tipoTorneo.getSelectedItem());
+            PanelPrincipal.torneo.setDisciplina(disciplinaTorneo.getText());
+            PanelPrincipal.torneo.setCantidadParticipantes((CantidadParticipantes) cantidadParticipantes.getSelectedItem());
+            PanelPrincipal.torneo.setDescripcion(descripcionTorneo.getText());
+            PanelPrincipal.torneo.setFormato((Formato) formatoTorneo.getSelectedItem());
+        }
     }
 
     public Boolean camposObligatorios() {
