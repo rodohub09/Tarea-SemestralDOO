@@ -10,10 +10,11 @@ public class Main {
         p.addParticipante(new Participante("s"));
         p.addParticipante(new Participante("a"));
         p.addParticipante(new Participante("f"));
-        CalendarioElimDirecta jxp = new CalendarioElimDirecta();
+        Calendario jxp = new Calendario(TipoTorneo.Liga);
 
-        jxp.creacionCalendario(j,2,CantidadParticipantes.Cuatro,p);
-        jxp.actualizarCalendario(j,2);
+        jxp.crearCalendario(TipoTorneo.Liga,2,CantidadParticipantes.Cuatro,p);
+        System.out.println(jxp.toString());
+        jxp.actualizarCalendario(2,CantidadParticipantes.Cuatro,p);
         System.out.println(j.get(2).partidos.get(0));
     }
 }

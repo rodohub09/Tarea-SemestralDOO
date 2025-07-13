@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class CalendarioElimDirecta implements TipoDeCalendario{
     public int fecha = 0;
+    static public String tipoCalendario = "Eliminacion Directa";
 
     public void creacionCalendario(ArrayList<Jornada> alj, int cantEnfretamientosIgual, CantidadParticipantes p, Participantes participante) {
         for(int i=0;i<p.getEnfrentamientosXJornadaElimDirecta()*cantEnfretamientosIgual;i++){

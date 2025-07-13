@@ -3,9 +3,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class CalendarioXPuntos implements TipoDeCalendario{
-    public CalendarioXPuntos() {
 
-    }
+    static public String tipoCalendario = "Liga";
 
     public void creacionCalendario(ArrayList<Jornada> alj, int cantEnfretamientosIgual, CantidadParticipantes p, Participantes participantes){
         int cal = crearCalendario(alj,  cantEnfretamientosIgual,  p,  participantes);

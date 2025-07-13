@@ -18,7 +18,11 @@ public class Jornada {
     public String toString(){
         String s = "";
         for(int i=0;i<partidos.size();i++){
-            s += partidos.get(i) + "\n";
+            try {
+                s += partidos.get(i) + "\n";
+            } catch (NullPointerException e) {
+                s += "Partido por definir";
+            }
         }
         return s;
     }
