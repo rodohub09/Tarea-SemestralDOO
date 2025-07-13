@@ -10,11 +10,8 @@ public class Calendario {
         if(tt==TipoTorneo.Liga){
             this.tipoDeCalendario = new CalendarioXPuntos();
             tipoDeCalendario.creacionCalendario(jornadas,cantEnfretamientosIgual, p, participantes);
-        }else if(tt==TipoTorneo.EliminacionDirecta){
+        }else if(tt==TipoTorneo.Eliminacion_Directa){
             this.tipoDeCalendario = new CalendarioElimDirecta();
-            tipoDeCalendario.creacionCalendario(jornadas,cantEnfretamientosIgual, p, participantes);
-        }else if(tt==TipoTorneo.FaseGrupos){
-            this.tipoDeCalendario = new CalendarioXPuntos();
             tipoDeCalendario.creacionCalendario(jornadas,cantEnfretamientosIgual, p, participantes);
         }
     }
@@ -26,7 +23,7 @@ public class Calendario {
     public void crearCalendario(TipoTorneo tt,int cantEnfretamientosIgual, CantidadParticipantes p,Participantes participantes){
         switch (tt){
             case TipoTorneo.Liga -> tipoDeCalendario.creacionCalendario(jornadas,cantEnfretamientosIgual, p, participantes);
-            case TipoTorneo.EliminacionDirecta -> tipoDeCalendario.creacionCalendario(jornadas,cantEnfretamientosIgual, p, participantes);
+            case TipoTorneo.Eliminacion_Directa -> tipoDeCalendario.creacionCalendario(jornadas,cantEnfretamientosIgual, p, participantes);
         }
     }
     public Jornada getJornada(int numJornada) {

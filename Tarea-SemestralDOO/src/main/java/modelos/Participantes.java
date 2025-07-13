@@ -20,6 +20,10 @@ public class Participantes {
         agrupacionParticipantes.organizarParticipantes(participantes);
     }
 
+    public ArrayList<Participante> devolverAgrupacion(){
+        return agrupacionParticipantes.devolverAgrupacion();
+    }
+
     public void addParticipante(Participante participante){
         participantes.add(participante);
     }

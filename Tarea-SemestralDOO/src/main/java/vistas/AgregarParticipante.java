@@ -31,7 +31,7 @@ public class AgregarParticipante extends JPanel {
                 PanelPrincipal.torneo.getParticipantes().addParticipante(new Participante(campos[0], campos[1]));
                 nombre.setText("");
                 correo.setText("");
-                Ventana.actualizar();
+                Ventana.actualizar(Menu.CrearTorneo);
             }
             });
         nombre.setBounds(100,0,100,30);

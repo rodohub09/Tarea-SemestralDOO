@@ -19,6 +19,11 @@ public class Bracket implements AgrupacionParticipantes{
     }
 
     @Override
+    public ArrayList<Participante> devolverAgrupacion() {
+        return null;
+    }
+
+    @Override
     public String toString() {
         return bracket1.toString() + bracket2.toString();
     }

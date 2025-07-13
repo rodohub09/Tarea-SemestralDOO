@@ -1,17 +1,22 @@
 package vistas;
 
-import modelos.Calendario;
 import modelos.Enfrentamiento;
 import modelos.Jornada;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class PanelCalendario extends JScrollPane {
+public class PanelCalendario extends JPanel {
+    private JScrollPane scrollPane;
 
     public PanelCalendario() {
         super();
         setOpaque(false);
+        scrollPane = new JScrollPane();
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setLayout(new BoxLayout(scrollPane,BoxLayout.Y_AXIS));
+        add(scrollPane);
+
     }
 
     @Override
@@ -20,15 +25,19 @@ public class PanelCalendario extends JScrollPane {
         actualizarCalendario();
     }
 
-    protected void actualizarCalendario(){
+    public void actualizarCalendario(){
         Jornada jornada = PanelPrincipal.torneo.getCalendario().getJornada(PanelPrincipal.torneo.getNumJornada());
             for(Enfrentamiento e : jornada.getEnfrentamientos()){
+                LabelEnfrentamiento label;
                 if(e.getLocal() != null && e.getVisita() != null) {
                     if (e.getFecha() != null)
-                        add(new LabelEnfrentamiento(e.getLocal(), e.getVisita(), e.getFecha()));
-                    add(new LabelEnfrentamiento(e.getLocal(), e.getVisita(), "--"));
+                        label = new LabelEnfrentamiento(e.getLocal(), e.getVisita(), e.getFecha());
+                    else
+                        label = new LabelEnfrentamiento(e.getLocal(), e.getVisita(), "--/--");
                 }
-                add(new LabelEnfrentamiento("TBD","TBD","--"));
+                else
+                    label = new LabelEnfrentamiento("TBD", "TBD", "--/--");
+                scrollPane.add(label);
             }
     }
 

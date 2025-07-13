@@ -10,8 +10,9 @@ public class Torneo {
     private String descripcion;
     private String disciplina;
 
-    public Torneo(String nombre, TipoTorneo tipoTorneo) {
+    public Torneo(String nombre, TipoTorneo Torneo) {
         participantes = new Participantes();
+        tipoTorneo = Torneo;
     }
 
     public void setNombre(String nombre) {
@@ -40,6 +41,10 @@ public class Torneo {
 
     public String getDisciplina() {
         return disciplina;
+    }
+
+    public TipoTorneo getTipoTorneo() {
+        return tipoTorneo;
     }
 
     public void setDescripcion(String descripcion) {

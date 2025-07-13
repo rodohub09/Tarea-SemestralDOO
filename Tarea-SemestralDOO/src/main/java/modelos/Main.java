@@ -1,4 +1,5 @@
 package modelos;
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Main {
@@ -13,5 +14,12 @@ public class Main {
         CalendarioXPuntos jxp = new CalendarioXPuntos();
 
         jxp.creacionCalendario(j,2,CantidadParticipantes.Cuatro,p);
+
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        String[] fuentes = ge.getAvailableFontFamilyNames();
+
+        for (String f : fuentes) {
+            System.out.println(f);
+        }
     }
 }

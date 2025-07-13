@@ -8,13 +8,14 @@ import java.awt.*;
 
 public class PanelPrincipal extends JPanel {
     public static Torneo torneo;
+    public static Boolean creado = false;
     private MenuInicial menuInicial;
     private MenuCrearTorneo crearTorneo;
     private MenuVerTorneo verTorneo;
 
     public PanelPrincipal() {
         super();
-        torneo = new Torneo("Hola", TipoTorneo.Eliminacion_Directa);
+        torneo = new Torneo("Hola", TipoTorneo.ND);
         setSize(Toolkit.getDefaultToolkit().getScreenSize());
         setOpaque(false);
         setLayout(null);
@@ -33,9 +34,26 @@ public class PanelPrincipal extends JPanel {
         super.paintComponent(g);
     }
 
-    public void actualizar(){
-        menuInicial.actualizar();
-        crearTorneo.actualizar();
-        verTorneo.actualizar();
+    public void actualizar(Menu menu){
+        switch (menu) {
+            case Inicial -> {
+                menuInicial.setVisible(true);
+                crearTorneo.setVisible(false);
+                verTorneo.setVisible(false);
+                menuInicial.actualizar();
+            }
+            case CrearTorneo -> {
+                menuInicial.setVisible(false);
+                crearTorneo.setVisible(true);
+                verTorneo.setVisible(false);
+                crearTorneo.actualizar();
+            }
+            case VerTorneo -> {
+                menuInicial.setVisible(false);
+                crearTorneo.setVisible(false);
+                verTorneo.setVisible(true);
+                verTorneo.actualizar();
+            }
+        }
     }
 }

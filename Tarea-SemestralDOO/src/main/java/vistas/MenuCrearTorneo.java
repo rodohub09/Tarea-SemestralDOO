@@ -8,12 +8,13 @@ public class MenuCrearTorneo extends JPanel {
     private AgregarParticipante agregarParticipante;
     private PanelInscritos panelInscritos;
     private JButton crearTorneo;
+    private JButton menuInicial;
 
     public MenuCrearTorneo() {
         super();
         setOpaque(false);
         setLayout(null);
-        setBackground(Color.BLACK);
+        setVisible(false);
         setSize(Toolkit.getDefaultToolkit().getScreenSize());
 
         definirCaracteristicasTorneo = new DefinirCaracteristicasTorneo();
@@ -24,9 +25,17 @@ public class MenuCrearTorneo extends JPanel {
         crearTorneo.addActionListener(e -> {
             if(definirCaracteristicasTorneo.camposObligatorios()) {
                 definirCaracteristicasTorneo.actualizarTorneo();
-                Ventana.actualizar();
+                PanelPrincipal.torneo.getParticipantes().setAgrupacionParticipantes(PanelPrincipal.torneo.getTipoTorneo());
+                PanelPrincipal.creado = true;
+                Ventana.actualizar(Menu.VerTorneo);
             }
         });
+        menuInicial = new JButton("<<<");
+        menuInicial.setFont(super.getFont().deriveFont(20f));
+        menuInicial.addActionListener(e -> Ventana.actualizar(Menu.Inicial));
+
+        menuInicial.setBounds(20,20,70,40);
+        add(menuInicial);
 
         definirCaracteristicasTorneo.setBounds(200,200,800,800);
         add(definirCaracteristicasTorneo);
