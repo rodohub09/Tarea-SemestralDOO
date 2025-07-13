@@ -1,12 +1,12 @@
 package modelos;
 import java.util.ArrayList;
 
-public class Bracket implements AgrupacionParticipantes {
+public class AgrupacionElimDirecta implements AgrupacionParticipantes {
     private ArrayList<Participante> bracket1;
     private ArrayList<Participante> bracket2;
     private ArrayList<Participante> participantesActivos;
 
-    public Bracket(){
+    public AgrupacionElimDirecta(){
         this.bracket1 = new ArrayList<>();
         this.bracket2 = new ArrayList<>();
         this.participantesActivos = new ArrayList<>();

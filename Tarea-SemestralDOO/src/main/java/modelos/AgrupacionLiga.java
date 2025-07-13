@@ -3,10 +3,10 @@ package modelos;
 import java.util.*;
 import java.util.Comparator;
 
-public class Clasificacion implements AgrupacionParticipantes{
+public class AgrupacionLiga implements AgrupacionParticipantes{
     private ArrayList<Participante> clasificacion;
 
-    public Clasificacion(){
+    public AgrupacionLiga(){
         this.clasificacion = new ArrayList<>();
     }
 

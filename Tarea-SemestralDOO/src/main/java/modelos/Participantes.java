@@ -11,8 +11,9 @@ public class Participantes {
 
     public void setAgrupacionParticipantes(TipoTorneo tipoTorneo){
         switch (tipoTorneo){
-            case Liga -> agrupacionParticipantes = new Clasificacion();
-            case Eliminacion_Directa -> agrupacionParticipantes = new Bracket();
+            case Liga -> agrupacionParticipantes = new AgrupacionLiga();
+            case Eliminacion_Directa -> agrupacionParticipantes = new AgrupacionElimDirecta();
+            case Doble_Eliminacion -> agrupacionParticipantes = new AgrupacionElimDoble();
         }
     }
 
