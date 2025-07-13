@@ -12,6 +12,7 @@ public class Clasificacion implements AgrupacionParticipantes{
 
     @Override
     public void organizarParticipantes(ArrayList<Participante> participantes) {
+        clasificacion.clear();
         clasificacion.addAll(participantes);
         clasificacion.sort(Comparator.comparingInt(Participante::getPuntos).reversed());
     }

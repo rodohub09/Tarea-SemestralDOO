@@ -1,5 +1,7 @@
 package modelos;
 
+import vistas.PanelPrincipal;
+
 public class Participante implements Observer {
     private String nombre;
     private String contacto;
@@ -21,16 +23,18 @@ public class Participante implements Observer {
 
     @Override
     public void registrarResultado(Resultados resultado) {
-        partidosJugados++;
-        switch (resultado) {
-            case Victoria -> {
+        if(partidosJugados == PanelPrincipal.torneo.getNumJornada()){
+            partidosJugados++;
+            switch (resultado) {
+                case Victoria -> {
                 wins++;
                 puntos += 3;
-            }
-            case Derrota -> losses++;
-            case Empate -> {
-                draws++;
-                puntos += 1;
+                }
+                case Derrota -> losses++;
+                case Empate -> {
+                  draws++;
+                  puntos += 1;
+                }
             }
         }
     }

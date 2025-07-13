@@ -10,6 +10,7 @@ public class MenuVerTorneo extends JPanel {
     private PanelCalendario panelCalendario;
     private JButton menuInicial;
     private Boolean crearpanel = true;
+    private static Boolean addResultados = false;
 
     public MenuVerTorneo(){
         super();
@@ -17,10 +18,28 @@ public class MenuVerTorneo extends JPanel {
         setVisible(false);
         setLayout(null);
         setSize(Toolkit.getDefaultToolkit().getScreenSize());
+        JButton ingresar = new JButton("Actualizar Resultados");
+        ingresar.setBounds(600,700,300,40);
+        ingresar.setFont(super.getFont().deriveFont(20f));
+        ingresar.addActionListener(e -> new IngresarResultados(Ventana.getInstance()).setVisible(true));
+
+        JButton avanzar = new JButton("Siguiente Jornada");
+        avanzar.setBounds(1000,700,300,40);
+        avanzar.setFont(super.getFont().deriveFont(20f));
+        avanzar.addActionListener(e -> {if(addResultados) {PanelPrincipal.torneo.incJornada();
+                                                    setAddResultados();
+                                                    Ventana.actualizar(Menu.VerTorneo);
+                                                  }else {
+                                                    new Excepciones("Ingresa los resultados de la jornada");
+        }
+        });
+
         panelCalendario = new PanelCalendario();
-        panelCalendario.setBounds(1050,50,400,600);
+        panelCalendario.setBounds(950,50,600,800);
         panelCalendario.setFont(super.getFont().deriveFont(20f));
         add(panelCalendario);
+        add(ingresar);
+        add(avanzar);
 
     }
 
@@ -57,5 +76,9 @@ public class MenuVerTorneo extends JPanel {
             panelTorneo.actualizar();
 
         panelCalendario.actualizarCalendario();
+    }
+
+    public static void setAddResultados(){
+        addResultados = !addResultados;
     }
 }

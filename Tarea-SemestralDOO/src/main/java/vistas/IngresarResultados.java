@@ -1,0 +1,92 @@
+package vistas;
+
+import modelos.Enfrentamiento;
+import modelos.Jornada;
+import modelos.ResultadosSinIngresarException;
+
+import javax.swing.*;
+import java.util.ArrayList;
+
+public class IngresarResultados extends JDialog {
+    private PanelCalendario panelCalendario;
+    private JScrollPane scrollPane;
+    private JPanel panel;
+    private ArrayList<BotonResultado> botonEnfrentamientos;
+
+    public IngresarResultados(JFrame ventana){
+        super(ventana,"Ingresar Resultados");
+        setSize(650,800);
+        setLocationRelativeTo(ventana);
+        panelCalendario = new PanelCalendario();
+        panelCalendario.setBounds(0, 0, 300, 600);
+        panelCalendario.actualizarCalendario();
+        add(panelCalendario);
+        scrollPane = new JScrollPane();
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setBounds(300,0,300,600);
+        botonEnfrentamientos = new ArrayList<>();
+
+        JButton guardar = new JButton("Guardar Resultados");
+        guardar.setBounds(150, 650,300,100);
+        guardar.setFont(super.getFont().deriveFont(20f));
+        guardar.addActionListener(e -> {
+                try{
+                    guardar();
+                    MenuVerTorneo.setAddResultados();
+                    Ventana.actualizar(Menu.VerTorneo);
+                    dispose();
+                }
+                catch (ResultadosSinIngresarException resultadosSinIngresarException){
+                    new Excepciones("Ingrese todos los resultados de la jornada");
+                }
+        });
+
+        add(guardar);
+        panel = new JPanel();
+        panel.setLayout(null);
+        panel.add(scrollPane);
+        ingresarResultados();
+        add(panel);
+    }
+
+    public void ingresarResultados(){
+        if(PanelPrincipal.torneo.getCalendario() != null) {
+            Jornada jornada = PanelPrincipal.torneo.getCalendario().getJornada(PanelPrincipal.torneo.getNumJornada());
+            JPanel panel = new JPanel();
+            panel.setLayout(null);
+            JLabel titulo = new JLabel(" Resultados ");
+            titulo.setBounds(20,0,300,40);
+            panel.add(titulo);
+            titulo.setFont(super.getFont().deriveFont(36f));
+            panel.add(titulo);
+            for (Enfrentamiento e : jornada.getEnfrentamientos()) {
+                BotonResultado botonResultado = getBotonResultado();
+                botonResultado.setBounds(10,40+jornada.getEnfrentamientos().indexOf(e)*30,300,30);
+                panel.add(botonResultado);
+                botonEnfrentamientos.add(botonResultado);
+            }
+            scrollPane.setViewportView(panel);
+        }
+    }
+
+    private BotonResultado getBotonResultado() {
+        BotonResultado botonResultado = new BotonResultado();
+        botonResultado.setFont(super.getFont().deriveFont(20f));
+        return botonResultado;
+    }
+
+    private void guardar() {
+        Jornada jornada = PanelPrincipal.torneo.getCalendario().getJornada(PanelPrincipal.torneo.getNumJornada());
+        for (Enfrentamiento e : jornada.getEnfrentamientos()) {
+            if (botonEnfrentamientos.get(jornada.getEnfrentamientos().indexOf(e)).resultado() == 0)
+                throw new ResultadosSinIngresarException();
+            else if(botonEnfrentamientos.get(jornada.getEnfrentamientos().indexOf(e)).resultado() == 1){
+                e.setGanador(e.local);
+            }
+            else if(botonEnfrentamientos.get(jornada.getEnfrentamientos().indexOf(e)).resultado() == 2)
+                e.setGanador(e.visita);
+            else
+                e.setEmpate();
+        }
+    }
+}

@@ -26,7 +26,7 @@ public class PanelCalendario extends JPanel {
     }
 
     public void actualizarCalendario(){
-        if(PanelPrincipal.torneo.getCalendario() != null) {
+        if(PanelPrincipal.torneo.getCalendario() != null && PanelPrincipal.torneo.getNumJornada() < PanelPrincipal.torneo.getCalendario().getCantJornadas()) {
             Jornada jornada = PanelPrincipal.torneo.getCalendario().getJornada(PanelPrincipal.torneo.getNumJornada());
             JPanel panel = new JPanel();
             panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));

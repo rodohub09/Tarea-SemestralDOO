@@ -52,7 +52,7 @@ public class CargarExcel {
             while (encabezado != null && encabezado.getCell(columnaJornadas) != null &&
                     encabezado.getCell(columnaJornadas).getStringCellValue().startsWith("J")) {
 
-                Jornada jornada = new Jornada(participantes, null);
+                Jornada jornada = new Jornada(participantes);
                 int filaEnfrentamiento = 2;
 
                 while (true) {

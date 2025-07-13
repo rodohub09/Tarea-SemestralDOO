@@ -80,4 +80,8 @@ public class Torneo {
     public void setCalendario(Calendario calendario) {
         this.calendario = calendario;
     }
+
+    public void incJornada(){
+        jornada++;
+    }
 }

@@ -34,7 +34,7 @@ public class MenuCrearTorneo extends JPanel {
                     new Excepciones("La cantidad de inscritos es distinta de la seleccionada");
                 }
                 catch (CamposObligatoriosException camposObligatoriosException){
-                    new Excepciones("Debes rellenar los campos Nombre del |Torneo y Disciplina");
+                    new Excepciones("Debes rellenar los campos Nombre del Torneo y Disciplina");
                 }
 
         });
