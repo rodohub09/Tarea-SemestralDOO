@@ -1,21 +1,23 @@
 package modelos;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Vector;
 
-public class Clasificacion implements AgrupacionParticipantes {
-    private Map<Participante, Vector> clasificacion;
+import java.util.*;
+import java.util.Comparator;
+
+public class Clasificacion implements AgrupacionParticipantes{
+    private ArrayList<Participante> clasificacion;
 
     public Clasificacion(){
-        this.clasificacion = new HashMap<>();
+        this.clasificacion = new ArrayList<>();
     }
 
     @Override
     public void organizarParticipantes(ArrayList<Participante> participantes) {
-        for(Participante p : participantes){
-            clasificacion.put(p,new Vector<>(6));
-        }
+        clasificacion.addAll(participantes);
+        clasificacion.sort(Comparator.comparingInt(Participante::getPuntos).reversed());
+    }
+
+    public ArrayList<Participante> devolverAgrupacion() {
+        return clasificacion;
     }
 
     @Override

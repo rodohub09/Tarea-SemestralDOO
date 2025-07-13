@@ -27,4 +27,9 @@ public enum CantidadParticipantes {
     public int getEnfrentamientosXJornadaElimDirecta() {
         return enfrentamientosXJornadaElimDirecta;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(numParticipantes);
+    }
 }

@@ -1,8 +1,8 @@
 package modelos;
 
 public enum TipoTorneo {
-    FaseGrupos,
-    EliminacionDirecta,
-    DobleEliminacion,
+    ND,
+    Eliminacion_Directa,
+    Doble_Eliminacion,
     Liga
 }

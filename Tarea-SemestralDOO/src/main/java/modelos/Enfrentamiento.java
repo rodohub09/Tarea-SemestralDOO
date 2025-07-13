@@ -1,4 +1,5 @@
 package modelos;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Enfrentamiento {
@@ -39,8 +40,18 @@ public class Enfrentamiento {
         return ganador;
     }
 
-    public Date getFecha() {
-        return fecha;
+    public String getFecha() {
+        SimpleDateFormat simple = new SimpleDateFormat("dd/MM");
+        return simple.format(fecha);
+    }
+
+
+    public String getLocal() {
+        return local.getNombre();
+    }
+
+    public String getVisita() {
+        return visita.getNombre();
     }
 
     @Override

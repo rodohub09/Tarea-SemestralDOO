@@ -1,4 +1,5 @@
 package modelos;
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Main {
@@ -6,15 +7,19 @@ public class Main {
         ArrayList<Jornada> j = new ArrayList<>();
 
         Participantes p = new Participantes();
-        p.addParticipante(new Participante("w"));
-        p.addParticipante(new Participante("s"));
-        p.addParticipante(new Participante("a"));
-        p.addParticipante(new Participante("f"));
-        Calendario jxp = new Calendario(TipoTorneo.Liga);
+        p.addParticipante(new Participante("w","1"));
+        p.addParticipante(new Participante("s","2"));
+        p.addParticipante(new Participante("a","3"));
+        p.addParticipante(new Participante("f","4"));
+        CalendarioXPuntos jxp = new CalendarioXPuntos();
 
-        jxp.crearCalendario(TipoTorneo.Liga,2,CantidadParticipantes.Cuatro,p);
-        System.out.println(jxp.toString());
-        jxp.actualizarCalendario(2,CantidadParticipantes.Cuatro,p);
-        System.out.println(j.get(2).partidos.get(0));
+        jxp.creacionCalendario(j,2,CantidadParticipantes.Cuatro,p);
+
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        String[] fuentes = ge.getAvailableFontFamilyNames();
+
+        for (String f : fuentes) {
+            System.out.println(f);
+        }
     }
 }
