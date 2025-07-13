@@ -24,9 +24,7 @@ public class MenuCrearTorneo extends JPanel {
         crearTorneo.setFont(super.getFont().deriveFont(20f));
         crearTorneo.addActionListener(e -> {
             if(definirCaracteristicasTorneo.camposObligatorios()) {
-                definirCaracteristicasTorneo.actualizarTorneo();
-                PanelPrincipal.torneo.getParticipantes().setAgrupacionParticipantes(PanelPrincipal.torneo.getTipoTorneo());
-                PanelPrincipal.creado = true;
+                crearTorneo();
                 Ventana.actualizar(Menu.VerTorneo);
             }
         });
@@ -37,7 +35,7 @@ public class MenuCrearTorneo extends JPanel {
         menuInicial.setBounds(20,20,70,40);
         add(menuInicial);
 
-        definirCaracteristicasTorneo.setBounds(200,200,800,800);
+        definirCaracteristicasTorneo.setBounds(100,200,800,800);
         add(definirCaracteristicasTorneo);
         agregarParticipante.setBounds(200,600,500,500);
         add(agregarParticipante);
@@ -54,5 +52,15 @@ public class MenuCrearTorneo extends JPanel {
 
     public void actualizar(){
         panelInscritos.actualizarInscritos();
+    }
+
+    private void crearTorneo(){
+        definirCaracteristicasTorneo.actualizarTorneo();
+        PanelPrincipal.torneo.getParticipantes().setAgrupacionParticipantes(PanelPrincipal.torneo.getTipoTorneo());
+        PanelPrincipal.torneo.getCalendario().setTipoDeCalendario(PanelPrincipal.torneo.getTipoTorneo(),
+                PanelPrincipal.torneo.getFormato().getNumEnfrentamientos(),
+                PanelPrincipal.torneo.getCantidadParticipantes(),
+                PanelPrincipal.torneo.getParticipantes());
+        PanelPrincipal.creado = true;
     }
 }

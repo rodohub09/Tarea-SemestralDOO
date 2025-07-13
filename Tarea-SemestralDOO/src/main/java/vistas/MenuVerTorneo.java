@@ -7,6 +7,7 @@ import java.awt.*;
 
 public class MenuVerTorneo extends JPanel {
     private PanelTorneo panelTorneo;
+    private PanelCalendario panelCalendario;
     private JButton menuInicial;
     private Boolean crearpanel = true;
 
@@ -16,6 +17,10 @@ public class MenuVerTorneo extends JPanel {
         setVisible(false);
         setLayout(null);
         setSize(Toolkit.getDefaultToolkit().getScreenSize());
+        panelCalendario = new PanelCalendario();
+        panelCalendario.setBounds(1050,50,400,600);
+        panelCalendario.setFont(super.getFont().deriveFont(20f));
+        add(panelCalendario);
 
     }
 
@@ -50,5 +55,7 @@ public class MenuVerTorneo extends JPanel {
         }
         else if(panelTorneo != null)
             panelTorneo.actualizar();
+
+        panelCalendario.actualizarCalendario();
     }
 }

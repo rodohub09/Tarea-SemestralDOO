@@ -41,8 +41,12 @@ public class Enfrentamiento {
     }
 
     public String getFecha() {
-        SimpleDateFormat simple = new SimpleDateFormat("dd/MM");
-        return simple.format(fecha);
+        if(fecha != null) {
+            SimpleDateFormat simple = new SimpleDateFormat("dd/MM");
+            return simple.format(fecha);
+        }
+        else
+            return null;
     }
 
 

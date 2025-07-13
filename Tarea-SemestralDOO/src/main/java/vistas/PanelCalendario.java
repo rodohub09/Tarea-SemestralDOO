@@ -14,7 +14,7 @@ public class PanelCalendario extends JPanel {
         setOpaque(false);
         scrollPane = new JScrollPane();
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setLayout(new BoxLayout(scrollPane,BoxLayout.Y_AXIS));
+        scrollPane.setBounds(0,0,600,600);
         add(scrollPane);
 
     }
@@ -26,19 +26,32 @@ public class PanelCalendario extends JPanel {
     }
 
     public void actualizarCalendario(){
-        Jornada jornada = PanelPrincipal.torneo.getCalendario().getJornada(PanelPrincipal.torneo.getNumJornada());
-            for(Enfrentamiento e : jornada.getEnfrentamientos()){
-                LabelEnfrentamiento label;
-                if(e.getLocal() != null && e.getVisita() != null) {
-                    if (e.getFecha() != null)
-                        label = new LabelEnfrentamiento(e.getLocal(), e.getVisita(), e.getFecha());
-                    else
-                        label = new LabelEnfrentamiento(e.getLocal(), e.getVisita(), "--/--");
-                }
-                else
-                    label = new LabelEnfrentamiento("TBD", "TBD", "--/--");
-                scrollPane.add(label);
+        if(PanelPrincipal.torneo.getCalendario() != null) {
+            Jornada jornada = PanelPrincipal.torneo.getCalendario().getJornada(PanelPrincipal.torneo.getNumJornada());
+            JPanel panel = new JPanel();
+            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+            JLabel titulo = new JLabel("  Jornada "+ (PanelPrincipal.torneo.getNumJornada()+1));
+            titulo.setFont(super.getFont().deriveFont(36f));
+            panel.add(titulo);
+            for (Enfrentamiento e : jornada.getEnfrentamientos()) {
+                LabelEnfrentamiento label = getLabelEnfrentamiento(e);
+                panel.add(label);
             }
+            scrollPane.setViewportView(panel);
+        }
+    }
+
+    private LabelEnfrentamiento getLabelEnfrentamiento(Enfrentamiento e) {
+        LabelEnfrentamiento label;
+        if (e.getLocal() != null && e.getVisita() != null) {
+            if (e.getFecha() != null)
+                label = new LabelEnfrentamiento(e.getLocal(), e.getVisita(), e.getFecha());
+            else
+                label = new LabelEnfrentamiento(e.getLocal(), e.getVisita(), "--/--");
+        } else
+            label = new LabelEnfrentamiento("TBD", "TBD", "--/--");
+        label.setFont(super.getFont().deriveFont(20f));
+        return label;
     }
 
 }

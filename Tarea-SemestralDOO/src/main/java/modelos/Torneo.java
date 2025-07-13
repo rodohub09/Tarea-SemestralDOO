@@ -6,12 +6,14 @@ public class Torneo {
     private Calendario calendario;
     private CantidadParticipantes cantidadParticipantes;
     private Participantes participantes;
+    private Formato formato;
     private int jornada = 0;
     private String descripcion;
     private String disciplina;
 
     public Torneo(String nombre, TipoTorneo Torneo) {
         participantes = new Participantes();
+        calendario = new Calendario();
         tipoTorneo = Torneo;
     }
 
@@ -43,6 +45,14 @@ public class Torneo {
         return disciplina;
     }
 
+    public CantidadParticipantes getCantidadParticipantes() {
+        return cantidadParticipantes;
+    }
+
+    public Formato getFormato() {
+        return formato;
+    }
+
     public TipoTorneo getTipoTorneo() {
         return tipoTorneo;
     }
@@ -61,5 +71,9 @@ public class Torneo {
 
     public void setTipoTorneo(TipoTorneo tipoTorneo) {
         this.tipoTorneo = tipoTorneo;
+    }
+
+    public void setFormato(Formato formato){
+        this.formato = formato;
     }
 }
