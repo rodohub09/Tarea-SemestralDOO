@@ -62,4 +62,32 @@ public class Participante implements Observer {
     public int getPuntos() {
         return puntos;
     }
+
+    public void setPartidosJugados(int partidosJugados) {
+        this.partidosJugados = partidosJugados;
+    }
+
+    public void setWins(int wins) {
+        this.wins = wins;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setDraws(int draws) {
+        this.draws = draws;
+    }
+
+    public void setLosses(int losses) {
+        this.losses = losses;
+    }
+
+    public void setPuntos(int puntos) {
+        this.puntos = puntos;
+    }
+
+    public void setContacto(String contacto) {
+        this.contacto = contacto;
+    }
 }

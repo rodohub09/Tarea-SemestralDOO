@@ -14,13 +14,22 @@ public class CrearExcel {
         Workbook libro = new XSSFWorkbook();
         Sheet hoja = libro.createSheet();
 
+        Row fila0 = hoja.createRow(0);
+        fila0.createCell(0).setCellValue("Nombre del torneo:");
+        fila0.createCell(1).setCellValue(torneo.getNombre());
+        fila0.createCell(3).setCellValue("Tipo de torneo:");
+        fila0.createCell(4).setCellValue(torneo.getTipoTorneo().toString());
+        fila0.createCell(6).setCellValue("Formato:");
+        fila0.createCell(7).setCellValue(torneo.getFormato().toString());
+
         Row fila1 = hoja.createRow(1);
         fila1.createCell(1).setCellValue("Nombre");
         fila1.createCell(2).setCellValue("Contacto");
-        fila1.createCell(3).setCellValue("PJ");
-        fila1.createCell(4).setCellValue("PG");
-        fila1.createCell(5).setCellValue("PE");
-        fila1.createCell(6).setCellValue("PP");
+        fila1.createCell(3).setCellValue("PTS");
+        fila1.createCell(4).setCellValue("PJ");
+        fila1.createCell(5).setCellValue("PG");
+        fila1.createCell(6).setCellValue("PE");
+        fila1.createCell(7).setCellValue("PP");
 
         ArrayList<Participante> lista = torneo.getParticipantes().getArrayParticipante();
 
@@ -29,13 +38,14 @@ public class CrearExcel {
             Row fila = hoja.createRow(filaActual++);
             fila.createCell(1).setCellValue(participante.getNombre());
             fila.createCell(2).setCellValue(participante.getContacto());
-            fila.createCell(3).setCellValue(participante.getPartidosJugados());
-            fila.createCell(4).setCellValue(participante.getWins());
-            fila.createCell(5).setCellValue(participante.getDraws());
-            fila.createCell(6).setCellValue(participante.getLosses());
+            fila.createCell(3).setCellValue(participante.getPuntos());
+            fila.createCell(4).setCellValue(participante.getPartidosJugados());
+            fila.createCell(5).setCellValue(participante.getWins());
+            fila.createCell(6).setCellValue(participante.getDraws());
+            fila.createCell(7).setCellValue(participante.getLosses());
         }
 
-        int columnaJornadas = 8;
+        int columnaJornadas = 9;
         int cantJornadas = torneo.getCalendario().getCantJornadas();
         for (int i = 0; i < cantJornadas; i++) {
             Jornada jornada = torneo.getCalendario().getJornada(i);
