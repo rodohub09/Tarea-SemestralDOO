@@ -26,4 +26,8 @@ public class Calendario {
     public int getCantJornadas() {
         return jornadas.size();
     }
+
+    public void setJornadas(ArrayList<Jornada> jornadas) {
+        this.jornadas = jornadas;
+    }
 }

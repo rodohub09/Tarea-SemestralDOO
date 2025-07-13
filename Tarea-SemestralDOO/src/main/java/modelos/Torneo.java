@@ -76,4 +76,8 @@ public class Torneo {
     public void setFormato(Formato formato){
         this.formato = formato;
     }
+
+    public void setCalendario(Calendario calendario) {
+        this.calendario = calendario;
+    }
 }
