@@ -21,6 +21,7 @@ public class CalendarioXPuntos implements TipoDeCalendario {
      */
     @Override
     public void creacionCalendario(ArrayList<Jornada> alj, int cantEnfretamientosIgual, CantidadParticipantes p, Participantes participantes) {
+        participantes.getAgrupacionParticipantes().organizarParticipantes(participantes.getArrayParticipante());
         ArrayList<Participante> clasificados = participantes.getAgrupacionParticipantes().devolverAgrupacion();
 
         for (int ronda = 0; ronda < p.getJornadasLiga(); ronda++) {
@@ -41,7 +42,7 @@ public class CalendarioXPuntos implements TipoDeCalendario {
         }
 
         if (cantEnfretamientosIgual == 2) {
-            for (int i = 0; i < alj.size(); i++) {
+            for (int i = 0; i < p.getJornadasLiga(); i++) {
                 Jornada original = alj.get(i);
                 Jornada vuelta = new Jornada(participantes);
                 for (Enfrentamiento e : original.enfrentamientos) {
