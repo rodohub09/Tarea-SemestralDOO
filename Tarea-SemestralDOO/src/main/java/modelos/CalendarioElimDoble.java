@@ -42,7 +42,7 @@ public class CalendarioElimDoble implements TipoDeCalendario {
      * @param alj Lista de jornadas del torneo.
      * @param cantEnfrentamientosIgual Cantidad de enfrentamientos por jornada.
      */
-    public void actualizarCalendario(ArrayList<Jornada> alj, int cantEnfrentamientosIgual) {
+    public void actualizarCalendario(ArrayList<Jornada> alj, int cantEnfrentamientosIgual,ArrayList<Participante> activos) {
         fecha += cantEnfrentamientosIgual;
 
         ArrayList<Participante> ganadores = new ArrayList<>();

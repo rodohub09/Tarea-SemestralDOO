@@ -58,4 +58,8 @@ public class Calendario {
     public void setJornadas(ArrayList<Jornada> jornadas) {
         this.jornadas = jornadas;
     }
+
+    public void actualizarCalendario(Formato formato,ArrayList<Participante> activos){
+        tipoDeCalendario.actualizarCalendario(jornadas, formato.getNumEnfrentamientos(),activos);
+    }
 }

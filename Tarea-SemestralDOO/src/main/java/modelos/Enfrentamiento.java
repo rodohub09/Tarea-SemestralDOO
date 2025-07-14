@@ -116,6 +116,13 @@ public class Enfrentamiento {
      */
     @Override
     public String toString() {
-        return "Partido: " + local.getNombre() + " vs " + visita.getNombre();
+        String s = "";
+        try{
+            s += "Partido: " + local.getNombre() + " vs " + visita.getNombre();
+        }catch (NullPointerException e){
+            s += "Partido por definir";
+        }
+
+        return s;
     }
 }

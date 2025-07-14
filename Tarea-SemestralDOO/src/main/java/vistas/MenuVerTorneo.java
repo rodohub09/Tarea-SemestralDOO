@@ -31,7 +31,7 @@ public class MenuVerTorneo extends JPanel {
         avanzar.setBounds(1000,700,300,40);
         avanzar.setFont(super.getFont().deriveFont(20f));
         avanzar.addActionListener(e -> {if(addResultados) {PanelPrincipal.torneo.incJornada();
-                                                    PanelPrincipal.torneo.getCalendario().actualizarCalendario();
+                                                    PanelPrincipal.torneo.getCalendario().actualizarCalendario(PanelPrincipal.torneo.getFormato(),PanelPrincipal.torneo.getAgrupacionParticipantes().devolverAgrupacion());
                                                     setAddResultados();
                                                     Ventana.actualizar(Menu.VerTorneo);
                                                   }else {

@@ -41,7 +41,7 @@ public class Jornada {
     public String toString(){
         String s = "";
         for(int i=0;i<enfrentamientos.size();i++){
-            s += enfrentamientos.get(i) + "\n";
+            s += enfrentamientos.get(i).toString() + "\n";
         }
         return s;
     }
