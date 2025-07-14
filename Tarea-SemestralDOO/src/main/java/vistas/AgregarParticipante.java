@@ -15,9 +15,9 @@ public class AgregarParticipante extends JPanel {
         setOpaque(false);
         setLayout(null);
         setBackground(Color.BLACK);
-        nombre = new JTextField(20);
+        nombre = new JTextField(40);
         nombre.setFont(super.getFont().deriveFont(20f));
-        correo = new JTextField(20);
+        correo = new JTextField(40);
         correo.setFont(super.getFont().deriveFont(20f));
         JLabel etiqueta1 = new JLabel("Nombre:");
         etiqueta1.setFont(super.getFont().deriveFont(20f));
@@ -34,9 +34,9 @@ public class AgregarParticipante extends JPanel {
                 Ventana.actualizar(Menu.CrearTorneo);
             }
             });
-        nombre.setBounds(100,0,100,30);
+        nombre.setBounds(100,0,200,30);
         add(nombre);
-        correo.setBounds(100,40,100,30);
+        correo.setBounds(100,40,200,30);
         add(correo);
         etiqueta1.setBounds(0,0,100,30);
         add(etiqueta1);

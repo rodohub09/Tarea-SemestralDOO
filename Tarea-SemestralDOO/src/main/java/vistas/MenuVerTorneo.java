@@ -5,6 +5,10 @@ import modelos.TipoTorneo;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Panel que contiene la vista principal de un {@link modelos.Torneo} ya creado
+ * Permite actualizar los resultados del torneo y avanzar las jornadas mediante {@link JButton}
+ */
 public class MenuVerTorneo extends JPanel {
     private PanelTorneo panelTorneo;
     private PanelCalendario panelCalendario;
@@ -27,6 +31,7 @@ public class MenuVerTorneo extends JPanel {
         avanzar.setBounds(1000,700,300,40);
         avanzar.setFont(super.getFont().deriveFont(20f));
         avanzar.addActionListener(e -> {if(addResultados) {PanelPrincipal.torneo.incJornada();
+                                                    PanelPrincipal.torneo.getCalendario().actualizarCalendario();
                                                     setAddResultados();
                                                     Ventana.actualizar(Menu.VerTorneo);
                                                   }else {
@@ -43,6 +48,10 @@ public class MenuVerTorneo extends JPanel {
 
     }
 
+    /**
+     * Setter del {@link PanelTorneo} a implementar
+     * @param tipoTorneo Determina el strategy a utilizar
+     */
     public void setPanelTorneo(TipoTorneo tipoTorneo){
         switch (tipoTorneo){
             case Liga -> {
@@ -66,6 +75,9 @@ public class MenuVerTorneo extends JPanel {
         }
     }
 
+    /**
+     * Metodo que verifica la existencia de un torneo valido para mostrarlo en pantalla llamando al metodo del strategy asociado
+     */
     public void actualizar(){
         if(crearpanel && PanelPrincipal.creado) {
             setPanelTorneo(PanelPrincipal.torneo.getTipoTorneo());
@@ -78,6 +90,9 @@ public class MenuVerTorneo extends JPanel {
         panelCalendario.actualizarCalendario();
     }
 
+    /**
+     * Cambia el valor booleano de addResultados para verificar que se actualizaron los resultados antes de avanzar de jornada
+     */
     public static void setAddResultados(){
         addResultados = !addResultados;
     }

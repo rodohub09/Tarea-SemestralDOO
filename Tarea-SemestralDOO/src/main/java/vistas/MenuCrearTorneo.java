@@ -6,6 +6,10 @@ import modelos.CantidadInscritosInvalidaException;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Menu que contiene todas las caracteristicas requeridas para crear correctamente un torneo
+ * Primero
+ */
 public class MenuCrearTorneo extends JPanel {
     private DefinirCaracteristicasTorneo definirCaracteristicasTorneo;
     private AgregarParticipante agregarParticipante;
@@ -42,12 +46,23 @@ public class MenuCrearTorneo extends JPanel {
         menuInicial.setFont(super.getFont().deriveFont(20f));
         menuInicial.addActionListener(e -> Ventana.actualizar(Menu.Inicial));
 
+        JLabel etiqueta1 = new JLabel("Crea un Torneo");
+        etiqueta1.setFont(super.getFont().deriveFont(36f));
+        etiqueta1.setBounds(680,20,400,40);
+        add(etiqueta1);
+
+        JLabel etiqueta2 = new JLabel("Agregar Participante");
+        etiqueta2.setFont(super.getFont().deriveFont(36f));
+        etiqueta2.setBounds(240,520,400,42);
+        add(etiqueta2);
+
         menuInicial.setBounds(20,20,70,40);
+
         add(menuInicial);
 
-        definirCaracteristicasTorneo.setBounds(100,200,800,800);
+        definirCaracteristicasTorneo.setBounds(180,100,800,800);
         add(definirCaracteristicasTorneo);
-        agregarParticipante.setBounds(200,600,500,500);
+        agregarParticipante.setBounds(280,600,500,500);
         add(agregarParticipante);
         panelInscritos.setBounds(1000,100,400,700);
         add(panelInscritos);
@@ -64,6 +79,12 @@ public class MenuCrearTorneo extends JPanel {
         panelInscritos.actualizarInscritos();
     }
 
+    /**
+     * Metodo que settea las caracteristicas del {@link modelos.Torneo} de las selecciones de los paneles asociados
+     * @throws CantidadInscritosInvalidaException Verifica que la cantidad de {@link modelos.Participante} inscritos coincida
+     * con la {@link modelos.CantidadParticipantes} asociada al torneo
+     * @throws CamposObligatoriosException Verifica que se hayan rellenado completamente los campos obligatorios del torneo
+     */
     private void crearTorneo() throws CantidadInscritosInvalidaException, CamposObligatoriosException{
         try {
             definirCaracteristicasTorneo.actualizarTorneo();

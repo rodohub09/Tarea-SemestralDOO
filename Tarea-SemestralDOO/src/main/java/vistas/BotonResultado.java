@@ -3,6 +3,9 @@ package vistas;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Panel que almacena un {@link ButtonGroup} para ingresar los resultados de cada {@link modelos.Enfrentamiento}
+ */
 public class BotonResultado extends JPanel {
     private JToggleButton local;
     private JToggleButton visita;
@@ -24,6 +27,9 @@ public class BotonResultado extends JPanel {
         add(empate);
     }
 
+    /**
+     * @return Devuelve una variable tipo int asociada acada seleccion posible
+     */
     public int resultado(){
         if(local.isSelected())
             return 1;

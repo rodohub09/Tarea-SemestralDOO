@@ -1,7 +1,6 @@
 package vistas;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * Clase de la ventana que contiene todos los paneles.

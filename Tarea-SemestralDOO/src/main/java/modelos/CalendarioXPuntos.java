@@ -41,6 +41,9 @@ public class CalendarioXPuntos implements TipoDeCalendario{
                 alj.add(vuelta);
             }
         }
+    }
 
+    @Override
+    public void actualizarCalendario(ArrayList<Jornada> alj, int cantEnfretamientosIgual) {
     }
 }

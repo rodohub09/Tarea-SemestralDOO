@@ -8,6 +8,9 @@ import modelos.TipoTorneo;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Panel que contiene {@link JComboBox} y {@link JTextField} para ingresar los campos requeridos para el torneo
+ */
 public class DefinirCaracteristicasTorneo extends JPanel {
     private JComboBox<TipoTorneo> tipoTorneo;
     private JComboBox<CantidadParticipantes> cantidadParticipantes;
@@ -91,6 +94,10 @@ public class DefinirCaracteristicasTorneo extends JPanel {
         super.paintComponent(g);
     }
 
+    /**
+     * @throws CamposObligatoriosException Verifica que se hayan rellenado los campos obligatorios,
+     * de ser asi actualiza los datos de la instancia static de {@link modelos.Torneo} en {@link PanelPrincipal}
+     * */
     public void actualizarTorneo() throws CamposObligatoriosException {
         if(!camposObligatorios()){
             throw new CamposObligatoriosException();
@@ -105,6 +112,10 @@ public class DefinirCaracteristicasTorneo extends JPanel {
         }
     }
 
+
+    /**
+     * @return Valor booleano que verifica que los campos obligatorios esten llenos
+     */
     public Boolean camposObligatorios() {
         return !nombreTorneo.getText().isBlank() && !disciplinaTorneo.getText().isBlank();
     }

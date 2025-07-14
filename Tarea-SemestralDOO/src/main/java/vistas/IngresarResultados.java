@@ -7,6 +7,9 @@ import modelos.ResultadosSinIngresarException;
 import javax.swing.*;
 import java.util.ArrayList;
 
+/**
+ * JDialog que se despliega desde {@link MenuVerTorneo} y permite determinar los resultados de {@link Enfrentamiento}
+ */
 public class IngresarResultados extends JDialog {
     private PanelCalendario panelCalendario;
     private JScrollPane scrollPane;
@@ -49,6 +52,9 @@ public class IngresarResultados extends JDialog {
         add(panel);
     }
 
+    /**
+     * Metodo que crea un panel que contiene instancias de {@link BotonResultado}, este panel luego es ingresado en el Scrollpane de la clase
+     */
     public void ingresarResultados(){
         if(PanelPrincipal.torneo.getCalendario() != null) {
             Jornada jornada = PanelPrincipal.torneo.getCalendario().getJornada(PanelPrincipal.torneo.getNumJornada());
@@ -69,12 +75,18 @@ public class IngresarResultados extends JDialog {
         }
     }
 
+    /**
+     * @return Instancia requerida de {@link BotonResultado}
+     */
     private BotonResultado getBotonResultado() {
         BotonResultado botonResultado = new BotonResultado();
         botonResultado.setFont(super.getFont().deriveFont(20f));
         return botonResultado;
     }
 
+    /**
+     * Guarda los resultados mediante el setGanador de los {@link Enfrentamiento} de la {@link Jornada}
+     */
     private void guardar() {
         Jornada jornada = PanelPrincipal.torneo.getCalendario().getJornada(PanelPrincipal.torneo.getNumJornada());
         for (Enfrentamiento e : jornada.getEnfrentamientos()) {
