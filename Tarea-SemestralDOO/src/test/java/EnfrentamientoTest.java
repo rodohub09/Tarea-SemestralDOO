@@ -9,8 +9,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class EnfrentamientoTest {
 
 
-    Participante participante1 = new Participante("Colo-Colo");
-    Participante participante2 = new Participante("Real Madrid");
+    Participante participante1 = new Participante("Colo-Colo","CC@Gmail.com");
+    Participante participante2 = new Participante("Real Madrid","RealMadridCF@gmail.com");
     Enfrentamiento enfrentamiento = new Enfrentamiento(participante2,participante1,new Date("24/12/2025"));
 
     @Test

@@ -56,7 +56,6 @@ public class CalendarioXPuntos implements TipoDeCalendario {
         }
     }
 
-    @Override
     public void actualizarCalendario(ArrayList<Jornada> alj, int cantEnfretamientosIgual, ArrayList<Participante> activos) {
 
     }
