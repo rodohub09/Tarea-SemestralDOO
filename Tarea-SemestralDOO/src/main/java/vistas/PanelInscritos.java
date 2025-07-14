@@ -6,6 +6,9 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
+/**
+ * Panel que muestra una tabla con todos los nombres de los {@link Participante} inscritos
+ */
 public class PanelInscritos extends JPanel {
     JTable tablaInscritos;
     DefaultTableModel modelo;
@@ -39,6 +42,10 @@ public class PanelInscritos extends JPanel {
         actualizarInscritos();
     }
 
+
+    /**
+     * Metodo que actualiza las filas de la tabla segun lo almacenado en {@link modelos.Participantes}
+     */
     protected void actualizarInscritos(){
         modelo.setRowCount(0);
 

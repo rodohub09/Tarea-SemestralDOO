@@ -3,6 +3,9 @@ package vistas;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Menu que muestra los {@link JButton} para avanzar en la creacion del torneo
+ */
 public class MenuInicial extends JPanel {
     private JButton crearTorneo;
     private JButton verTorneo;
@@ -14,11 +17,11 @@ public class MenuInicial extends JPanel {
         setLayout(null);
         setSize(Toolkit.getDefaultToolkit().getScreenSize());
 
-        crearTorneo = new JButton("CrearTorneo");
+        crearTorneo = new JButton("Crear Torneo");
         crearTorneo.setFont(super.getFont().deriveFont(20f));
         crearTorneo.addActionListener(e -> Ventana.actualizar(Menu.CrearTorneo));
 
-        verTorneo = new JButton("VerTorneo");
+        verTorneo = new JButton("Cargar Torneo");
         verTorneo.setFont(super.getFont().deriveFont(20f));
         verTorneo.addActionListener(e -> Ventana.actualizar(Menu.VerTorneo));
 

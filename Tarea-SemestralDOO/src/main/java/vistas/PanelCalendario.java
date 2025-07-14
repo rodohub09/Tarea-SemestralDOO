@@ -6,6 +6,9 @@ import modelos.Jornada;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Panel que recopila todos los {@link Enfrentamiento} de una {@link Jornada} contenida en el calendario del torneo
+ */
 public class PanelCalendario extends JPanel {
     private JScrollPane scrollPane;
 
@@ -25,6 +28,9 @@ public class PanelCalendario extends JPanel {
         actualizarCalendario();
     }
 
+    /**
+     * Metodo que crea el {@link JPanel} que se agrega {@link JScrollPane} que contiene la clase
+     */
     public void actualizarCalendario(){
         if(PanelPrincipal.torneo.getCalendario() != null && PanelPrincipal.torneo.getNumJornada() < PanelPrincipal.torneo.getCalendario().getCantJornadas()) {
             Jornada jornada = PanelPrincipal.torneo.getCalendario().getJornada(PanelPrincipal.torneo.getNumJornada());
@@ -41,6 +47,11 @@ public class PanelCalendario extends JPanel {
         }
     }
 
+
+    /**
+     * @param e Enfretamiento del cual utilizara sus variables de {@link modelos.Participante} para crear un label adecuado
+     * @return Label creado utilizando los valores válidos retornados
+     */
     private LabelEnfrentamiento getLabelEnfrentamiento(Enfrentamiento e) {
         LabelEnfrentamiento label;
         if (e.getStringLocal() != null && e.getStringVisita() != null) {
@@ -50,7 +61,7 @@ public class PanelCalendario extends JPanel {
                 label = new LabelEnfrentamiento(e.getStringLocal(), e.getStringVisita(), "--/--");
         } else
             label = new LabelEnfrentamiento("TBD", "TBD", "--/--");
-        label.setFont(super.getFont().deriveFont(20f));
+        label.setFont(super.getFont().deriveFont(21f));
         return label;
     }
 

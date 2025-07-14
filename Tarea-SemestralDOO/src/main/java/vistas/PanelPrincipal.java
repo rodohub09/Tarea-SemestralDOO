@@ -6,6 +6,9 @@ import modelos.Torneo;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Clase que contiene los menus principales del programa
+ * */
 public class PanelPrincipal extends JPanel {
     public static Torneo torneo;
     public static Boolean creado = false;
@@ -34,6 +37,9 @@ public class PanelPrincipal extends JPanel {
         super.paintComponent(g);
     }
 
+    /**
+     * Metodo que recibe un {@param menu} para cambiar el setVisible de cada Menu segun corresponda
+     */
     public void actualizar(Menu menu){
         switch (menu) {
             case Inicial -> {

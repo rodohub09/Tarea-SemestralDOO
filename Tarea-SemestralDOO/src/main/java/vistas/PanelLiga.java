@@ -6,6 +6,9 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
+/**
+ * Uno de los strategy que implementa {@link PanelTorneo}, muestra una tabla de clasificacion para el torneo de Liga
+ */
 public class PanelLiga extends JPanel implements PanelTorneo {
     private DefaultTableModel modelo;
     private JTable clasificacion;
@@ -40,6 +43,9 @@ public class PanelLiga extends JPanel implements PanelTorneo {
         super.paintComponent(g);
     }
 
+    /**
+     * Metodo que actualiza las filas de la tabla a mostrar, llamando al metodo correspondiente al strategy implementado en {@link modelos.Participantes}
+     */
     @Override
     public void actualizar(){
         modelo.setRowCount(0);
@@ -57,6 +63,9 @@ public class PanelLiga extends JPanel implements PanelTorneo {
         }
     }
 
+    /**
+     * Metodo que hace un @return de la propia instancia de la clase para mostrarla en el panel padre
+     */
     public JPanel devolverPanel(){
         return this;
     }
