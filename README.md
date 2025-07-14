@@ -21,4 +21,5 @@ Diagrama de casos de uso:
 
 Diagrama UML:
 
-<img width="4096" height="4096" alt="image" src="https://github.com/user-attachments/assets/8a85ee3a-ff3d-4221-9dfe-e30c4030dc72" />
+<img width="4096" height="2958" alt="UML" src="https://github.com/user-attachments/assets/f61379c8-22b6-48be-99a2-a13ba8238a6f" />
+
