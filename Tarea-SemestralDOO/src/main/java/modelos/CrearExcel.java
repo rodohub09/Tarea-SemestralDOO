@@ -9,11 +9,22 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Clase encargada de exportar los datos del torneo a un archivo Excel.
+ * Los datos varían según el tipo de torneo: Liga, Eliminación Directa o Doble Eliminación.
+ */
 public class CrearExcel {
+
+    /**
+     * Exporta la información del torneo a un archivo Excel llamado "Torneo.xlsx".
+     *
+     * @param torneo El torneo del cual se exportarán los datos.
+     */
     public static void exportar(Torneo torneo) {
         Workbook libro = new XSSFWorkbook();
         Sheet hoja = libro.createSheet();
 
+        // Datos generales
         Row fila0 = hoja.createRow(0);
         fila0.createCell(0).setCellValue("Nombre del torneo:");
         fila0.createCell(1).setCellValue(torneo.getNombre());
@@ -22,6 +33,7 @@ public class CrearExcel {
         fila0.createCell(6).setCellValue("Formato:");
         fila0.createCell(7).setCellValue(torneo.getFormato().toString());
 
+        // Encabezado de participantes
         Row fila1 = hoja.createRow(1);
         fila1.createCell(1).setCellValue("Nombre");
         fila1.createCell(2).setCellValue("Contacto");
@@ -31,6 +43,7 @@ public class CrearExcel {
         fila1.createCell(6).setCellValue("PE");
         fila1.createCell(7).setCellValue("PP");
 
+        // Participantes
         ArrayList<Participante> lista = torneo.getParticipantes().getArrayParticipante();
         int filaActual = 2;
         for (Participante p : lista) {
@@ -44,21 +57,22 @@ public class CrearExcel {
             fila.createCell(7).setCellValue(p.getLosses());
         }
 
+        // Jornadas
         int columnaJornadas = 9;
         int cantJornadas = torneo.getCalendario().getCantJornadas();
         for (int i = 0; i < cantJornadas; i++) {
             Jornada jornada = torneo.getCalendario().getJornada(i);
             ArrayList<Enfrentamiento> enfrentamientos = jornada.getEnfrentamientos();
 
-            Row encabezadoJornada = hoja.getRow(1);
-            if (encabezadoJornada == null) encabezadoJornada = hoja.createRow(1);
-            encabezadoJornada.createCell(columnaJornadas).setCellValue("J" + (i + 1));
+            Row encabezado = hoja.getRow(1);
+            if (encabezado == null) encabezado = hoja.createRow(1);
+            encabezado.createCell(columnaJornadas).setCellValue("J" + (i + 1));
 
             int filaJornada = 2;
             for (Enfrentamiento enf : enfrentamientos) {
                 Row fila = hoja.getRow(filaJornada);
                 if (fila == null) fila = hoja.createRow(filaJornada);
-                String texto = enf.getSringLocal() + " vs " + enf.getStringVisita();
+                String texto = enf.getStringLocal() + " vs " + enf.getStringVisita();
                 if (enf.getGanador() != null) texto += " (Ganador: " + enf.getGanador().getNombre() + ")";
                 fila.createCell(columnaJornadas).setCellValue(texto);
                 filaJornada++;
@@ -66,37 +80,39 @@ public class CrearExcel {
             columnaJornadas++;
         }
 
+        int filaBracket = filaActual + 2;
         switch (torneo.getTipoTorneo()) {
-            case Liga:
-                break;
+            case Liga -> {
+                hoja.createRow(filaBracket++).createCell(1).setCellValue("Clasificación final:");
+                ArrayList<Participante> clasificados = torneo.getAgrupacionParticipantes().devolverAgrupacion();
+                for (Participante p : clasificados) {
+                    hoja.createRow(filaBracket++).createCell(1).setCellValue(p.getNombre());
+                }
+            }
 
-            case Eliminacion_Directa:
-                if (torneo.getAgrupacionParticipantes() instanceof AgrupacionElimDirecta agrupacionParticipantes) {
-                    int filaBracket = filaActual + 2;
-
+            case Eliminacion_Directa -> {
+                if (torneo.getAgrupacionParticipantes() instanceof AgrupacionElimDirecta agrupacion) {
                     hoja.createRow(filaBracket++).createCell(1).setCellValue("Bracket:");
-                    for (Participante p : agrupacionParticipantes.devolverAgrupacion()) {
+                    for (Participante p : agrupacion.devolverAgrupacion()) {
                         hoja.createRow(filaBracket++).createCell(1).setCellValue(p.getNombre());
                     }
                 }
-                break;
+            }
 
-            case Doble_Eliminacion:
-                if (torneo.getAgrupacionParticipantes() instanceof AgrupacionElimDoble agrupacionParticipantes) {
-                    int filaBracket = filaActual + 2;
-
-                    hoja.createRow(filaBracket++).createCell(1).setCellValue("Bracket de Ganadores:");
-                    for (Participante p : agrupacionParticipantes.getGanadores()) {
+            case Doble_Eliminacion -> {
+                if (torneo.getAgrupacionParticipantes() instanceof AgrupacionElimDoble agrupacion) {
+                    hoja.createRow(filaBracket++).createCell(1).setCellValue("Upper Bracket:");
+                    for (Participante p : agrupacion.getGanadores()) {
                         hoja.createRow(filaBracket++).createCell(1).setCellValue(p.getNombre());
                     }
 
                     filaBracket++;
-                    hoja.createRow(filaBracket++).createCell(1).setCellValue("Bracket de Perdedores:");
-                    for (Participante p : agrupacionParticipantes.getPerdedores()) {
+                    hoja.createRow(filaBracket++).createCell(1).setCellValue("Lower Bracket:");
+                    for (Participante p : agrupacion.getPerdedores()) {
                         hoja.createRow(filaBracket++).createCell(1).setCellValue(p.getNombre());
                     }
                 }
-                break;
+            }
         }
 
         try (FileOutputStream archivo = new FileOutputStream("Torneo.xlsx")) {
