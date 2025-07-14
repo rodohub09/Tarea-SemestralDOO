@@ -21,6 +21,10 @@ public class AgrupacionLiga implements AgrupacionParticipantes{
         return clasificacion;
     }
 
+    public ArrayList<Participante> getClasificacion() {
+        return clasificacion;
+    }
+
     @Override
     public String toString() {
         return clasificacion.toString();
