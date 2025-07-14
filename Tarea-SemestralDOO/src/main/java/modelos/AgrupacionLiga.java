@@ -42,6 +42,12 @@ public class AgrupacionLiga implements AgrupacionParticipantes{
      */
     @Override
     public String toString() {
+        String s = "";
+
+        for(Participante p: clasificacion){
+            s += p.toString();
+        }
+
         return clasificacion.toString();
     }
 }
