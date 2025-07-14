@@ -19,3 +19,6 @@ Diagrama de casos de uso:
 
 <img width="690" height="721" alt="Diagrama Casos de Uso" src="https://github.com/user-attachments/assets/18c657d1-41ac-409c-a71a-2e67db8f1a6b" />
 
+Diagrama UML:
+
+<img width="4096" height="4096" alt="image" src="https://github.com/user-attachments/assets/8a85ee3a-ff3d-4221-9dfe-e30c4030dc72" />
