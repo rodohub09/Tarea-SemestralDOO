@@ -5,15 +5,16 @@ package modelos;
  * junto con configuraciones particulares para enfrentamientos y jornadas según el tipo de torneo.
  */
 public enum CantidadParticipantes {
-    Cuatro(4, 2, 2, 3),
-    Ocho(8, 4, 3, 7),
-    Dieciseis(16, 8, 4, 15),
-    TreintayDos(32, 16, 5, 31);
+    Cuatro(4, 2, 2, 3,2),
+    Ocho(8, 4, 3, 7,3),
+    Dieciseis(16, 8, 4, 15,4),
+    TreintayDos(32, 16, 5, 31,5);
 
     private final int numParticipantes;
     private final int enfrentamientosXJornadaLiga;
     private final int enfrentamientosXJornadaElimDirecta;
     private final int jornadasLiga;
+    private final int jornadasElimDirecta;
 
     /**
      * Constructor para inicializar las propiedades de cada constante.
@@ -23,11 +24,12 @@ public enum CantidadParticipantes {
      * @param enfrentamientosXJornadaElimDirecta Eliminación directa: enfrentamientos por jornada.
      * @param jornadasLiga Número total de jornadas en formato liga.
      */
-    CantidadParticipantes(int numParticipantes, int enfrentamientosXJornada, int enfrentamientosXJornadaElimDirecta, int jornadasLiga) {
+    CantidadParticipantes(int numParticipantes, int enfrentamientosXJornada, int enfrentamientosXJornadaElimDirecta, int jornadasLiga, int jornadasElimDirecta) {
         this.numParticipantes = numParticipantes;
         this.enfrentamientosXJornadaLiga = enfrentamientosXJornada;
         this.enfrentamientosXJornadaElimDirecta = enfrentamientosXJornadaElimDirecta;
         this.jornadasLiga = jornadasLiga;
+        this.jornadasElimDirecta = enfrentamientosXJornadaElimDirecta;
     }
 
     /**

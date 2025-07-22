@@ -86,7 +86,7 @@ public class MenuVerTorneo extends JPanel {
         }
         else if(panelTorneo != null)
             panelTorneo.actualizar();
-
+        actualizarActivos();
         panelCalendario.actualizarCalendario();
     }
 
@@ -95,5 +95,9 @@ public class MenuVerTorneo extends JPanel {
      */
     public static void setAddResultados(){
         addResultados = !addResultados;
+    }
+
+    public static void actualizarActivos(){
+        PanelPrincipal.torneo.getAgrupacionParticipantes().actualizarParticipantes(PanelPrincipal.torneo.getCalendario().getJornada(PanelPrincipal.torneo.getNumJornada()).getEnfrentamientos());
     }
 }

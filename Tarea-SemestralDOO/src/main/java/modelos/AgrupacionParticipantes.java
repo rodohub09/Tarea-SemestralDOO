@@ -16,4 +16,6 @@ public interface AgrupacionParticipantes {
      * @return Lista de participantes.
      */
     ArrayList<Participante> devolverAgrupacion();
+
+    void actualizarParticipantes(ArrayList<Enfrentamiento> enfrentamientos);
 }

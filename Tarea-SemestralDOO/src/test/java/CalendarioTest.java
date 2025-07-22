@@ -94,8 +94,9 @@ class CalendarioTest {
     @DisplayName("Creacion de calendario tipo Eliminacion directa con 1 enfrentamiento.")
     void crearCalendarioElimDirect1() {
         calendario = new Calendario();
+        participantes.setAgrupacionParticipantes(TipoTorneo.Eliminacion_Directa);
         calendario.setTipoDeCalendario(TipoTorneo.Eliminacion_Directa, 1, CantidadParticipantes.Cuatro, participantes);
-        assertEquals(2, calendario.getCantJornadas());
+        assertEquals(2, calendario.toString());
     }
 
     @Test
@@ -103,7 +104,10 @@ class CalendarioTest {
     void crearCalendarioElimDirect2() {
         calendario = new Calendario();
         calendario.setTipoDeCalendario(TipoTorneo.Eliminacion_Directa, 2, CantidadParticipantes.Cuatro, participantes);
-        assertEquals(4, calendario.getCantJornadas());
+        calendario.getJornada(0).getEnfrentamientos().get(0).setGanador(calendario.getJornada(0).getEnfrentamientos().get(0).local);
+        calendario.getJornada(0).getEnfrentamientos().get(1).setGanador(calendario.getJornada(0).getEnfrentamientos().get(1).local);
+
+        assertEquals(4, calendario.toString());
     }
 
     @Test
@@ -136,6 +140,7 @@ class CalendarioTest {
         participantes.setAgrupacionParticipantes(TipoTorneo.Eliminacion_Directa);
         calendario = new Calendario();
         calendario.setTipoDeCalendario(TipoTorneo.Eliminacion_Directa, 2, CantidadParticipantes.Dieciseis, participantes);
+        System.out.println(calendario.getJornada(0));
         assertEquals(9, calendario.toString());
     }
 

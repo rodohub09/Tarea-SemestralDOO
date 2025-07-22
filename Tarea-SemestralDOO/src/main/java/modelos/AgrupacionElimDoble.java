@@ -74,6 +74,11 @@ public class AgrupacionElimDoble implements AgrupacionParticipantes {
         return participantes;
     }
 
+    @Override
+    public void actualizarParticipantes(ArrayList<Enfrentamiento> enfrentamientos) {
+
+    }
+
     /**
      * Getter de la lista de participantes en el Upper Bracket.
      * @return Lista de participantes en el Upper Bracket.

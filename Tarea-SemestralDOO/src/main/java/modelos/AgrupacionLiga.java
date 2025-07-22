@@ -36,6 +36,11 @@ public class AgrupacionLiga implements AgrupacionParticipantes{
         return clasificacion;
     }
 
+    @Override
+    public void actualizarParticipantes(ArrayList<Enfrentamiento> enfrentamientos) {
+
+    }
+
     /**
      * Devuelve una representación en texto del estado del torneo y los participantes activos.
      * @return Cadena con el estado actual del torneo.
