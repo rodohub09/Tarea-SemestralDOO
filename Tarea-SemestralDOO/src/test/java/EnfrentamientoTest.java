@@ -1,7 +1,11 @@
 import modelos.Enfrentamiento;
 import modelos.Participante;
+import modelos.TipoTorneo;
+import modelos.Torneo;
 import org.junit.jupiter.api.Test;
+import vistas.PanelPrincipal;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,11 +19,13 @@ class EnfrentamientoTest {
 
     @Test
     void getGanador() {
+        PanelPrincipal.torneo = new Torneo("prueba", TipoTorneo.Liga);
         assertNull(enfrentamiento.getGanador());
     }
 
     @Test
     void setGanador() {
+        PanelPrincipal.torneo = new Torneo("prueba", TipoTorneo.Liga);
         enfrentamiento.setGanador(participante1);
         assertEquals(participante1,enfrentamiento.getGanador());
     }
@@ -37,8 +43,8 @@ class EnfrentamientoTest {
 
     @Test
     void getFecha() {
-        Date fecha = new Date("24/12/2025");
-        assertEquals(fecha,enfrentamiento.getFecha());
+        PanelPrincipal.torneo = new Torneo("prueba", TipoTorneo.Liga);
+        assertEquals("12/12",enfrentamiento.getFecha());
     }
 
     @Test

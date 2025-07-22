@@ -1,3 +1,4 @@
+import modelos.Participante;
 import modelos.Participantes;
 import modelos.TipoTorneo;
 import org.junit.jupiter.api.Test;
@@ -9,12 +10,9 @@ class ParticipantesTest {
 
 
     @Test
-    void getAgrupacionParticipantes() {
-
-    }
-
-    @Test
-    void setAgrupacionParticipantes() {
+    void getYSetAgrupacionParticipantes() {
+        participantes.setAgrupacionParticipantes(TipoTorneo.Liga);
+        assertEquals(TipoTorneo.Liga,participantes.getAgrupacionParticipantes());
     }
 
     @Test
@@ -22,11 +20,13 @@ class ParticipantesTest {
     }
 
     @Test
-    void devolverAgrupacion() {
-    }
-
-    @Test
-    void addParticipante() {
+    void addParticipanteyDevolverAgrupacion() {
+        participantes.setAgrupacionParticipantes(TipoTorneo.Liga);
+        participantes.addParticipante(new Participante("Equipo 1", "Equipo1@proton.me"));
+        participantes.addParticipante(new Participante("Equipo 2", "Equipo2@proton.me"));
+        participantes.addParticipante(new Participante("Equipo 3", "Equipo3@proton.me"));
+        participantes.addParticipante(new Participante("Equipo 4", "Equipo4@proton.me"));
+        assertNull(participantes.devolverAgrupacion());
     }
 
     @Test
@@ -39,5 +39,6 @@ class ParticipantesTest {
 
     @Test
     void testToString() {
+        assertEquals("sad",participantes.toString());
     }
 }
