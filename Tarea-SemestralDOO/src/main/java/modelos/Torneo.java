@@ -13,7 +13,7 @@ public class Torneo {
     private Participantes participantes;
     private Formato formato;
     private int jornada = 0;
-    private AgrupacionParticipantes agrupacionParticipantes;
+    private AgrupacionParticipantes agrupacionParticipantes;      //OJOOOOO
 
     /**
      * Constructor que crea un torneo con el nombre y tipo de torneo especificados.
@@ -163,7 +163,7 @@ public class Torneo {
      * @return Nombre del torneo.
      */
     public AgrupacionParticipantes getAgrupacionParticipantes() {
-        return agrupacionParticipantes;
+        return this.agrupacionParticipantes;
     }
 
     /**

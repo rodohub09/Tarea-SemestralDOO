@@ -98,6 +98,6 @@ public class MenuVerTorneo extends JPanel {
     }
 
     public static void actualizarActivos(){
-        PanelPrincipal.torneo.getAgrupacionParticipantes().actualizarParticipantes(PanelPrincipal.torneo.getCalendario().getJornada(PanelPrincipal.torneo.getNumJornada()).getEnfrentamientos());
+        PanelPrincipal.torneo.getParticipantes().getAgrupacionParticipantes().actualizarParticipantes(PanelPrincipal.torneo.getCalendario().getJornada(PanelPrincipal.torneo.getNumJornada()).getEnfrentamientos());
     }
 }
