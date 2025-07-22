@@ -49,8 +49,18 @@ public class PanelInscritos extends JPanel {
     protected void actualizarInscritos(){
         modelo.setRowCount(0);
 
+        Component[] componentes = getComponents();
+        for (Component c : componentes) {
+            if (c instanceof BotonEliminarInscrito) {
+                remove(c);
+            }
+        }
+
         for(Participante p : PanelPrincipal.torneo.getParticipantes().getArrayParticipante()){
             modelo.addRow(new Object[]{p.getNombre()});
+            BotonEliminarInscrito eliminarInscrito = new BotonEliminarInscrito(p);
+            eliminarInscrito.setBounds(400,30+30*PanelPrincipal.torneo.getParticipantes().getArrayParticipante().indexOf(p),100,30);
+            add(eliminarInscrito);
         }
     }
 }

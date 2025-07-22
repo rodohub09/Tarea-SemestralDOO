@@ -64,7 +64,7 @@ public class MenuCrearTorneo extends JPanel {
         add(definirCaracteristicasTorneo);
         agregarParticipante.setBounds(280,600,500,500);
         add(agregarParticipante);
-        panelInscritos.setBounds(1000,100,400,700);
+        panelInscritos.setBounds(1000,100,500,700);
         add(panelInscritos);
         crearTorneo.setBounds(1100,720,200,50);
         add(crearTorneo);

@@ -33,6 +33,9 @@ public class AgregarParticipante extends JPanel {
                 correo.setText("");
                 Ventana.actualizar(Menu.CrearTorneo);
             }
+            else {
+                new Excepciones("Rellene los campos del participante correctamente");
+            }
             });
         nombre.setBounds(100,0,200,30);
         add(nombre);
