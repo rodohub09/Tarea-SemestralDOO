@@ -165,4 +165,8 @@ public class Participante implements Observer {
     public void setContacto(String contacto) {
         this.contacto = contacto;
     }
+
+    public String toString(){
+        return this.nombre + " Contacto: " + this.contacto + "\n";
+    }
 }

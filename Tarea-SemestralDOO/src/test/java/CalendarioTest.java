@@ -16,26 +16,32 @@ class CalendarioTest {
         participantes.addParticipante(new Participante("equipo 2", "equipo2@proton.me"));
         participantes.addParticipante(new Participante("equipo 3", "equipo3@proton.me"));
         participantes.addParticipante(new Participante("equipo 4", "equipo4@proton.me"));
+        participantes.setAgrupacionParticipantes(TipoTorneo.Liga);
     }
 
     @Test
     void testToString() {
         calendario = new Calendario();
-        calendario.setTipoDeCalendario(TipoTorneo.Eliminacion_Directa, 1, CantidadParticipantes.Cuatro, participantes);
+        calendario.setTipoDeCalendario(TipoTorneo.Liga, 1, CantidadParticipantes.Cuatro, participantes);
         assertEquals("Jornada 1:\n" +
                 "Partido: equipo 1 vs equipo 4\n" +
                 "Partido: equipo 2 vs equipo 3\n" +
                 "\n" +
-                "\n" +
                 "Jornada 2:\n" +
-                "Partido por definir\n\n\n", calendario.toString());
+                "Partido: equipo 2 vs equipo 4\n" +
+                "Partido: equipo 3 vs equipo 1\n" +
+                "\n" +
+                "Jornada 3:\n" +
+                "Partido: equipo 3 vs equipo 4\n" +
+                "Partido: equipo 1 vs equipo 2\n" +
+                "\n", calendario.toString());
     }
 
     @Test
     void getCantJornada() {
         calendario = new Calendario();
-        calendario.setTipoDeCalendario(TipoTorneo.Eliminacion_Directa, 1, CantidadParticipantes.Cuatro, participantes);
-        assertEquals(2, calendario.getCantJornadas());
+        calendario.setTipoDeCalendario(TipoTorneo.Liga, 2, CantidadParticipantes.Cuatro, participantes);
+        assertEquals(6, calendario.getCantJornadas());
     }
 
     @Test
@@ -59,7 +65,29 @@ class CalendarioTest {
     void crearCalendarioLiga2() {
         calendario = new Calendario();
         calendario.setTipoDeCalendario(TipoTorneo.Liga, 2, CantidadParticipantes.Cuatro, participantes);
-        assertEquals(calendario.getCantJornadas(), 6);
+        assertEquals("Jornada 1:\n" +
+                "Partido: equipo 1 vs equipo 4\n" +
+                "Partido: equipo 2 vs equipo 3\n" +
+                "\n" +
+                "Jornada 2:\n" +
+                "Partido: equipo 2 vs equipo 4\n" +
+                "Partido: equipo 3 vs equipo 1\n" +
+                "\n" +
+                "Jornada 3:\n" +
+                "Partido: equipo 3 vs equipo 4\n" +
+                "Partido: equipo 1 vs equipo 2\n" +
+                "\n" +
+                "Jornada 4:\n" +
+                "Partido: equipo 4 vs equipo 1\n" +
+                "Partido: equipo 3 vs equipo 2\n" +
+                "\n" +
+                "Jornada 5:\n" +
+                "Partido: equipo 4 vs equipo 2\n" +
+                "Partido: equipo 1 vs equipo 3\n" +
+                "\n" +
+                "Jornada 6:\n" +
+                "Partido: equipo 4 vs equipo 3\n" +
+                "Partido: equipo 2 vs equipo 1\n\n", calendario.toString());
     }
 
     @Test
@@ -105,9 +133,10 @@ class CalendarioTest {
         participantes.addParticipante(new Participante("equipo 14", "equipo6@proton.me"));
         participantes.addParticipante(new Participante("equipo 15", "equipo7@proton.me"));
         participantes.addParticipante(new Participante("equipo 16", "equipo8@proton.me"));
+        participantes.setAgrupacionParticipantes(TipoTorneo.Eliminacion_Directa);
         calendario = new Calendario();
         calendario.setTipoDeCalendario(TipoTorneo.Eliminacion_Directa, 2, CantidadParticipantes.Dieciseis, participantes);
-        assertEquals(8, calendario.getCantJornadas());
+        assertEquals(9, calendario.toString());
     }
 
     @Test

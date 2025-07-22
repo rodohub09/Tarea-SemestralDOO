@@ -64,4 +64,16 @@ public class Calendario {
     public void actualizarCalendario(Formato formato,ArrayList<Participante> activos){
         tipoDeCalendario.actualizarCalendario(jornadas, formato.getNumEnfrentamientos(),activos);
     }
+
+    public TipoDeCalendario getTipoDeCalendario(){
+        return this.tipoDeCalendario;
+    }
+
+    public String toString(){
+        String s = "";
+        for(int i=0;i<jornadas.size();i++){
+            s += "Jornada " + (i+1) + ":\n" + jornadas.get(i) + "\n";
+        }
+        return s;
+    }
 }
