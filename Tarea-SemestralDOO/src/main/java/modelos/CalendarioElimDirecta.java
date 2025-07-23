@@ -23,13 +23,6 @@ public class CalendarioElimDirecta implements TipoDeCalendario {
         for (int i = 0; i < n / 2; i++) {
             Enfrentamiento ida = new Enfrentamiento(participante.participantes.get(i), participante.participantes.get(n - i - 1), null);
             jornadaInicial.getEnfrentamientos().add(ida);
-
-            if (cantEnfretamientosIgual == 2) {
-                Jornada jornadaVuelta = new Jornada(participante);
-                EnfrentamientoVuelta vuelta = new EnfrentamientoVuelta(participante.participantes.get(n - i - 1), participante.participantes.get(i), null, ida);
-                jornadaVuelta.getEnfrentamientos().add(vuelta);
-                alj.add(jornadaVuelta);
-            }
         }
         alj.add(jornadaInicial);
         this.fecha += cantEnfretamientosIgual;
@@ -47,13 +40,6 @@ public class CalendarioElimDirecta implements TipoDeCalendario {
         for (int i = 0; i < n / 2; i++) {
             Enfrentamiento ida = new Enfrentamiento(activos.get(i), activos.get(n - i - 1), null);
             nuevaJornada.getEnfrentamientos().add(ida);
-
-            if (cantEnfretamientosIgual == 2) {
-                Jornada jornadaVuelta = new Jornada(new Participantes());
-                EnfrentamientoVuelta vuelta = new EnfrentamientoVuelta(activos.get(n - i - 1), activos.get(i), null, ida);
-                jornadaVuelta.getEnfrentamientos().add(vuelta);
-                alj.add(jornadaVuelta);
-            }
         }
         alj.add(nuevaJornada);
         this.fecha += cantEnfretamientosIgual;

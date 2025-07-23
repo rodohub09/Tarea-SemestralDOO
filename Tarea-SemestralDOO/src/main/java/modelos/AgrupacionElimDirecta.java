@@ -26,10 +26,17 @@ public class AgrupacionElimDirecta implements AgrupacionParticipantes {
     @Override
     public void organizarParticipantes(ArrayList<Participante> participantes) {
         for(int i = 0; i < participantes.size() / 2; i++){
-            Participante p1 = participantes.get(i);
-            Participante p2 = participantes.get(participantes.size() - i - 1);
-            bracket1.add(p1);
-            bracket2.add(p2);
+            if(i<participantes.size()/4){
+                Participante p1 = participantes.get(i);
+                Participante p2 = participantes.get(participantes.size() - i - 1);
+                bracket1.add(p1);
+                bracket1.add(p2);
+            }else{
+                Participante p1 = participantes.get(i);
+                Participante p2 = participantes.get(participantes.size() - i - 1);
+                bracket2.add(p1);
+                bracket2.add(p2);
+            }
         }
         participantesActivos.addAll(participantes);
     }
@@ -41,12 +48,19 @@ public class AgrupacionElimDirecta implements AgrupacionParticipantes {
     @Override
     public void actualizarParticipantes(ArrayList<Enfrentamiento> enfrentamientos) {
         ArrayList<Participante> activos = new ArrayList<>();
+        ArrayList<Participante> activosOrdenados = new ArrayList<>();
         for (Enfrentamiento e : enfrentamientos) {
             Participante ganador = e.getGanador();
             if (ganador != null)
                 activos.add(ganador);
         }
-        this.participantesActivos = activos;
+        for(int i=0;i< activos.size()/2;i++){
+            activosOrdenados.add(activos.get(i*2));
+        }
+        for(int i= activos.size()-1;0<i;i-=2){
+            activosOrdenados.add(activos.get(i));
+        }
+        this.participantesActivos = activosOrdenados;
     }
 
     /**
@@ -55,7 +69,7 @@ public class AgrupacionElimDirecta implements AgrupacionParticipantes {
      */
     @Override
     public ArrayList<Participante> devolverAgrupacion() {
-        return new ArrayList<>(participantesActivos);
+        return this.participantesActivos;
     }
 
     /**
