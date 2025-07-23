@@ -1,5 +1,8 @@
 package vistas;
 
+import modelos.Formato;
+import modelos.TipoTorneo;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -11,20 +14,27 @@ public class BotonResultado extends JPanel {
     private JToggleButton visita;
     private JToggleButton empate;
 
-    public BotonResultado(){
+    public BotonResultado() {
+        Formato formato = PanelPrincipal.torneo.getFormato();
+        TipoTorneo tipoTorneo = PanelPrincipal.torneo.getTipoTorneo();
+
         local = new JToggleButton("Local");
         visita = new JToggleButton("Visita");
-        empate = new JToggleButton("Empate");
-        setLayout(new FlowLayout());
 
+        setLayout(new FlowLayout());
         ButtonGroup grupo = new ButtonGroup();
+
         grupo.add(local);
         grupo.add(visita);
-        grupo.add(empate);
 
         add(local);
         add(visita);
-        add(empate);
+
+        if (!(formato == Formato.Solo_Ida && tipoTorneo == TipoTorneo.Eliminacion_Directa)) {
+            empate = new JToggleButton("Empate");
+            grupo.add(empate);
+            add(empate);
+        }
     }
 
     /**
