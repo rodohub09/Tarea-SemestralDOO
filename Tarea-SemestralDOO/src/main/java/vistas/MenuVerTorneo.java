@@ -49,7 +49,7 @@ public class MenuVerTorneo extends JPanel {
         });
 
         panelCalendario = new PanelCalendario();
-        panelCalendario.setBounds(950,50,600,800);
+        panelCalendario.setBounds(1050,50,450,800);
         panelCalendario.setFont(super.getFont().deriveFont(20f));
         add(panelCalendario);
         add(ingresar);
@@ -65,19 +65,19 @@ public class MenuVerTorneo extends JPanel {
             case Liga -> {
                 panelTorneo = new PanelLiga();
                 JPanel panel = panelTorneo.devolverPanel();
-                panel.setBounds(50,50,1000,600);
+                panel.setBounds(25,50,1000,600);
                 add(panel);
             }
             case Eliminacion_Directa ->  {
                 panelTorneo = new PanelEliminacionDirecta();
                 JPanel panel = panelTorneo.devolverPanel();
-                panel.setBounds(50,50,1000,600);
+                panel.setBounds(25,50,1000,600);
                 add(panel);
             }
             case Doble_Eliminacion -> {
                 panelTorneo = new PanelDobleEliminacion();
                 JPanel panel = panelTorneo.devolverPanel();
-                panel.setBounds(50,50,1000,600);
+                panel.setBounds(25,50,1000,600);
                 add(panel);
             }
         }

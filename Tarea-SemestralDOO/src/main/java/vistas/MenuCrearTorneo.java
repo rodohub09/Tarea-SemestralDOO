@@ -2,6 +2,7 @@ package vistas;
 
 import modelos.CamposObligatoriosException;
 import modelos.CantidadInscritosInvalidaException;
+import modelos.ModosIncompatiblesException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -39,6 +40,9 @@ public class MenuCrearTorneo extends JPanel {
                 }
                 catch (CamposObligatoriosException camposObligatoriosException){
                     new Excepciones("Debes rellenar los campos Nombre del Torneo y Disciplina");
+                }
+                catch (ModosIncompatiblesException modosIncompatiblesException){
+                    new Excepciones("El modo seleccionado solo puede disputarse en formato Solo Ida");
                 }
 
         });
@@ -89,8 +93,8 @@ public class MenuCrearTorneo extends JPanel {
         try {
             definirCaracteristicasTorneo.actualizarTorneo();
         }
-        catch (CamposObligatoriosException camposObligatoriosException){
-            throw camposObligatoriosException;
+        catch (CamposObligatoriosException | ModosIncompatiblesException exception){
+            throw exception;
         }
         if(PanelPrincipal.torneo.getParticipantes().getArrayParticipante().size() != PanelPrincipal.torneo.getCantidadParticipantes().getNumParticipantes())
             throw new CantidadInscritosInvalidaException();

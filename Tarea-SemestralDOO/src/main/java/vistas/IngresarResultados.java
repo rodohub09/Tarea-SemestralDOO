@@ -18,19 +18,19 @@ public class IngresarResultados extends JDialog {
 
     public IngresarResultados(JFrame ventana){
         super(ventana,"Ingresar Resultados");
-        setSize(650,800);
+        setSize(800,800);
         setLocationRelativeTo(ventana);
         panelCalendario = new PanelCalendario();
-        panelCalendario.setBounds(0, 0, 300, 600);
+        panelCalendario.setBounds(25, 25, 450, 600);
         panelCalendario.actualizarCalendario();
         add(panelCalendario);
         scrollPane = new JScrollPane();
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setBounds(300,0,300,600);
+        scrollPane.setBounds(475,25,300,600);
         botonEnfrentamientos = new ArrayList<>();
 
         JButton guardar = new JButton("Guardar Resultados");
-        guardar.setBounds(150, 650,300,100);
+        guardar.setBounds(250, 650,300,100);
         guardar.setFont(super.getFont().deriveFont(20f));
         guardar.addActionListener(e -> {
                 try{

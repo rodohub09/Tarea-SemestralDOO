@@ -1,9 +1,6 @@
 package vistas;
 
-import modelos.CamposObligatoriosException;
-import modelos.CantidadParticipantes;
-import modelos.Formato;
-import modelos.TipoTorneo;
+import modelos.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -98,10 +95,12 @@ public class DefinirCaracteristicasTorneo extends JPanel {
      * @throws CamposObligatoriosException Verifica que se hayan rellenado los campos obligatorios,
      * de ser asi actualiza los datos de la instancia static de {@link modelos.Torneo} en {@link PanelPrincipal}
      * */
-    public void actualizarTorneo() throws CamposObligatoriosException {
+    public void actualizarTorneo() throws CamposObligatoriosException, ModosIncompatiblesException {
         if(!camposObligatorios()){
             throw new CamposObligatoriosException();
         }
+        else if (modosIncompatibles())
+            throw new ModosIncompatiblesException();
         else {
             PanelPrincipal.torneo.setNombre(nombreTorneo.getText());
             PanelPrincipal.torneo.setTipoTorneo((TipoTorneo) tipoTorneo.getSelectedItem());
@@ -118,5 +117,9 @@ public class DefinirCaracteristicasTorneo extends JPanel {
      */
     public Boolean camposObligatorios() {
         return !nombreTorneo.getText().isBlank() && !disciplinaTorneo.getText().isBlank();
+    }
+
+    public Boolean modosIncompatibles() {
+        return (tipoTorneo.getSelectedItem().equals(TipoTorneo.Doble_Eliminacion)||tipoTorneo.getSelectedItem().equals(TipoTorneo.Eliminacion_Directa)) && formatoTorneo.getSelectedItem().equals(Formato.Ida_y_Vuelta);
     }
 }

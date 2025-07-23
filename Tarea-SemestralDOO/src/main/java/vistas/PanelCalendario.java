@@ -15,17 +15,19 @@ public class PanelCalendario extends JPanel {
     public PanelCalendario() {
         super();
         setOpaque(false);
+        setLayout(null);
         scrollPane = new JScrollPane();
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setBounds(0,0,600,600);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setBounds(0,0,450,600);
         add(scrollPane);
+        actualizarCalendario();
 
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        actualizarCalendario();
     }
 
     /**
@@ -36,13 +38,16 @@ public class PanelCalendario extends JPanel {
             Jornada jornada = PanelPrincipal.torneo.getCalendario().getJornada(PanelPrincipal.torneo.getNumJornada());
             JPanel panel = new JPanel();
             panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-            JLabel titulo = new JLabel("  Jornada "+ (PanelPrincipal.torneo.getNumJornada()+1));
+            JLabel titulo = new JLabel("Jornada "+ (PanelPrincipal.torneo.getNumJornada()+1));
             titulo.setFont(super.getFont().deriveFont(36f));
             panel.add(titulo);
+            panel.setAlignmentX(Component.CENTER_ALIGNMENT);
             for (Enfrentamiento e : jornada.getEnfrentamientos()) {
                 LabelEnfrentamiento label = getLabelEnfrentamiento(e);
+                label.setAlignmentX(Component.CENTER_ALIGNMENT);
                 panel.add(label);
             }
+            panel.setAutoscrolls(true);
             scrollPane.setViewportView(panel);
         }
     }
