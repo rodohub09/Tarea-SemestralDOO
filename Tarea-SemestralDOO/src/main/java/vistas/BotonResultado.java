@@ -30,7 +30,9 @@ public class BotonResultado extends JPanel {
         add(local);
         add(visita);
 
-        if (!(formato == Formato.Solo_Ida && tipoTorneo == TipoTorneo.Eliminacion_Directa)) {
+        boolean esElimSoloIda = (tipoTorneo == TipoTorneo.Eliminacion_Directa || tipoTorneo == TipoTorneo.Doble_Eliminacion) && formato == Formato.Solo_Ida;
+
+        if (!esElimSoloIda) {
             empate = new JToggleButton("Empate");
             grupo.add(empate);
             add(empate);
