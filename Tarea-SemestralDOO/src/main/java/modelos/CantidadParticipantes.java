@@ -29,7 +29,7 @@ public enum CantidadParticipantes {
         this.enfrentamientosXJornadaLiga = enfrentamientosXJornada;
         this.enfrentamientosXJornadaElimDirecta = enfrentamientosXJornadaElimDirecta;
         this.jornadasLiga = jornadasLiga;
-        this.jornadasElimDirecta = enfrentamientosXJornadaElimDirecta;
+        this.jornadasElimDirecta = jornadasElimDirecta;
     }
 
     /**
@@ -54,6 +54,10 @@ public enum CantidadParticipantes {
      */
     public int getEnfrentamientosXJornadaElimDirecta() {
         return enfrentamientosXJornadaElimDirecta;
+    }
+
+    public int getJornadasElimDirecta() {
+        return jornadasElimDirecta;
     }
 
     /**

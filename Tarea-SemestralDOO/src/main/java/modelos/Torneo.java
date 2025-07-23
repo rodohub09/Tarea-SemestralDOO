@@ -175,10 +175,15 @@ public class Torneo {
     }
 
     public boolean torneoFinalizado() {
-        return getNumJornada() >= calendario.getCantJornadas();
+        switch (tipoTorneo) {
+            case Liga -> {return getNumJornada() >= calendario.getCantJornadas();}
+            case Eliminacion_Directa -> {return getNumJornada() >= cantidadParticipantes.getJornadasElimDirecta();}
+        }
+        return false;
     }
 
     public Participante getCampeon() {
+        if (!torneoFinalizado()) return null;
         Participante campeon = null;
 
         switch (tipoTorneo) {
