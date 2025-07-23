@@ -79,6 +79,8 @@ public class MenuVerTorneo extends JPanel {
      * Metodo que verifica la existencia de un torneo valido para mostrarlo en pantalla llamando al metodo del strategy asociado
      */
     public void actualizar(){
+        actualizarActivos();
+        panelCalendario.actualizarCalendario();
         if(crearpanel && PanelPrincipal.creado) {
             setPanelTorneo(PanelPrincipal.torneo.getTipoTorneo());
             crearpanel = false;
@@ -86,8 +88,6 @@ public class MenuVerTorneo extends JPanel {
         }
         else if(panelTorneo != null)
             panelTorneo.actualizar();
-        actualizarActivos();
-        panelCalendario.actualizarCalendario();
     }
 
     /**

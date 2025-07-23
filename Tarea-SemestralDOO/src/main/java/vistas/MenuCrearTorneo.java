@@ -100,6 +100,7 @@ public class MenuCrearTorneo extends JPanel {
                     PanelPrincipal.torneo.getFormato().getNumEnfrentamientos(),
                     PanelPrincipal.torneo.getCantidadParticipantes(),
                     PanelPrincipal.torneo.getParticipantes());
+            PanelPrincipal.torneo.getParticipantes().agrupar();
             PanelPrincipal.creado = true;
         }
     }
