@@ -1,5 +1,7 @@
 package vistas;
 
+import modelos.Participante;
+import modelos.Participantes;
 import modelos.TipoTorneo;
 
 import javax.swing.*;
@@ -30,12 +32,19 @@ public class MenuVerTorneo extends JPanel {
         JButton avanzar = new JButton("Siguiente Jornada");
         avanzar.setBounds(1000,700,300,40);
         avanzar.setFont(super.getFont().deriveFont(20f));
-        avanzar.addActionListener(e -> {if(addResultados) {PanelPrincipal.torneo.incJornada();
-                                                    PanelPrincipal.torneo.getCalendario().actualizarCalendario(PanelPrincipal.torneo.getFormato(),PanelPrincipal.torneo.getParticipantes().devolverAgrupacion());
-                                                    setAddResultados();
-                                                    Ventana.actualizar(Menu.VerTorneo);
-                                                  }else {
-                                                    new Excepciones("Ingresa los resultados de la jornada");
+        avanzar.addActionListener(e -> {
+            if(addResultados) {
+                PanelPrincipal.torneo.incJornada();
+                if (PanelPrincipal.torneo.torneoFinalizado()) {
+                    Participante campeon = PanelPrincipal.torneo.getCampeon();
+                    new MostrarCampeon(Ventana.getInstance(), campeon).setVisible(true);
+                    return;
+                }
+                PanelPrincipal.torneo.getCalendario().actualizarCalendario(PanelPrincipal.torneo.getFormato(),PanelPrincipal.torneo.getParticipantes().devolverAgrupacion());
+                setAddResultados();
+                Ventana.actualizar(Menu.VerTorneo);
+            } else {
+                new Excepciones("Ingresa los resultados de la jornada");
         }
         });
 
@@ -45,7 +54,6 @@ public class MenuVerTorneo extends JPanel {
         add(panelCalendario);
         add(ingresar);
         add(avanzar);
-
     }
 
     /**
@@ -98,6 +106,10 @@ public class MenuVerTorneo extends JPanel {
     }
 
     public static void actualizarActivos(){
-        PanelPrincipal.torneo.getParticipantes().getAgrupacionParticipantes().actualizarParticipantes(PanelPrincipal.torneo.getCalendario().getJornada(PanelPrincipal.torneo.getNumJornada()).getEnfrentamientos());
+        int total = PanelPrincipal.torneo.getCalendario().getCantJornadas();
+        int num = PanelPrincipal.torneo.getNumJornada();
+
+        if (num < total)
+            PanelPrincipal.torneo.getParticipantes().getAgrupacionParticipantes().actualizarParticipantes(PanelPrincipal.torneo.getCalendario().getJornada(PanelPrincipal.torneo.getNumJornada()).getEnfrentamientos());
     }
 }
