@@ -39,4 +39,13 @@ public class Ventana extends JFrame {
         instancia.repaint();
         panelPrincipal.actualizar(menu);
     }
+
+    public static void reiniciarTorneo() {
+        panelPrincipal = new PanelPrincipal();
+        instancia.getContentPane().removeAll();
+        instancia.add(panelPrincipal);
+        panelPrincipal.setVisible(true);
+        instancia.revalidate();
+        instancia.repaint();
+    }
 }
