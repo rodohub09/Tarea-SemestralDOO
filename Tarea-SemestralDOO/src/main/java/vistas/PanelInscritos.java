@@ -5,6 +5,8 @@ import modelos.Participante;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * Panel que muestra una tabla con todos los nombres de los {@link Participante} inscritos
@@ -17,7 +19,7 @@ public class PanelInscritos extends JPanel {
         super();
         setOpaque(false);
         setLayout(null);
-        String[] tabla = {"Inscritos"};
+        String[] tabla = {"Inscritos",""};
         modelo = new DefaultTableModel(tabla,0) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -29,6 +31,23 @@ public class PanelInscritos extends JPanel {
         tablaInscritos.setFont(super.getFont().deriveFont(20f));
         tablaInscritos.setRowHeight(30);
         tablaInscritos.getTableHeader().setFont(super.getFont().deriveFont(20f));
+        tablaInscritos.getColumnModel().getColumn(0).setPreferredWidth(300);
+        tablaInscritos.getColumnModel().getColumn(1).setPreferredWidth(100);
+
+        tablaInscritos.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int fila = tablaInscritos.rowAtPoint(e.getPoint());
+                int columna = tablaInscritos.columnAtPoint(e.getPoint());
+
+                if (columna == 1) {
+                    Participante p = PanelPrincipal.torneo.getParticipantes().getArrayParticipante().get(fila);
+                    PanelPrincipal.torneo.getParticipantes().getArrayParticipante().remove(p);
+                    Ventana.actualizar(Menu.CrearTorneo);
+                }
+            }
+        });
+
         JScrollPane scrollPane = new JScrollPane(tablaInscritos);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 
@@ -49,18 +68,8 @@ public class PanelInscritos extends JPanel {
     protected void actualizarInscritos(){
         modelo.setRowCount(0);
 
-        Component[] componentes = getComponents();
-        for (Component c : componentes) {
-            if (c instanceof BotonEliminarInscrito) {
-                remove(c);
-            }
-        }
-
         for(Participante p : PanelPrincipal.torneo.getParticipantes().getArrayParticipante()){
-            modelo.addRow(new Object[]{p.getNombre()});
-            BotonEliminarInscrito eliminarInscrito = new BotonEliminarInscrito(p);
-            eliminarInscrito.setBounds(400,30+30*PanelPrincipal.torneo.getParticipantes().getArrayParticipante().indexOf(p),100,30);
-            add(eliminarInscrito);
+            modelo.addRow(new Object[]{p.getNombre(),"Eliminar"});
         }
     }
 }
