@@ -173,4 +173,39 @@ public class Torneo {
     public void setAgrupacionParticipantes(AgrupacionParticipantes agrupacionParticipantes) {
         this.agrupacionParticipantes = agrupacionParticipantes;
     }
+
+    public boolean torneoFinalizado() {
+        return getNumJornada() >= calendario.getCantJornadas();
+    }
+
+    public Participante getCampeon() {
+        Participante campeon = null;
+
+        switch (tipoTorneo) {
+            case Liga -> {
+                int maxPuntos = -1;
+                for (Participante p : participantes.devolverAgrupacion()) {
+                    if (p.getPuntos() > maxPuntos) {
+                        campeon = p;
+                        maxPuntos = p.getPuntos();
+                    } else if (p.getPuntos() == maxPuntos) {
+                        assert campeon != null;
+                        if (p.getWins() > campeon.getWins()) {
+                            campeon = p;
+                        }
+                    }
+                }
+            }
+            case Eliminacion_Directa, Doble_Eliminacion -> {
+                int maxWins = -1;
+                for (Participante p : participantes.devolverAgrupacion()) {
+                    if (p.getWins() > maxWins) {
+                        campeon = p;
+                        maxWins = p.getWins();
+                    }
+                }
+            }
+        }
+        return campeon;
+    }
 }
