@@ -103,6 +103,7 @@ class CalendarioTest {
     @DisplayName("Creacion de calendario tipo Eliminacion directa con 2 enfrentamiento.")
     void crearCalendarioElimDirect2() {
         calendario = new Calendario();
+        participantes.setAgrupacionParticipantes(TipoTorneo.Eliminacion_Directa);
         calendario.setTipoDeCalendario(TipoTorneo.Eliminacion_Directa, 2, CantidadParticipantes.Cuatro, participantes);
         calendario.getJornada(0).getEnfrentamientos().get(0).setGanador(calendario.getJornada(0).getEnfrentamientos().get(0).local);
         calendario.getJornada(0).getEnfrentamientos().get(1).setGanador(calendario.getJornada(0).getEnfrentamientos().get(1).local);
