@@ -27,7 +27,10 @@ public class MenuVerTorneo extends JPanel {
         JButton ingresar = new JButton("Actualizar Resultados");
         ingresar.setBounds(600,700,300,40);
         ingresar.setFont(super.getFont().deriveFont(20f));
-        ingresar.addActionListener(e -> new IngresarResultados(Ventana.getInstance()).setVisible(true));
+        ingresar.addActionListener(e -> {if (PanelPrincipal.torneo.torneoFinalizado())
+                                                        new Excepciones("Este torneo ya ha finalizado");
+                                                    else
+                                                        new IngresarResultados(Ventana.getInstance()).setVisible(true);});
 
         JButton avanzar = new JButton("Siguiente Jornada");
         avanzar.setBounds(1000,700,300,40);
@@ -37,6 +40,7 @@ public class MenuVerTorneo extends JPanel {
                 PanelPrincipal.torneo.incJornada();
                 if (PanelPrincipal.torneo.torneoFinalizado()) {
                     Participante campeon = PanelPrincipal.torneo.getCampeon();
+                    Ventana.actualizar(Menu.VerTorneo);
                     new MostrarCampeon(Ventana.getInstance(), campeon).setVisible(true);
                     return;
                 }

@@ -36,6 +36,7 @@ public class Ventana extends JFrame {
      * Metodo encargado de realizar un repaint, o repintar la ventana y sus paneles.
      * */
     public static void actualizar(Menu menu) {
+        instancia.revalidate();
         instancia.repaint();
         panelPrincipal.actualizar(menu);
     }

@@ -30,38 +30,46 @@ public class PanelEliminacionDirecta extends JPanel implements PanelTorneo {
         int ronda = PanelPrincipal.torneo.getNumJornada();
         int escala = (int)(Math.log(participantes) / Math.log(2));
 
-        ArrayList<Enfrentamiento> enfrentamientos = PanelPrincipal.torneo.getCalendario().getJornada(ronda).getEnfrentamientos();
-        int mitad = enfrentamientos.size() / 2;
+        if (PanelPrincipal.torneo.torneoFinalizado()){
+            JLabel campeon = new JLabel(PanelPrincipal.torneo.getCampeon().getNombre());
+            campeon.setFont(super.getFont().deriveFont(20f));
+            campeon.setBounds(490,220,80,40);
+            add(campeon);
+        }
 
-        if(enfrentamientos.size() == 1){
+        else{
+            ArrayList<Enfrentamiento> enfrentamientos = PanelPrincipal.torneo.getCalendario().getJornada(ronda).getEnfrentamientos();
+            int mitad = enfrentamientos.size() / 2;
+            if(enfrentamientos.size() == 1){
             Enfrentamiento e = enfrentamientos.getFirst();
             PanelEnfrentamiento panel = new PanelEnfrentamiento(e.getStringLocal(), e.getStringVisita());
             panel.setBounds(460,270,80,60);
             add(panel);
 
-        }
+            }
 
-        else {
-            int[] boundX = posX[escala - 2];
-            int boundY = posY[escala - 2 - ronda];
+            else {
+                int[] boundX = posX[escala - 2];
+                int boundY = posY[escala - 2 - ronda];
 
-            for (int i = 0; i < enfrentamientos.size(); i++) {
-                Enfrentamiento e = enfrentamientos.get(i);
-                PanelEnfrentamiento panel = new PanelEnfrentamiento(e.getStringLocal(), e.getStringVisita());
+                for (int i = 0; i < enfrentamientos.size(); i++) {
+                    Enfrentamiento e = enfrentamientos.get(i);
+                    PanelEnfrentamiento panel = new PanelEnfrentamiento(e.getStringLocal(), e.getStringVisita());
 
-                if (i < mitad) {
-                    panel.setBounds(
-                            boundX[0] + ronda*100,
-                            boundY + i*70*(int)Math.pow(2,ronda),
-                            80, 60);
-                } else {
-                    panel.setBounds(
-                            boundX[1] - ronda * 100,
-                            boundY + (i - mitad)*70*(int)Math.pow(2,ronda),
-                            80, 60);
+                    if (i < mitad) {
+                        panel.setBounds(
+                                boundX[0] + ronda * 100,
+                                boundY + i * 70 * (int) Math.pow(2, ronda),
+                                80, 60);
+                    } else {
+                        panel.setBounds(
+                                boundX[1] - ronda * 100,
+                                boundY + (i - mitad) * 70 * (int) Math.pow(2, ronda),
+                                80, 60);
+                    }
+
+                    add(panel);
                 }
-
-                add(panel);
             }
         }
 
