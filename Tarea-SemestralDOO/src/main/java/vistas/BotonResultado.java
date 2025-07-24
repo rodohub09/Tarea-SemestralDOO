@@ -13,6 +13,7 @@ public class BotonResultado extends JPanel {
     private JToggleButton local;
     private JToggleButton visita;
     private JToggleButton empate;
+    private boolean esElimSoloIda;
 
     public BotonResultado() {
         Formato formato = PanelPrincipal.torneo.getFormato();
@@ -30,7 +31,7 @@ public class BotonResultado extends JPanel {
         add(local);
         add(visita);
 
-        boolean esElimSoloIda = (tipoTorneo == TipoTorneo.Eliminacion_Directa || tipoTorneo == TipoTorneo.Doble_Eliminacion) && formato == Formato.Solo_Ida;
+        esElimSoloIda = (tipoTorneo == TipoTorneo.Eliminacion_Directa || tipoTorneo == TipoTorneo.Doble_Eliminacion) && formato == Formato.Solo_Ida;
 
         if (!esElimSoloIda) {
             empate = new JToggleButton("Empate");
@@ -47,7 +48,7 @@ public class BotonResultado extends JPanel {
             return 1;
         else if(visita.isSelected())
             return 2;
-        else if(empate.isSelected())
+        else if(!esElimSoloIda && empate.isSelected())
             return 3;
         return 0;
     }

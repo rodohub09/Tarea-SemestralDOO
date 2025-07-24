@@ -6,10 +6,18 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class PanelEliminacionDirecta extends JPanel implements PanelTorneo {
+    private int[][] posX;
+    private int[] posY;
+
     public PanelEliminacionDirecta(){
         super();
         setOpaque(false);
         setLayout(null);
+        posX = new int[][]{{350, 570},
+                            {250,670},
+                            {150, 770},
+                            {50,870}};
+        posY = new int[]{295,155,85,50};
     }
     @Override
     public JPanel devolverPanel() {
@@ -20,30 +28,41 @@ public class PanelEliminacionDirecta extends JPanel implements PanelTorneo {
     public void actualizar() {
         int participantes = PanelPrincipal.torneo.getCantidadParticipantes().getNumParticipantes();
         int ronda = PanelPrincipal.torneo.getNumJornada();
-
-        int escalaY = (int)(Math.log(32) / Math.log(2)) - (int)(Math.log(participantes) / Math.log(2)) + 1;
-        int escalaX = (int)(6 - Math.log(participantes) / Math.log(2));
+        int escala = (int)(Math.log(participantes) / Math.log(2));
 
         ArrayList<Enfrentamiento> enfrentamientos = PanelPrincipal.torneo.getCalendario().getJornada(ronda).getEnfrentamientos();
         int mitad = enfrentamientos.size() / 2;
 
-        for (int i = 0; i < enfrentamientos.size(); i++) {
-            Enfrentamiento e = enfrentamientos.get(i);
+        if(enfrentamientos.size() == 1){
+            Enfrentamiento e = enfrentamientos.getFirst();
             PanelEnfrentamiento panel = new PanelEnfrentamiento(e.getStringLocal(), e.getStringVisita());
-
-            if (i < mitad) {
-                panel.setBounds(
-                        50 + ronda * escalaX * 85,
-                        ronda * (mitad * (65 + 20) + 50) + i * (65 + 20),
-                        85, 65);
-            } else {
-                panel.setBounds(
-                        865 - ronda * 100,
-                        ronda * (mitad * (65 + 20) + 50) + (i - mitad) * (65 + 20),
-                        85, 65);
-            }
-
+            panel.setBounds(460,270,80,60);
             add(panel);
+
+        }
+
+        else {
+            int[] boundX = posX[escala - 2];
+            int boundY = posY[escala - 2 - ronda];
+
+            for (int i = 0; i < enfrentamientos.size(); i++) {
+                Enfrentamiento e = enfrentamientos.get(i);
+                PanelEnfrentamiento panel = new PanelEnfrentamiento(e.getStringLocal(), e.getStringVisita());
+
+                if (i < mitad) {
+                    panel.setBounds(
+                            boundX[0] + ronda*100,
+                            boundY + i*70*(int)Math.pow(2,ronda),
+                            80, 60);
+                } else {
+                    panel.setBounds(
+                            boundX[1] - ronda * 100,
+                            boundY + (i - mitad)*70*(int)Math.pow(2,ronda),
+                            80, 60);
+                }
+
+                add(panel);
+            }
         }
 
     }
