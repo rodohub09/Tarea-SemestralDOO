@@ -1,5 +1,4 @@
 import modelos.Enfrentamiento;
-import modelos.EnfrentamientoVuelta;
 import modelos.Participante;
 import org.junit.jupiter.api.Test;
 

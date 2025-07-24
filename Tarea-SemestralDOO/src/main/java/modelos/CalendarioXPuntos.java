@@ -7,10 +7,6 @@ import java.util.ArrayList;
  * Genera las jornadas y enfrentamientos en función del número de participantes y la cantidad de partidos.
  */
 public class CalendarioXPuntos implements TipoDeCalendario {
-
-    /** Tipo de calendario que representa esta clase. */
-    public static String tipoCalendario = "Liga";
-
     /**
      * Crea el calendario completo del torneo tipo liga, incluyendo rondas de ida y, si corresponde, de vuelta.
      *
@@ -25,7 +21,7 @@ public class CalendarioXPuntos implements TipoDeCalendario {
         ArrayList<Participante> clasificados = participantes.getAgrupacionParticipantes().devolverAgrupacion();
 
         for (int ronda = 0; ronda < p.getJornadasLiga(); ronda++) {
-            Jornada jornada = new Jornada(participantes);
+            Jornada jornada = new Jornada();
             for (int i = 0; i < p.getEnfrentamientosXJornadaLiga(); i++) {
                 int p1 = (ronda + i) % (p.getNumParticipantes() - 1);
                 int p2 = (p.getNumParticipantes() - 1 - i + ronda) % (p.getNumParticipantes() - 1);
@@ -44,7 +40,7 @@ public class CalendarioXPuntos implements TipoDeCalendario {
         if (cantEnfretamientosIgual == 2) {
             for (int i = 0; i < p.getJornadasLiga(); i++) {
                 Jornada original = alj.get(i);
-                Jornada vuelta = new Jornada(participantes);
+                Jornada vuelta = new Jornada();
                 for (Enfrentamiento e : original.enfrentamientos) {
                     vuelta.enfrentamientos.add(new Enfrentamiento(
                             e.getVisita(),

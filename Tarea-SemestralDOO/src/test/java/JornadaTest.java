@@ -20,7 +20,7 @@ class JornadaTest {
         participantes.addParticipante(new Participante("Equipo 4","Yuka.man@gmail.com"));
         Enfrentamiento enfrentamiento1 = new Enfrentamiento(participantes.getParticipante(0),participantes.getParticipante(1),new Date("04/07/2027"));
         Enfrentamiento enfrentamiento2 = new Enfrentamiento(participantes.getParticipante(2),participantes.getParticipante(3),new Date("04/07/2027"));
-        jornada = new Jornada(participantes);
+        jornada = new Jornada();
         jornada.enfrentamientos.add(enfrentamiento1);
         jornada.enfrentamientos.add(enfrentamiento2);
     }

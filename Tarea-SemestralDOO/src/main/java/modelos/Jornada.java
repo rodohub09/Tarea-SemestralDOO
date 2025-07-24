@@ -11,11 +11,9 @@ public class Jornada {
 
     /**
      * Constructor que inicializa la jornada con la lista de participantes.
-     * @param participantes Participantes disponibles en el torneo.
      */
-    public Jornada(Participantes participantes){
+    public Jornada(){
         this.enfrentamientos = new ArrayList<>();
-        this.participantes = participantes;
     }
 
     /**
