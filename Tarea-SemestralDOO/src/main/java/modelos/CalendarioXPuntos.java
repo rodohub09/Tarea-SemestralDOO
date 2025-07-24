@@ -53,7 +53,7 @@ public class CalendarioXPuntos implements TipoDeCalendario {
         }
     }
 
-    public void actualizarCalendario(ArrayList<Jornada> alj, int cantEnfretamientosIgual, ArrayList<Participante> activos) {
+    public void actualizarCalendario(ArrayList<Jornada> alj, ArrayList<Participante> activos) {
 
     }
 }

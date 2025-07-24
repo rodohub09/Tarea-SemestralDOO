@@ -1,5 +1,7 @@
 package modelos;
 
+import vistas.PanelPrincipal;
+
 import java.util.ArrayList;
 
 /**
@@ -30,35 +32,46 @@ public class CalendarioElimDoble implements TipoDeCalendario {
     /**
      * Actualiza las siguientes jornadas del torneo considerando los ganadores y perdedores de la jornada actual.
      * @param alj Lista de jornadas del torneo.
-     * @param cantEnfrentamientosJornada Cantidad de enfrentamientos por jornada.
      */
-    public void actualizarCalendario(ArrayList<Jornada> alj, int cantEnfrentamientosJornada, ArrayList<Participante> activos) {
-        Jornada nuevaJornada = new Jornada();
-
-        ArrayList<Participante> upperBracket = new ArrayList<>();
-        ArrayList<Participante> lowerBracket = new ArrayList<>();
-
-        for (Enfrentamiento e : nuevaJornada.getEnfrentamientos()) {
-            Participante ganador = e.getGanador();
-            if (ganador != null) {
-                upperBracket.add(ganador);
-                Participante perdedor = (e.getLocal() == ganador) ? e.getVisita() : e.getLocal();
-                lowerBracket.add(perdedor);
+    public void actualizarCalendario(ArrayList<Jornada> alj, ArrayList<Participante> activos) {
+        Jornada jornada = new Jornada();
+        Jornada anteriorJornada = alj.getLast();
+        int mitad = anteriorJornada.enfrentamientos.size()/2;
+        if(alj.size()%2 == 0){
+            for(int i = 0; i < anteriorJornada.enfrentamientos.size();i++){
+                if(i < mitad){
+                    continue;
+                }
+                else{
+                    Enfrentamiento e1 = anteriorJornada.enfrentamientos.get(i-mitad);
+                    Enfrentamiento e2 = anteriorJornada.enfrentamientos.get(i);
+                    Participante p1 = e1.getLocal() == e1.getGanador() ? e1.getVisita() : e1.getLocal();
+                    Participante p2 = e2.getGanador();
+                    jornada.enfrentamientos.add(new Enfrentamiento(p1,p2,null));
+                }
             }
         }
-
-        alj.add(nuevaJornada);
-
-        Jornada nuevaJornadaUpper = new Jornada();
-        for (int i = 0; i < upperBracket.size() / 2; i++) {
-            Enfrentamiento e = new Enfrentamiento(upperBracket.get(i), upperBracket.get(upperBracket.size() - i - 1), null);
-            nuevaJornadaUpper.getEnfrentamientos().add(e);
+        else if (alj.size()==1){
+            for(int i = 0; i < anteriorJornada.enfrentamientos.size();i+=2){
+                if(i < mitad){
+                    Enfrentamiento e1 = anteriorJornada.enfrentamientos.get(i);
+                    Enfrentamiento e2 = anteriorJornada.enfrentamientos.get(i+1);
+                    Participante p1 = e1.getGanador();
+                    Participante p2 = e2.getGanador();
+                    jornada.enfrentamientos.add(new Enfrentamiento(p1,p2,null));
+                }
+                else{
+                    Enfrentamiento e1 = anteriorJornada.enfrentamientos.get(i);
+                    Enfrentamiento e2 = anteriorJornada.enfrentamientos.get(i+1);
+                    Participante p1 = e1.getGanador();
+                    Participante p2 = e2.getGanador();
+                    jornada.enfrentamientos.add(new Enfrentamiento(p1,p2,null));
+                }
+            }
         }
+        else {
 
-        Jornada nuevaJornadaLower = new Jornada();
-        for (int i = 0; i < lowerBracket.size() / 2; i++) {
-            Enfrentamiento e = new Enfrentamiento(lowerBracket.get(i), lowerBracket.get(lowerBracket.size() - i - 1), null);
-            nuevaJornadaLower.getEnfrentamientos().add(e);
         }
+        alj.add(jornada);
     }
 }

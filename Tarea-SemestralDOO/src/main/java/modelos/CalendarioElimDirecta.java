@@ -27,10 +27,9 @@ public class CalendarioElimDirecta implements TipoDeCalendario {
     /**
      * Agrega una nueva jornada con enfrentamientos generados a partir de los participantes activos.
      * @param alj Lista de jornadas donde se agrega la nueva.
-     * @param cantEnfretamientosIgual Número de enfrentamientos por ronda (ida o ida y vuelta).
      * @param activos Lista de participantes activos entregados por la agrupación.
      */
-    public void actualizarCalendario(ArrayList<Jornada> alj, int cantEnfretamientosIgual, ArrayList<Participante> activos) {
+    public void actualizarCalendario(ArrayList<Jornada> alj, ArrayList<Participante> activos) {
         Jornada nuevaJornada = new Jornada();
         int n = activos.size();
         for (int i = 0; i < n / 2; i++) {

@@ -44,7 +44,7 @@ public class MenuVerTorneo extends JPanel {
                     new MostrarCampeon(Ventana.getInstance(), campeon).setVisible(true);
                     return;
                 }
-                PanelPrincipal.torneo.getCalendario().actualizarCalendario(PanelPrincipal.torneo.getFormato(),PanelPrincipal.torneo.getParticipantes().devolverAgrupacion());
+                PanelPrincipal.torneo.getCalendario().actualizarCalendario(PanelPrincipal.torneo.getParticipantes().devolverAgrupacion());
                 setAddResultados();
                 Ventana.actualizar(Menu.VerTorneo);
             } else {
