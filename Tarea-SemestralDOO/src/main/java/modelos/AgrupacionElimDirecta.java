@@ -54,6 +54,12 @@ public class AgrupacionElimDirecta implements AgrupacionParticipantes {
             if (ganador != null)
                 activos.add(ganador);
         }
+
+        if (activos.size() == 1) {
+            this.participantesActivos = activos;
+            return;
+        }
+
         for(int i=0;i< activos.size()/2;i++){
             activosOrdenados.add(activos.get(i*2));
         }

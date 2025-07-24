@@ -183,7 +183,6 @@ public class Torneo {
     }
 
     public Participante getCampeon() {
-        if (!torneoFinalizado()) return null;
         Participante campeon = null;
 
         switch (tipoTorneo) {
@@ -202,13 +201,8 @@ public class Torneo {
                 }
             }
             case Eliminacion_Directa, Doble_Eliminacion -> {
-                int maxWins = -1;
-                for (Participante p : participantes.devolverAgrupacion()) {
-                    if (p.getWins() > maxWins) {
-                        campeon = p;
-                        maxWins = p.getWins();
-                    }
-                }
+                if (participantes.getAgrupacionParticipantes().devolverAgrupacion().size() == 1)
+                    campeon = participantes.getAgrupacionParticipantes().devolverAgrupacion().get(0);
             }
         }
         return campeon;
