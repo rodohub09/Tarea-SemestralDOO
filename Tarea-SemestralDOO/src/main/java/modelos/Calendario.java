@@ -27,12 +27,15 @@ public class Calendario {
      */
     public void setTipoDeCalendario(TipoTorneo tt, int cantEnfretamientosIgual, CantidadParticipantes p,Participantes participantes) {
         this.tipoTorneo = tt;
-        if(tt==TipoTorneo.Liga){
+        if (tt == TipoTorneo.Liga) {
             this.tipoDeCalendario = new CalendarioXPuntos();
-            tipoDeCalendario.creacionCalendario(jornadas,cantEnfretamientosIgual, p, participantes);
-        }else if(tt==TipoTorneo.Eliminacion_Directa){
+            tipoDeCalendario.creacionCalendario(jornadas, cantEnfretamientosIgual, p, participantes);
+        } else if (tt == TipoTorneo.Eliminacion_Directa) {
             this.tipoDeCalendario = new CalendarioElimDirecta();
-            tipoDeCalendario.creacionCalendario(jornadas,cantEnfretamientosIgual, p, participantes);
+            tipoDeCalendario.creacionCalendario(jornadas, cantEnfretamientosIgual, p, participantes);
+        } else if (tt == TipoTorneo.Doble_Eliminacion) {
+            this.tipoDeCalendario = new CalendarioElimDoble();
+            tipoDeCalendario.creacionCalendario(jornadas, cantEnfretamientosIgual, p, participantes);
         }
     }
 

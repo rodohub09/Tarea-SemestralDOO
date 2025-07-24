@@ -8,83 +8,57 @@ import java.util.ArrayList;
  * definidos por {@link AgrupacionElimDoble}.
  */
 public class CalendarioElimDoble implements TipoDeCalendario {
-    private int fecha = 0;
-
     /**
      * Crea el calendario inicial con enfrentamientos entre los participantes del Upper Bracket.
      * @param alj Lista de jornadas del torneo.
-     * @param cantEnfrentamientosIgual Cantidad de enfrentamientos por jornada.
+     * @param cantEnfrentamientosJornada Cantidad de enfrentamientos por jornada.
      * @param p Configuración de cantidad de participantes.
      * @param participantes Lista de participantes agrupados según el tipo de torneo.
      */
     @Override
-    public void creacionCalendario(ArrayList<Jornada> alj, int cantEnfrentamientosIgual, CantidadParticipantes p, Participantes participantes) {
-        ArrayList<Participante> ganadores = participantes.getAgrupacionParticipantes().devolverAgrupacion();
+    public void creacionCalendario(ArrayList<Jornada> alj, int cantEnfrentamientosJornada, CantidadParticipantes p, Participantes participantes) {
+        Jornada jornadaInicial = new Jornada();
+        ArrayList<Participante> upperBracket = participantes.participantes;
 
-        alj.add(new Jornada(participantes));
-
-        for (int i = 0; i < ganadores.size() / 2; i++) {
-            Enfrentamiento e = new Enfrentamiento(ganadores.get(i), ganadores.get(ganadores.size() - i - 1), null);
-            alj.get(fecha).getEnfrentamientos().add(e);
-
-            if (cantEnfrentamientosIgual == 2) {
-                alj.add(new Jornada(participantes));
-                alj.get(fecha + 1).getEnfrentamientos().add(
-                        new EnfrentamientoVuelta(e.getVisita(), e.getLocal(), null, e)
-                );
-            }
+        for (int i = 0; i < upperBracket.size() / 2; i++) {
+            Enfrentamiento e = new Enfrentamiento(upperBracket.get(i), upperBracket.get(upperBracket.size() - i - 1), null);
+            jornadaInicial.getEnfrentamientos().add(e);
         }
-        fecha += cantEnfrentamientosIgual;
+        alj.add(jornadaInicial);
     }
 
     /**
      * Actualiza las siguientes jornadas del torneo considerando los ganadores y perdedores de la jornada actual.
      * @param alj Lista de jornadas del torneo.
-     * @param cantEnfrentamientosIgual Cantidad de enfrentamientos por jornada.
+     * @param cantEnfrentamientosJornada Cantidad de enfrentamientos por jornada.
      */
-    public void actualizarCalendario(ArrayList<Jornada> alj, int cantEnfrentamientosIgual,ArrayList<Participante> activos) {
-        fecha += cantEnfrentamientosIgual;
+    public void actualizarCalendario(ArrayList<Jornada> alj, int cantEnfrentamientosJornada, ArrayList<Participante> activos) {
+        Jornada nuevaJornada = new Jornada();
 
-        ArrayList<Participante> ganadores = new ArrayList<>();
-        ArrayList<Participante> perdedores = new ArrayList<>();
+        ArrayList<Participante> upperBracket = new ArrayList<>();
+        ArrayList<Participante> lowerBracket = new ArrayList<>();
 
-        for (Enfrentamiento e : alj.get(fecha - cantEnfrentamientosIgual).getEnfrentamientos()) {
+        for (Enfrentamiento e : nuevaJornada.getEnfrentamientos()) {
             Participante ganador = e.getGanador();
             if (ganador != null) {
-                ganadores.add(ganador);
+                upperBracket.add(ganador);
                 Participante perdedor = (e.getLocal() == ganador) ? e.getVisita() : e.getLocal();
-                perdedores.add(perdedor);
+                lowerBracket.add(perdedor);
             }
         }
 
-        Jornada nuevaJornadaGanadores = new Jornada(null);
-        for (int i = 0; i < ganadores.size() / 2; i++) {
-            Enfrentamiento e = new Enfrentamiento(ganadores.get(i), ganadores.get(ganadores.size() - i - 1), null);
-            nuevaJornadaGanadores.getEnfrentamientos().add(e);
+        alj.add(nuevaJornada);
 
-            if (cantEnfrentamientosIgual == 2) {
-                Jornada vuelta = new Jornada(null);
-                vuelta.getEnfrentamientos().add(
-                        new EnfrentamientoVuelta(e.getVisita(), e.getLocal(), null, e)
-                );
-                alj.add(vuelta);
-            }
+        Jornada nuevaJornadaUpper = new Jornada();
+        for (int i = 0; i < upperBracket.size() / 2; i++) {
+            Enfrentamiento e = new Enfrentamiento(upperBracket.get(i), upperBracket.get(upperBracket.size() - i - 1), null);
+            nuevaJornadaUpper.getEnfrentamientos().add(e);
         }
-        alj.add(nuevaJornadaGanadores);
 
-        Jornada nuevaJornadaPerdedores = new Jornada(null);
-        for (int i = 0; i < perdedores.size() / 2; i++) {
-            Enfrentamiento e = new Enfrentamiento(perdedores.get(i), perdedores.get(perdedores.size() - i - 1), null);
-            nuevaJornadaPerdedores.getEnfrentamientos().add(e);
-
-            if (cantEnfrentamientosIgual == 2) {
-                Jornada vuelta = new Jornada(null);
-                vuelta.getEnfrentamientos().add(
-                        new EnfrentamientoVuelta(e.getVisita(), e.getLocal(), null, e)
-                );
-                alj.add(vuelta);
-            }
+        Jornada nuevaJornadaLower = new Jornada();
+        for (int i = 0; i < lowerBracket.size() / 2; i++) {
+            Enfrentamiento e = new Enfrentamiento(lowerBracket.get(i), lowerBracket.get(lowerBracket.size() - i - 1), null);
+            nuevaJornadaLower.getEnfrentamientos().add(e);
         }
-        alj.add(nuevaJornadaPerdedores);
     }
 }
