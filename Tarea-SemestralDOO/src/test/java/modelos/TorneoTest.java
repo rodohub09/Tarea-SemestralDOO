@@ -1,10 +1,10 @@
-import modelos.*;
+package modelos;
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class TorneoTest {
-
     Torneo torneo = new Torneo("Torneo", TipoTorneo.Liga);
 
     @Test
@@ -99,5 +99,4 @@ class TorneoTest {
         torneo.incJornada();
         assertEquals(1, torneo.getNumJornada());
     }
-    
 }

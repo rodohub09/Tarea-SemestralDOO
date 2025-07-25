@@ -1,11 +1,8 @@
-import modelos.Enfrentamiento;
-import modelos.Participante;
-import modelos.TipoTorneo;
-import modelos.Torneo;
+package modelos;
+
 import org.junit.jupiter.api.Test;
 import vistas.PanelPrincipal;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;

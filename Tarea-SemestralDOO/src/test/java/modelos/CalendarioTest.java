@@ -1,5 +1,6 @@
-import modelos.*;
-import org.junit.jupiter.api.BeforeEach;
+package modelos;
+
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -7,10 +8,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CalendarioTest {
     private Calendario calendario;
-    static private Participantes participantes;
+    private static Participantes participantes;
 
-    @BeforeEach
-    void setUp() {
+    @BeforeAll
+    static void setUp() {
         participantes = new Participantes();
         participantes.addParticipante(new Participante("equipo 1", "equipo1@proton.me"));
         participantes.addParticipante(new Participante("equipo 2", "equipo2@proton.me"));
