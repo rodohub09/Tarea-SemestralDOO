@@ -99,4 +99,9 @@ class TorneoTest {
         torneo.incJornada();
         assertEquals(1, torneo.getNumJornada());
     }
+
+    @Test
+    void TorneoFinalizado(){
+        assertTrue(torneo.torneoFinalizado());
+    }
 }
