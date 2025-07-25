@@ -88,6 +88,10 @@ public class AgrupacionElimDoble implements AgrupacionParticipantes {
         }
     }
 
+    /**
+     * Actualiza la lista de participantes activos según los ganadores de los enfrentamientos.
+     * @param enfrentamientos Lista de enfrentamientos de la jornada actual.
+     */
     @Override
     public void actualizarParticipantes(ArrayList<Enfrentamiento> enfrentamientos) {
         int mitad = enfrentamientos.size()/2;

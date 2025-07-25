@@ -53,6 +53,11 @@ public class CalendarioXPuntos implements TipoDeCalendario {
         }
     }
 
+    /**
+     * Metodo implementado de la interfaz, mas, sin uso en este tipo de calendario.
+     * @param alj
+     * @param activos
+     * */
     public void actualizarCalendario(ArrayList<Jornada> alj, ArrayList<Participante> activos) {
 
     }

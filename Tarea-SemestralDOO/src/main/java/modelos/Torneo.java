@@ -26,6 +26,10 @@ public class Torneo {
         this.nombre = nombre;
     }
 
+    /**
+     * Setter del nombre del torneo
+     * @param nombre nuevo nombre.
+     * */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -157,6 +161,10 @@ public class Torneo {
         jornada++;
     }
 
+    /**
+     * Indica si el torneo finalizo, mediante el analisis de la cantidad de jornadas.
+     * @return booleano que indica si termino o no.
+     * */
     public boolean torneoFinalizado() {
         switch (tipoTorneo) {
             case Liga -> {return getNumJornada() >= calendario.getCantJornadas();}
@@ -166,6 +174,10 @@ public class Torneo {
         return false;
     }
 
+    /**
+     * Devuelve el campeon del torneo.
+     * @return Campeon del torneo.
+     * */
     public Participante getCampeon() {
         Participante campeon = null;
 
