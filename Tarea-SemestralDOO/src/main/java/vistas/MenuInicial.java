@@ -11,6 +11,7 @@ import java.awt.*;
 public class MenuInicial extends JPanel {
     private JButton crearTorneo;
     private JButton verTorneo;
+    private JButton instrucciones;
 
     public MenuInicial(){
         super();
@@ -40,9 +41,15 @@ public class MenuInicial extends JPanel {
                                                      else
                                                          new Excepciones("No hay un torneo creado actualmente");});
 
+        instrucciones = new JButton("Modo de uso");
+        instrucciones.setFont(super.getFont().deriveFont(16f));
+        instrucciones.addActionListener(e -> new ModoDeUso());
+
+        instrucciones.setBounds(700,700,200,50);
         crearTorneo.setBounds(300,200,400,400);
         verTorneo.setBounds(900,200,400,400);
 
+        add(instrucciones);
         add(crearTorneo);
         add(verTorneo);
     }
