@@ -12,14 +12,14 @@ class JornadaTest {
     private static Jornada jornada;
 
     @BeforeAll
-    static void setUp(){
+    static void setUp() {
         Participantes participantes = new Participantes();
-        participantes.addParticipante(new Participante("Equipo 1","jajas@gmail.com"));
-        participantes.addParticipante(new Participante("Equipo 2","PauBaerer@gmail.com"));
-        participantes.addParticipante(new Participante("Equipo 3","miHoHatori@outlook.com"));
-        participantes.addParticipante(new Participante("Equipo 4","Yuka.man@gmail.com"));
-        Enfrentamiento enfrentamiento1 = new Enfrentamiento(participantes.getParticipante(0),participantes.getParticipante(1),new Date("04/07/2027"));
-        Enfrentamiento enfrentamiento2 = new Enfrentamiento(participantes.getParticipante(2),participantes.getParticipante(3),new Date("04/07/2027"));
+        participantes.addParticipante(new Participante("Equipo 1", "jajas@gmail.com"));
+        participantes.addParticipante(new Participante("Equipo 2", "PauBaerer@gmail.com"));
+        participantes.addParticipante(new Participante("Equipo 3", "miHoHatori@outlook.com"));
+        participantes.addParticipante(new Participante("Equipo 4", "Yuka.man@gmail.com"));
+        Enfrentamiento enfrentamiento1 = new Enfrentamiento(participantes.getParticipante(0), participantes.getParticipante(1), new Date("04/07/2027"));
+        Enfrentamiento enfrentamiento2 = new Enfrentamiento(participantes.getParticipante(2), participantes.getParticipante(3), new Date("04/07/2027"));
         jornada = new Jornada();
         jornada.enfrentamientos.add(enfrentamiento1);
         jornada.enfrentamientos.add(enfrentamiento2);
@@ -27,7 +27,7 @@ class JornadaTest {
 
 
     @Test
-    void getPartidos() {
+    void getEnfrentamientos() {
         assertNotNull(jornada.getEnfrentamientos());
     }
 

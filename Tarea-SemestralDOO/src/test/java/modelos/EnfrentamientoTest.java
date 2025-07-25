@@ -37,6 +37,33 @@ class EnfrentamientoTest {
     }
 
     @Test
+    void getPerdedor(){
+        PanelPrincipal.torneo = new Torneo("prueba", TipoTorneo.Liga);
+        enfrentamiento.setGanador(participante1);
+        assertEquals(participante2,enfrentamiento.getPerdedor());
+    }
+
+    @Test
+    void getLocal(){
+        assertEquals(participante2,enfrentamiento.getLocal());
+    }
+
+    @Test
+    void getVisita(){
+        assertEquals(participante1,enfrentamiento.getVisita());
+    }
+
+    @Test
+    void getStringLocal(){
+        assertEquals("Real Madrid",enfrentamiento.getStringLocal());
+    }
+
+    @Test
+    void getStringVisita(){
+        assertEquals(participante1,enfrentamiento.getVisita());
+    }
+
+    @Test
     void getFecha() {
         PanelPrincipal.torneo = new Torneo("prueba", TipoTorneo.Liga);
         assertEquals("12/12",enfrentamiento.getFecha());
