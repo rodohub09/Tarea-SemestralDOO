@@ -16,10 +16,11 @@ public class MenuVerTorneo extends JPanel {
     private PanelCalendario panelCalendario;
     private JButton menuInicial;
     private Boolean crearpanel = true;
-    private static Boolean addResultados = false;
+    private static boolean addResultados;
 
     public MenuVerTorneo(){
         super();
+        addResultados = false;
         setOpaque(false);
         setVisible(false);
         setLayout(null);
@@ -27,10 +28,14 @@ public class MenuVerTorneo extends JPanel {
         JButton ingresar = new JButton("Actualizar Resultados");
         ingresar.setBounds(400,700,300,60);
         ingresar.setFont(super.getFont().deriveFont(22f));
-        ingresar.addActionListener(e -> {if (PanelPrincipal.torneo.torneoFinalizado())
-                                                        new Excepciones("Este torneo ya ha finalizado");
-                                                    else
-                                                        new IngresarResultados(Ventana.getInstance()).setVisible(true);});
+        ingresar.addActionListener(e -> {
+            if (PanelPrincipal.torneo.torneoFinalizado())
+                new Excepciones("Este torneo ya ha finalizado");
+            else if (!addResultados)
+                new IngresarResultados(Ventana.getInstance()).setVisible(true);
+            else
+                new Excepciones("Los resultados ya fueron ingresados.");
+        });
 
         JButton avanzar = new JButton("Siguiente Jornada");
         avanzar.setBounds(850,700,300,60);

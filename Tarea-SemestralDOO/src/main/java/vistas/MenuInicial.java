@@ -27,7 +27,7 @@ public class MenuInicial extends JPanel {
                                                         {int opcion = new SobreescribirTorneo().mostrarDialogo();
                                                          if(opcion == JOptionPane.YES_OPTION){
                                                              PanelPrincipal.creado = !PanelPrincipal.creado;
-                                                             PanelPrincipal.torneo = new Torneo(null,null);
+                                                             Ventana.reiniciarTorneo();
                                                              Ventana.actualizar(Menu.CrearTorneo);
                                                             }
                                                            }
