@@ -108,7 +108,6 @@ public class DefinirCaracteristicasTorneo extends JPanel {
             PanelPrincipal.torneo.setCantidadParticipantes((CantidadParticipantes) cantidadParticipantes.getSelectedItem());
             PanelPrincipal.torneo.setDescripcion(descripcionTorneo.getText());
             PanelPrincipal.torneo.setFormato((Formato) formatoTorneo.getSelectedItem());
-            limpiarEntradas();
         }
     }
 
