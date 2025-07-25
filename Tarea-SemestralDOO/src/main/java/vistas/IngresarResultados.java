@@ -36,7 +36,7 @@ public class IngresarResultados extends JDialog {
                 try{
                     guardar();
                     MenuVerTorneo.setAddResultados();
-                    Ventana.actualizar(Menu.VerTorneo);
+
                     dispose();
                 }
                 catch (ResultadosSinIngresarException resultadosSinIngresarException){

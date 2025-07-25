@@ -65,6 +65,10 @@ public class Enfrentamiento {
         return ganador;
     }
 
+    public Participante getPerdedor() {
+        return ganador == local ? visita : local;
+    }
+
     /**
      * Devuelve la fecha del enfrentamiento en formato "dd/MM".
      * @return Fecha del enfrentamiento o null si no hay fecha asignada.

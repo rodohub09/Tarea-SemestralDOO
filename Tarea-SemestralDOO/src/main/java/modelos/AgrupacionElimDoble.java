@@ -10,6 +10,8 @@ import java.util.ArrayList;
 public class AgrupacionElimDoble implements AgrupacionParticipantes {
     private ArrayList<Participante> ganadores;
     private ArrayList<Participante> perdedores;
+    private boolean penultimo = false;
+    public int fecha = 0;
 
     /**
      * Constructor que inicializa las llaves de ganadores y perdedores.
@@ -17,6 +19,7 @@ public class AgrupacionElimDoble implements AgrupacionParticipantes {
     public AgrupacionElimDoble() {
         this.ganadores = new ArrayList<>();
         this.perdedores = new ArrayList<>();
+        fecha++;
     }
 
     /**
@@ -68,15 +71,59 @@ public class AgrupacionElimDoble implements AgrupacionParticipantes {
      */
     @Override
     public ArrayList<Participante> devolverAgrupacion() {
-        ArrayList<Participante> participantes = new ArrayList<>();
-        participantes.addAll(ganadores);
-        participantes.addAll(perdedores);
-        return participantes;
+        if(fecha%2 == 0){
+            ArrayList<Participante> participantes = new ArrayList<>();
+            for(int i=0;i<this.perdedores.size();i+=2){
+                participantes.add(perdedores.get(i));
+            }
+            for(int i=this.perdedores.size()-1;0<i;i-=2){
+                participantes.add(perdedores.get(i));
+            }
+            return participantes;
+        }else{
+            ArrayList<Participante> participantes = new ArrayList<>();
+            participantes.addAll(ganadores);
+            participantes.addAll(perdedores);
+            return participantes;
+        }
     }
 
     @Override
     public void actualizarParticipantes(ArrayList<Enfrentamiento> enfrentamientos) {
-
+        int mitad = enfrentamientos.size()/2;
+        ArrayList<Participante> upperBracket = new ArrayList<>();
+        ArrayList<Participante> lowerBracket = new ArrayList<>();
+        if(fecha==0){
+            for(int i=0;i<enfrentamientos.size();i++){
+                upperBracket.add(enfrentamientos.get(i).getGanador());
+                lowerBracket.add(enfrentamientos.get(i).getPerdedor());
+            }
+        }else if ((mitad == 0) && (!penultimo)){
+            upperBracket.add(ganadores.get(0));
+            upperBracket.add(enfrentamientos.get(0).getGanador());
+            penultimo = true;
+        } else if (fecha%2 != 0) {
+            upperBracket.addAll(this.ganadores);
+            for(int i=mitad;i<enfrentamientos.size();i++){
+                lowerBracket.add(enfrentamientos.get(i).getGanador());
+            }
+        }else{
+            for(int i=0;i<enfrentamientos.size();i++){
+                if(i<mitad){
+                    upperBracket.add(enfrentamientos.get(i).getGanador());
+                    lowerBracket.add(enfrentamientos.get(i).getPerdedor());
+                }else{
+                    lowerBracket.add(enfrentamientos.get(i).getGanador());
+                }
+            }
+        }
+        this.ganadores = upperBracket;
+        this.perdedores = lowerBracket;
+        fecha++;
+        System.out.println("fdsfs");
+        System.out.println(fecha);
+        System.out.println(ganadores.size());
+        System.out.println(perdedores.size());
     }
 
     /**

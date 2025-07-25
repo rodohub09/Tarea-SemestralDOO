@@ -10,6 +10,9 @@ import java.util.ArrayList;
  * definidos por {@link AgrupacionElimDoble}.
  */
 public class CalendarioElimDoble implements TipoDeCalendario {
+
+    private int fecha = 0;
+
     /**
      * Crea el calendario inicial con enfrentamientos entre los participantes del Upper Bracket.
      * @param alj Lista de jornadas del torneo.
@@ -27,6 +30,7 @@ public class CalendarioElimDoble implements TipoDeCalendario {
             jornadaInicial.getEnfrentamientos().add(e);
         }
         alj.add(jornadaInicial);
+        fecha++;
     }
 
     /**
@@ -36,7 +40,12 @@ public class CalendarioElimDoble implements TipoDeCalendario {
     public void actualizarCalendario(ArrayList<Jornada> alj, ArrayList<Participante> activos) {
         Jornada jornada = new Jornada();
         Jornada anteriorJornada = alj.getLast();
-        int mitad = anteriorJornada.enfrentamientos.size()/2;
+
+        for(int i=0;i<activos.size();i+=2){
+            jornada.enfrentamientos.add(new Enfrentamiento(activos.get(i),activos.get(i+1),null));
+        }
+
+        /*int mitad = anteriorJornada.enfrentamientos.size()/2;
         if(alj.size()%2 == 0){
             for(int i = 0; i < anteriorJornada.enfrentamientos.size();i++){
                 if(i < mitad){
@@ -71,7 +80,7 @@ public class CalendarioElimDoble implements TipoDeCalendario {
         }
         else {
 
-        }
+        }*/
         alj.add(jornada);
     }
 }

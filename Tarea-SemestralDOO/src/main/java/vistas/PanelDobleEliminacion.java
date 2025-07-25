@@ -113,6 +113,7 @@ public class PanelDobleEliminacion extends JPanel implements PanelTorneo {
     @Override
     public void actualizar() {
         int ronda = PanelPrincipal.torneo.getNumJornada();
+        System.out.println(ronda);
 
         if (PanelPrincipal.torneo.torneoFinalizado()){
             JLabel campeon = new JLabel(PanelPrincipal.torneo.getCampeon().getNombre());
