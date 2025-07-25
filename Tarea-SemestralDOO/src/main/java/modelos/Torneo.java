@@ -161,6 +161,7 @@ public class Torneo {
         switch (tipoTorneo) {
             case Liga -> {return getNumJornada() >= calendario.getCantJornadas();}
             case Eliminacion_Directa -> {return getNumJornada() >= cantidadParticipantes.getJornadasElimDirecta();}
+            case Doble_Eliminacion-> {return getNumJornada() >= cantidadParticipantes.getJornadasElimDirecta()*2;}
         }
         return false;
     }

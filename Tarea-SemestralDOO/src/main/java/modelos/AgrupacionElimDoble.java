@@ -120,10 +120,6 @@ public class AgrupacionElimDoble implements AgrupacionParticipantes {
         this.ganadores = upperBracket;
         this.perdedores = lowerBracket;
         fecha++;
-        System.out.println("fdsfs");
-        System.out.println(fecha);
-        System.out.println(ganadores.size());
-        System.out.println(perdedores.size());
     }
 
     /**
