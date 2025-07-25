@@ -19,7 +19,6 @@ public class AgrupacionElimDoble implements AgrupacionParticipantes {
     public AgrupacionElimDoble() {
         this.ganadores = new ArrayList<>();
         this.perdedores = new ArrayList<>();
-        fecha++;
     }
 
     /**
