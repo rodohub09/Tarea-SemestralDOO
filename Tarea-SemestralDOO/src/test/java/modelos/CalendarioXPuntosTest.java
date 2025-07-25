@@ -1,6 +1,5 @@
 package modelos;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -8,13 +7,13 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CalendarioXPuntosTest {
-    private static CalendarioXPuntos calendario;
-    private static CantidadParticipantes cantidadParticipantes;
-    private static ArrayList<Jornada> jornadas;
-    private static Participantes participantes;
+    private CalendarioXPuntos calendario;
+    private CantidadParticipantes cantidadParticipantes;
+    private ArrayList<Jornada> jornadas;
+    private Participantes participantes;
 
-    @BeforeAll
-    static void setUp() {
+    @BeforeEach
+    void setUp() {
         participantes = new Participantes();
         participantes.addParticipante(new Participante("equipo 1", "equipo1@proton.me"));
         participantes.addParticipante(new Participante("equipo 2", "equipo2@proton.me"));
