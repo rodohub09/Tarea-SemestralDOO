@@ -8,6 +8,9 @@ import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.util.ArrayList;
 
+/**
+ * Panel que muestra el estado del bracket de doble eliminacion
+ */
 public class PanelDobleEliminacion extends JPanel implements PanelTorneo {
     private JScrollPane upperScroll;
     private JPanel upperView;;
@@ -16,11 +19,15 @@ public class PanelDobleEliminacion extends JPanel implements PanelTorneo {
     private JLabel noHayEnfrentamiento;
     private JButton upperButton;
     private JButton lowerButton;
+    private int rondaUpper;
+    private int rondaLower;
 
     public PanelDobleEliminacion(){
         super();
         setOpaque(false);
         setLayout(null);
+        rondaUpper = 0;
+        rondaLower = 0;
         upperScroll = new JScrollPane();
         upperScroll.setBounds(0,0,1000,600);
         upperScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -53,7 +60,7 @@ public class PanelDobleEliminacion extends JPanel implements PanelTorneo {
         lowerScroll.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
             @Override
             public void adjustmentValueChanged(AdjustmentEvent e) {
-                if (!e.getValueIsAdjusting()) { // Solo cuando el ajuste ha finalizado
+                if (!e.getValueIsAdjusting()) {
                     revalidate();
                     repaint();
                 }
@@ -101,8 +108,6 @@ public class PanelDobleEliminacion extends JPanel implements PanelTorneo {
         noHayEnfrentamiento.setVisible(false);
         upperView.add(noHayEnfrentamiento);
 
-        actualizar();
-
     }
 
     @Override
@@ -110,26 +115,36 @@ public class PanelDobleEliminacion extends JPanel implements PanelTorneo {
         return this;
     }
 
+    /**
+     * Metodo que determina el panel correspondiente a cada enfrentamiento, para organizarlos en forma de bracket
+     */
     @Override
     public void actualizar() {
         int ronda = PanelPrincipal.torneo.getNumJornada();
-        System.out.println(ronda);
 
         if (PanelPrincipal.torneo.torneoFinalizado()){
             JLabel campeon = new JLabel(PanelPrincipal.torneo.getCampeon().getNombre());
+            System.out.println(PanelPrincipal.torneo.getCampeon().getNombre());
             campeon.setFont(super.getFont().deriveFont(20f));
-            campeon.setBounds(490,220,80,40);
-            add(campeon);
+            campeon.setBounds(
+                    150 + rondaUpper * 100,
+                    40 + (35+10*rondaUpper-1)*(rondaUpper-1),
+                    80, 60);
+            upperView.add(campeon);
         }
 
         else{
             ArrayList<Enfrentamiento> enfrentamientos = PanelPrincipal.torneo.getCalendario().getJornada(ronda).getEnfrentamientos();
             int mitad = enfrentamientos.size() / 2;
 
-            if(enfrentamientos.size() == 1){
+            if(enfrentamientos.size() == 1 && ronda == PanelPrincipal.torneo.getCantidadParticipantes().getJornadasElimDirecta()*2 - 1){
+                noHayEnfrentamiento.setVisible(false);
                 Enfrentamiento e = enfrentamientos.getFirst();
                 PanelEnfrentamiento panel = new PanelEnfrentamiento(e.getStringLocal(), e.getStringVisita());
-                panel.setBounds(460,270,80,60);
+                panel.setBounds(
+                        50 + rondaUpper * 100,
+                        40 + (35+10*rondaUpper-1)*(rondaUpper-1),
+                        80, 60);
                 upperView.add(panel);
 
             }
@@ -141,11 +156,12 @@ public class PanelDobleEliminacion extends JPanel implements PanelTorneo {
                         PanelEnfrentamiento panel = new PanelEnfrentamiento(e.getStringLocal(), e.getStringVisita());
                         panel.setBounds(
                                 50,
-                                10 + i * 70 * (int) Math.pow(2, ronda),
+                                40 + i * 70 * (int) Math.pow(2, rondaUpper),
                                 80, 60);
                         upperView.add(panel);
 
                     }
+                    rondaUpper++;
 
                 }
                 else if(ronda%2 == 0) {
@@ -154,12 +170,12 @@ public class PanelDobleEliminacion extends JPanel implements PanelTorneo {
                         Enfrentamiento e = enfrentamientos.get(i);
                         PanelEnfrentamiento panel = new PanelEnfrentamiento(e.getStringLocal(), e.getStringVisita());
                         panel.setBounds(
-                                50 + ronda * 100,
-                                10 + (i - mitad) * 70 * (int) Math.pow(2, ronda-1),
+                                50 + rondaLower * 100,
+                                40 + (35+10*rondaLower)*(rondaLower) + i * 70,
                                 80, 60);
                         lowerView.add(panel);
-
                     }
+                    rondaLower++;
                 }
                 else{
                     noHayEnfrentamiento.setVisible(false);
@@ -168,18 +184,29 @@ public class PanelDobleEliminacion extends JPanel implements PanelTorneo {
                         PanelEnfrentamiento panel = new PanelEnfrentamiento(e.getStringLocal(), e.getStringVisita());
                         if (i < mitad) {
                             panel.setBounds(
-                                    50 + ronda * 100,
-                                    10 + i * 70 * (int) Math.pow(2, ronda),
+                                    50 + rondaUpper * 100,
+                                    40 + (35+10*rondaUpper)*(rondaUpper) + i * 70 * (int) Math.pow(2, rondaUpper),
                                     80, 60);
                             upperView.add(panel);
                         } else {
-                            panel.setBounds(
-                                    50 + ronda * 100,
-                                    10 + (i - mitad) * 70 * (int) Math.pow(2, ronda-1),
-                                    80, 60);
-                            lowerView.add(panel);
+                            if (rondaLower == 0){
+                                panel.setBounds(
+                                        50,
+                                        40 + (i-mitad) * 70,
+                                        80, 60);
+                                lowerView.add(panel);
+                            }
+                            else{
+                                panel.setBounds(
+                                        50 + rondaLower*100,
+                                        40 + (i - mitad) * 70 + (35+8*rondaLower)*(rondaLower),
+                                        80, 60);
+                                lowerView.add(panel);
+                            }
                         }
                     }
+                    rondaLower++;
+                    rondaUpper++;
 
                 }
             }
@@ -188,6 +215,10 @@ public class PanelDobleEliminacion extends JPanel implements PanelTorneo {
         lowerScroll.setViewportView(lowerView);
     }
 
+    /**
+     * Metodo que intercambia el panel visto dependiendo del int que se le ingresa
+     * @param panel int asociado a cada panel
+     */
     protected void switchPanel(int panel) {
         switch (panel){
             case 0 -> {upperButton.setVisible(false);

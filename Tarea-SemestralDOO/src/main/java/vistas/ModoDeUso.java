@@ -2,6 +2,9 @@ package vistas;
 
 import javax.swing.*;
 
+/**
+ * Clase que muestra un JDialog con las instrucciones de uso del programa
+ */
 public class ModoDeUso extends JDialog {
     public ModoDeUso(){
         super();

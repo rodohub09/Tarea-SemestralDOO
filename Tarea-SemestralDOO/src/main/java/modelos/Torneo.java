@@ -196,9 +196,13 @@ public class Torneo {
                     }
                 }
             }
-            case Eliminacion_Directa, Doble_Eliminacion -> {
+            case Eliminacion_Directa -> {
                 if (participantes.getAgrupacionParticipantes().devolverAgrupacion().size() == 1)
                     campeon = participantes.getAgrupacionParticipantes().devolverAgrupacion().get(0);
+            }
+
+            case Doble_Eliminacion -> {
+                campeon = calendario.getJornada(calendario.getCantJornadas()-1).getEnfrentamientos().getFirst().getGanador();
             }
         }
         return campeon;

@@ -5,6 +5,9 @@ import modelos.Enfrentamiento;
 import javax.swing.*;
 import java.util.ArrayList;
 
+/**
+ * Panel que muestra la distribucion de los brackets de Eliminacion Directa
+ */
 public class PanelEliminacionDirecta extends JPanel implements PanelTorneo {
     private int[][] posX;
     private int[] posY;
@@ -24,6 +27,9 @@ public class PanelEliminacionDirecta extends JPanel implements PanelTorneo {
         return this;
     }
 
+    /**
+     * Determina la posicion de cada enfrentamiento en el panel dependiendo de la ronda y el total de participantes, para luego agregarlo al panel.
+     */
     @Override
     public void actualizar() {
         int participantes = PanelPrincipal.torneo.getCantidadParticipantes().getNumParticipantes();

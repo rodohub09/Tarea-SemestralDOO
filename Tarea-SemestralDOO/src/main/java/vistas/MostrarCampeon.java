@@ -5,6 +5,9 @@ import modelos.Participante;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Panel que muestra el nombre del ganador del torneo
+ */
 public class MostrarCampeon extends JDialog {
     private JPanel panel;
     private JLabel label;
