@@ -103,7 +103,7 @@ public class PanelDobleEliminacion extends JPanel implements PanelTorneo {
         lowerView.setPreferredSize(new Dimension(1000,1200));
 
         noHayEnfrentamiento = new JLabel("No hay enfrentamientos del bracket esta jornada");
-        noHayEnfrentamiento.setBounds(400,20,400,50);
+        noHayEnfrentamiento.setBounds(300,10,500,50);
         noHayEnfrentamiento.setFont(super.getFont().deriveFont(20f));
         noHayEnfrentamiento.setVisible(false);
         upperView.add(noHayEnfrentamiento);
@@ -124,7 +124,6 @@ public class PanelDobleEliminacion extends JPanel implements PanelTorneo {
 
         if (PanelPrincipal.torneo.torneoFinalizado()){
             JLabel campeon = new JLabel(PanelPrincipal.torneo.getCampeon().getNombre());
-            System.out.println(PanelPrincipal.torneo.getCampeon().getNombre());
             campeon.setFont(super.getFont().deriveFont(20f));
             campeon.setBounds(
                     150 + rondaUpper * 100,
