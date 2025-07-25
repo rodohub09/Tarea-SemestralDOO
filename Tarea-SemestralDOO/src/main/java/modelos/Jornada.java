@@ -7,7 +7,6 @@ import java.util.ArrayList;
  */
 public class Jornada {
     public ArrayList<Enfrentamiento> enfrentamientos;
-    private Participantes participantes;
 
     /**
      * Constructor que inicializa la jornada con la lista de participantes.
@@ -22,14 +21,6 @@ public class Jornada {
      */
     public ArrayList<Enfrentamiento> getEnfrentamientos() {
         return enfrentamientos;
-    }
-
-    /**
-     * Getter de la lista de todos los participantes de la jornada.
-     * @return Lista de participantes de la jornada.
-     */
-    public Participantes getParticipantes() {
-        return participantes;
     }
 
     /**
