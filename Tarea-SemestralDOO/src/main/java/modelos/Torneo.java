@@ -13,7 +13,6 @@ public class Torneo {
     private Participantes participantes;
     private Formato formato;
     private int jornada = 0;
-    private AgrupacionParticipantes agrupacionParticipantes;      //OJOOOOO
 
     /**
      * Constructor que crea un torneo con el nombre y tipo de torneo especificados.
@@ -156,22 +155,6 @@ public class Torneo {
      */
     public void incJornada(){
         jornada++;
-    }
-
-    /**
-     * Getter de la agrupación de participantes del torneo.
-     * @return Nombre del torneo.
-     */
-    public AgrupacionParticipantes getAgrupacionParticipantes() {
-        return this.agrupacionParticipantes;
-    }
-
-    /**
-     * Asigna una agrupación de participantes al torneo.
-     * @param agrupacionParticipantes Agrupación a asignar.
-     */
-    public void setAgrupacionParticipantes(AgrupacionParticipantes agrupacionParticipantes) {
-        this.agrupacionParticipantes = agrupacionParticipantes;
     }
 
     public boolean torneoFinalizado() {

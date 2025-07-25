@@ -1,3 +1,4 @@
+import modelos.AgrupacionLiga;
 import modelos.Participante;
 import modelos.Participantes;
 import modelos.TipoTorneo;
@@ -12,7 +13,8 @@ class ParticipantesTest {
     @Test
     void getYSetAgrupacionParticipantes() {
         participantes.setAgrupacionParticipantes(TipoTorneo.Liga);
-        assertEquals(TipoTorneo.Liga,participantes.getAgrupacionParticipantes());
+        Class<AgrupacionLiga> agrupacion = AgrupacionLiga.class;
+        assertInstanceOf(agrupacion,participantes.getAgrupacionParticipantes());
     }
 
     @Test
@@ -26,7 +28,7 @@ class ParticipantesTest {
         participantes.addParticipante(new Participante("Equipo 2", "Equipo2@proton.me"));
         participantes.addParticipante(new Participante("Equipo 3", "Equipo3@proton.me"));
         participantes.addParticipante(new Participante("Equipo 4", "Equipo4@proton.me"));
-        assertNull(participantes.devolverAgrupacion());
+        assertNotNull(participantes.devolverAgrupacion());
     }
 
     @Test
@@ -35,10 +37,5 @@ class ParticipantesTest {
 
     @Test
     void getParticipante() {
-    }
-
-    @Test
-    void testToString() {
-        assertEquals("sad",participantes.toString());
     }
 }

@@ -75,12 +75,4 @@ public class Participantes {
         return agrupacionParticipantes;
     }
 
-    /**
-     * Representación en texto de la agrupación actual de participantes.
-     * @return Cadena con la agrupación de participantes.
-     */
-    @Override
-    public String toString() {
-        return agrupacionParticipantes.toString();
-    }
 }

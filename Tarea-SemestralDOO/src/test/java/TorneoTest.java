@@ -96,13 +96,8 @@ class TorneoTest {
 
     @Test
     void incJornada() {
+        torneo.incJornada();
+        assertEquals(1, torneo.getNumJornada());
     }
-
-    @Test
-    void getAgrupacionParticipantes() {
-    }
-
-    @Test
-    void setAgrupacionParticipantes() {
-    }
+    
 }
