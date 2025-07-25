@@ -33,6 +33,8 @@ public class MenuCrearTorneo extends JPanel {
         crearTorneo.addActionListener(e -> {
                 try {
                     crearTorneo();
+                    definirCaracteristicasTorneo.limpiarEntradas();
+                    agregarParticipante.limpiarEntradas();
                     Ventana.actualizar(Menu.VerTorneo);
                 }
                 catch (CantidadInscritosInvalidaException cantidadInscritosInvalidaException){
@@ -45,10 +47,13 @@ public class MenuCrearTorneo extends JPanel {
                     new Excepciones("El modo seleccionado solo puede disputarse en formato Solo Ida");
                 }
 
+
         });
         menuInicial = new JButton("<<<");
         menuInicial.setFont(super.getFont().deriveFont(20f));
-        menuInicial.addActionListener(e -> Ventana.actualizar(Menu.Inicial));
+        menuInicial.addActionListener(e -> {definirCaracteristicasTorneo.limpiarEntradas();
+                                                        agregarParticipante.limpiarEntradas();
+                                                        Ventana.actualizar(Menu.Inicial);});
 
         JLabel etiqueta1 = new JLabel("Crea un Torneo");
         etiqueta1.setFont(super.getFont().deriveFont(36f));

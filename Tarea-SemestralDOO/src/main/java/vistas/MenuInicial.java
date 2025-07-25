@@ -1,5 +1,7 @@
 package vistas;
 
+import modelos.Torneo;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -18,12 +20,25 @@ public class MenuInicial extends JPanel {
         setSize(Toolkit.getDefaultToolkit().getScreenSize());
 
         crearTorneo = new JButton("Crear Torneo");
-        crearTorneo.setFont(super.getFont().deriveFont(20f));
-        crearTorneo.addActionListener(e -> Ventana.actualizar(Menu.CrearTorneo));
+        crearTorneo.setFont(super.getFont().deriveFont(22f));
+        crearTorneo.addActionListener(e -> {if(!PanelPrincipal.creado)
+                                                            Ventana.actualizar(Menu.CrearTorneo);
+                                                        else
+                                                        {int opcion = new SobreescribirTorneo().mostrarDialogo();
+                                                         if(opcion == JOptionPane.YES_OPTION){
+                                                             PanelPrincipal.creado = !PanelPrincipal.creado;
+                                                             Ventana.reiniciarTorneo();
+                                                             Ventana.actualizar(Menu.CrearTorneo);
+                                                            }
+                                                           }
+                                                        });
 
-        verTorneo = new JButton("Cargar Torneo");
-        verTorneo.setFont(super.getFont().deriveFont(20f));
-        verTorneo.addActionListener(e -> Ventana.actualizar(Menu.VerTorneo));
+        verTorneo = new JButton("Ver Torneo");
+        verTorneo.setFont(super.getFont().deriveFont(22f));
+        verTorneo.addActionListener(e -> {if(PanelPrincipal.creado)
+                                                        Ventana.actualizar(Menu.VerTorneo);
+                                                     else
+                                                         new Excepciones("No hay un torneo creado actualmente");});
 
         crearTorneo.setBounds(300,200,400,400);
         verTorneo.setBounds(900,200,400,400);

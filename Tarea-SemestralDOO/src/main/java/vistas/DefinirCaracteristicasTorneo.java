@@ -122,4 +122,10 @@ public class DefinirCaracteristicasTorneo extends JPanel {
     public Boolean modosIncompatibles() {
         return (tipoTorneo.getSelectedItem().equals(TipoTorneo.Doble_Eliminacion)||tipoTorneo.getSelectedItem().equals(TipoTorneo.Eliminacion_Directa)) && formatoTorneo.getSelectedItem().equals(Formato.Ida_y_Vuelta);
     }
+
+    public void limpiarEntradas() {
+        nombreTorneo.setText("");
+        disciplinaTorneo.setText("");
+        descripcionTorneo.setText("");
+    }
 }
