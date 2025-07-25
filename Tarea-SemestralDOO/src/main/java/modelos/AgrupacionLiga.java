@@ -36,6 +36,11 @@ public class AgrupacionLiga implements AgrupacionParticipantes{
         return clasificacion;
     }
 
+
+    /**
+     * En este caso, se implementa el metodo de la interfaz, pero este no hace nada.
+     * @param enfrentamientos Lista de enfrentamientos de la jornada actual.
+     */
     @Override
     public void actualizarParticipantes(ArrayList<Enfrentamiento> enfrentamientos) {
 

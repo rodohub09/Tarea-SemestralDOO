@@ -54,14 +54,26 @@ public class Calendario {
         return jornadas.size();
     }
 
+    /**
+     * Llama al metodo homonimo del tipo calendario correspondiente, y asi actualizar el calendario, segun pasan las jornadas
+     * @param activos entrega los participantes que siguen en el torneo.
+     * */
     public void actualizarCalendario(ArrayList<Participante> activos){
         tipoDeCalendario.actualizarCalendario(jornadas,activos);
     }
 
+    /**
+     * Getter de el tipo de calendario en cuestion
+     * @return instancia del tipo de calendario.
+     */
     public TipoDeCalendario getTipoDeCalendario() {
         return tipoDeCalendario;
     }
 
+    /**
+     * Representacion en texto del calendario.
+     * @return Cadena con todos los enfrentamientos de la jornada.
+     */
     public String toString(){
         String s = "";
         for(int i=0;i<jornadas.size();i++){

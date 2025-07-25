@@ -166,6 +166,10 @@ public class Participante implements Observer {
         this.contacto = contacto;
     }
 
+    /**
+     * Representacion en texto del participante mediante sus datos.
+     * @return Cadena con el nombre y contacto del participante.
+     */
     public String toString(){
         return this.nombre + " Contacto: " + this.contacto + "\n";
     }

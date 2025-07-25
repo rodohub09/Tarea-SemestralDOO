@@ -65,6 +65,10 @@ public class Enfrentamiento {
         return ganador;
     }
 
+    /**
+     * Devuelve el perdedor del enfrentamiento.
+     * @return perdedor del enfrentamiento.
+     * */
     public Participante getPerdedor() {
         return ganador == local ? visita : local;
     }
