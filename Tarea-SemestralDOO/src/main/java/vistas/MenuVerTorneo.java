@@ -25,16 +25,16 @@ public class MenuVerTorneo extends JPanel {
         setLayout(null);
         setSize(Toolkit.getDefaultToolkit().getScreenSize());
         JButton ingresar = new JButton("Actualizar Resultados");
-        ingresar.setBounds(600,700,300,40);
-        ingresar.setFont(super.getFont().deriveFont(20f));
+        ingresar.setBounds(400,700,300,60);
+        ingresar.setFont(super.getFont().deriveFont(22f));
         ingresar.addActionListener(e -> {if (PanelPrincipal.torneo.torneoFinalizado())
                                                         new Excepciones("Este torneo ya ha finalizado");
                                                     else
                                                         new IngresarResultados(Ventana.getInstance()).setVisible(true);});
 
         JButton avanzar = new JButton("Siguiente Jornada");
-        avanzar.setBounds(1000,700,300,40);
-        avanzar.setFont(super.getFont().deriveFont(20f));
+        avanzar.setBounds(850,700,300,60);
+        avanzar.setFont(super.getFont().deriveFont(22f));
         avanzar.addActionListener(e -> {
             if(addResultados) {
                 PanelPrincipal.torneo.incJornada();
@@ -52,8 +52,14 @@ public class MenuVerTorneo extends JPanel {
         }
         });
 
+        menuInicial = new JButton("<<<");
+        menuInicial.setFont(super.getFont().deriveFont(20f));
+        menuInicial.addActionListener(e -> Ventana.actualizar(Menu.Inicial));
+        menuInicial.setBounds(20,20,70,40);
+        add(menuInicial);
+
         panelCalendario = new PanelCalendario();
-        panelCalendario.setBounds(1050,50,450,800);
+        panelCalendario.setBounds(1050,75,450,800);
         panelCalendario.setFont(super.getFont().deriveFont(20f));
         add(panelCalendario);
         add(ingresar);
@@ -65,23 +71,28 @@ public class MenuVerTorneo extends JPanel {
      * @param tipoTorneo Determina el strategy a utilizar
      */
     public void setPanelTorneo(TipoTorneo tipoTorneo){
+        JLabel nombreTorneo = new JLabel(PanelPrincipal.torneo.getNombre() + " - " + PanelPrincipal.torneo.getDisciplina());
+        nombreTorneo.setFont(super.getFont().deriveFont(26f));
+        nombreTorneo.setBounds(450,10,500,60);
+        add(nombreTorneo);
+
         switch (tipoTorneo){
             case Liga -> {
                 panelTorneo = new PanelLiga();
                 JPanel panel = panelTorneo.devolverPanel();
-                panel.setBounds(25,50,1000,600);
+                panel.setBounds(25,75,1000,600);
                 add(panel);
             }
             case Eliminacion_Directa ->  {
                 panelTorneo = new PanelEliminacionDirecta();
                 JPanel panel = panelTorneo.devolverPanel();
-                panel.setBounds(25,50,1000,600);
+                panel.setBounds(25,75,1000,600);
                 add(panel);
             }
             case Doble_Eliminacion -> {
                 panelTorneo = new PanelDobleEliminacion();
                 JPanel panel = panelTorneo.devolverPanel();
-                panel.setBounds(25,50,1000,600);
+                panel.setBounds(25,75,1000,600);
                 add(panel);
             }
         }

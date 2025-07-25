@@ -48,7 +48,9 @@ public class MenuCrearTorneo extends JPanel {
         });
         menuInicial = new JButton("<<<");
         menuInicial.setFont(super.getFont().deriveFont(20f));
-        menuInicial.addActionListener(e -> Ventana.actualizar(Menu.Inicial));
+        menuInicial.addActionListener(e -> {definirCaracteristicasTorneo.limpiarEntradas();
+                                                        agregarParticipante.limpiarEntradas();
+                                                        Ventana.actualizar(Menu.Inicial);});
 
         JLabel etiqueta1 = new JLabel("Crea un Torneo");
         etiqueta1.setFont(super.getFont().deriveFont(36f));

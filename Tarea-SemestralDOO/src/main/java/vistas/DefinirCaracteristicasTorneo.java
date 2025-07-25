@@ -108,6 +108,7 @@ public class DefinirCaracteristicasTorneo extends JPanel {
             PanelPrincipal.torneo.setCantidadParticipantes((CantidadParticipantes) cantidadParticipantes.getSelectedItem());
             PanelPrincipal.torneo.setDescripcion(descripcionTorneo.getText());
             PanelPrincipal.torneo.setFormato((Formato) formatoTorneo.getSelectedItem());
+            limpiarEntradas();
         }
     }
 
@@ -121,5 +122,11 @@ public class DefinirCaracteristicasTorneo extends JPanel {
 
     public Boolean modosIncompatibles() {
         return (tipoTorneo.getSelectedItem().equals(TipoTorneo.Doble_Eliminacion)||tipoTorneo.getSelectedItem().equals(TipoTorneo.Eliminacion_Directa)) && formatoTorneo.getSelectedItem().equals(Formato.Ida_y_Vuelta);
+    }
+
+    public void limpiarEntradas() {
+        nombreTorneo.setText("");
+        disciplinaTorneo.setText("");
+        descripcionTorneo.setText("");
     }
 }

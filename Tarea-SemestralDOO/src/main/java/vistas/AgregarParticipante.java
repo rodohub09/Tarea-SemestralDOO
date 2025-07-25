@@ -6,9 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class AgregarParticipante extends JPanel {
-    JTextField nombre;
-    JTextField correo;
-    JButton agregar;
+    private JTextField nombre;
+    private JTextField correo;
+    private JButton agregar;
 
     public AgregarParticipante(){
         super();
@@ -58,5 +58,10 @@ public class AgregarParticipante extends JPanel {
         if(!nombre.getText().isBlank() && !correo.getText().isBlank())
             return new String[]{nombre.getText(),correo.getText()};
         return new String[]{"",""};
+    }
+
+    public void limpiarEntradas(){
+        nombre.setText("");
+        correo.setText("");
     }
 }

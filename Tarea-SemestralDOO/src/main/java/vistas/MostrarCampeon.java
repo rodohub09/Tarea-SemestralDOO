@@ -27,6 +27,7 @@ public class MostrarCampeon extends JDialog {
 
         JButton nuevo = new JButton("Crear Nuevo Torneo");
         nuevo.addActionListener(e -> {
+            PanelPrincipal.creado = !PanelPrincipal.creado;
             Ventana.reiniciarTorneo();
             dispose();
         });
