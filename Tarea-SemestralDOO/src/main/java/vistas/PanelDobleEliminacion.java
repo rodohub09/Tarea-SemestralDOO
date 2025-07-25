@@ -124,7 +124,6 @@ public class PanelDobleEliminacion extends JPanel implements PanelTorneo {
 
         if (PanelPrincipal.torneo.torneoFinalizado()){
             JLabel campeon = new JLabel(PanelPrincipal.torneo.getCampeon().getNombre());
-            System.out.println(PanelPrincipal.torneo.getCampeon().getNombre());
             campeon.setFont(super.getFont().deriveFont(20f));
             campeon.setBounds(
                     150 + rondaUpper * 100,
