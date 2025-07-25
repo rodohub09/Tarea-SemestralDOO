@@ -33,6 +33,8 @@ public class MenuCrearTorneo extends JPanel {
         crearTorneo.addActionListener(e -> {
                 try {
                     crearTorneo();
+                    definirCaracteristicasTorneo.limpiarEntradas();
+                    agregarParticipante.limpiarEntradas();
                     Ventana.actualizar(Menu.VerTorneo);
                 }
                 catch (CantidadInscritosInvalidaException cantidadInscritosInvalidaException){
@@ -44,6 +46,7 @@ public class MenuCrearTorneo extends JPanel {
                 catch (ModosIncompatiblesException modosIncompatiblesException){
                     new Excepciones("El modo seleccionado solo puede disputarse en formato Solo Ida");
                 }
+
 
         });
         menuInicial = new JButton("<<<");

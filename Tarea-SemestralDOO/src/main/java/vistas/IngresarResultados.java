@@ -18,7 +18,7 @@ public class IngresarResultados extends JDialog {
 
     public IngresarResultados(JFrame ventana){
         super(ventana,"Ingresar Resultados");
-        setSize(800,800);
+        setSize(900,800);
         setLocationRelativeTo(ventana);
         panelCalendario = new PanelCalendario();
         panelCalendario.setBounds(25, 25, 450, 600);
@@ -26,7 +26,7 @@ public class IngresarResultados extends JDialog {
         add(panelCalendario);
         scrollPane = new JScrollPane();
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setBounds(475,25,300,600);
+        scrollPane.setBounds(475,25,420,600);
         botonEnfrentamientos = new ArrayList<>();
 
         JButton guardar = new JButton("Guardar Resultados");
@@ -60,14 +60,14 @@ public class IngresarResultados extends JDialog {
             Jornada jornada = PanelPrincipal.torneo.getCalendario().getJornada(PanelPrincipal.torneo.getNumJornada());
             JPanel panel = new JPanel();
             panel.setLayout(null);
-            JLabel titulo = new JLabel(" Resultados ");
-            titulo.setBounds(20,0,300,40);
+            JLabel titulo = new JLabel("Seleccionar Resultados");
+            titulo.setBounds(20,0,420,40);
             panel.add(titulo);
             titulo.setFont(super.getFont().deriveFont(36f));
             panel.add(titulo);
             for (Enfrentamiento e : jornada.getEnfrentamientos()) {
                 BotonResultado botonResultado = getBotonResultado();
-                botonResultado.setBounds(10,40+jornada.getEnfrentamientos().indexOf(e)*30,300,30);
+                botonResultado.setBounds(70,40+jornada.getEnfrentamientos().indexOf(e)*30,300,30);
                 panel.add(botonResultado);
                 botonEnfrentamientos.add(botonResultado);
             }
