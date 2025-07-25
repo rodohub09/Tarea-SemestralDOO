@@ -9,7 +9,6 @@ import java.util.ArrayList;
 public class Calendario {
     private ArrayList<Jornada> jornadas;
     private TipoDeCalendario tipoDeCalendario;
-    private TipoTorneo tipoTorneo;
 
     /**
      * Constructor que inicializa la lista de jornadas vacía.
@@ -26,7 +25,6 @@ public class Calendario {
      * @param participantes Lista de participantes del torneo.
      */
     public void setTipoDeCalendario(TipoTorneo tt, int cantEnfretamientosIgual, CantidadParticipantes p,Participantes participantes) {
-        this.tipoTorneo = tt;
         if (tt == TipoTorneo.Liga) {
             this.tipoDeCalendario = new CalendarioXPuntos();
             tipoDeCalendario.creacionCalendario(jornadas, cantEnfretamientosIgual, p, participantes);
@@ -56,20 +54,12 @@ public class Calendario {
         return jornadas.size();
     }
 
-    /**
-     * Setter de la lista de jornadas del torneo.
-     * @param jornadas Lista de jornadas del torneo.
-     */
-    public void setJornadas(ArrayList<Jornada> jornadas) {
-        this.jornadas = jornadas;
-    }
-
     public void actualizarCalendario(ArrayList<Participante> activos){
         tipoDeCalendario.actualizarCalendario(jornadas,activos);
     }
 
-    public TipoDeCalendario getTipoDeCalendario(){
-        return this.tipoDeCalendario;
+    public TipoDeCalendario getTipoDeCalendario() {
+        return tipoDeCalendario;
     }
 
     public String toString(){
