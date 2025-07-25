@@ -5,6 +5,9 @@ import modelos.Participante;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Panel que permite ingresar nuevos participantes al torneo
+ */
 public class AgregarParticipante extends JPanel {
     private JTextField nombre;
     private JTextField correo;
@@ -54,12 +57,18 @@ public class AgregarParticipante extends JPanel {
         super.paintComponent(g);
     }
 
+    /**
+     * @return Devuelve los campos de texto si es están llenados
+     */
     public String[] getCampos(){
         if(!nombre.getText().isBlank() && !correo.getText().isBlank())
             return new String[]{nombre.getText(),correo.getText()};
         return new String[]{"",""};
     }
 
+    /**
+     * Vacia los campos de texto
+     */
     public void limpiarEntradas(){
         nombre.setText("");
         correo.setText("");

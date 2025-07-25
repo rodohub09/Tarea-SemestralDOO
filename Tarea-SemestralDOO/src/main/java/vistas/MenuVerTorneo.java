@@ -114,7 +114,10 @@ public class MenuVerTorneo extends JPanel {
             crearpanel = false;
             panelTorneo.actualizar();
         }
-        else if(panelTorneo != null)
+        else if (PanelPrincipal.torneo.torneoFinalizado()) {
+            panelTorneo.actualizar();
+        }
+        else if(panelTorneo != null && !addResultados)
             panelTorneo.actualizar();
     }
 
